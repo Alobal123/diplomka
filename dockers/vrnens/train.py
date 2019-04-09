@@ -3,7 +3,6 @@ import argparse
 import resource
 import imp
 import time
-import logging
 import math
 import os
 import pickle
@@ -18,7 +17,7 @@ from config import get_config, add_to_config
 sys.path.insert(0, '/vrnens')
 from utils import checkpoints, metrics_logging
 from collections import OrderedDict
-from Logger import Logger
+from Logger import Logger, log
 theano.config.reoptimize_unpickled_function = False
 theano.config.cycle_detection = 'fast'  
 #####################
@@ -30,7 +29,7 @@ theano.config.cycle_detection = 'fast'
 #
 
 def make_test_function(cfg, model, config):
-    print("Compiling test function")
+    log(config.log_file, "Compiling test function")
     X_ = T.TensorType('float32', [False]*5)('X')    
     y_ = T.TensorType('int32', [False]*1)('y')    
     l_out = model['l_out']
@@ -73,7 +72,7 @@ def make_test_function(cfg, model, config):
     return tfuncs, tvars, model
 
 def make_training_functions(cfg, model, config):
-    print("Compiling training function")
+    log(config.log_file, "Compiling training function")
     # Input Array
     X = T.TensorType('float32', [False]*5)('X')  
     
@@ -178,7 +177,6 @@ def jitter_chunk(src, cfg,chunk_index):
 # Main Function
 def train(config):
 
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s| %(message)s')
     # Set random seed to ensure identical network initializations.
     # Note that cuDNN's convolutions are nondeterministic, so this
     # does not guarantee that two networks will behave identically.
@@ -190,7 +188,7 @@ def train(config):
     # Get model
     model = config_module.get_model()
     # Compile functions
-    print('Compiling theano functions...')
+    log(config.log_file, 'Compiling theano functions...')
     test_function, test_vars, model = make_test_function(cfg, model, config)
     tfuncs, tvars, model = make_training_functions(cfg, model, config)
     tfuncs.update(test_function)
@@ -207,7 +205,7 @@ def train(config):
         ACC_LOGGER.load((os.path.join(ld,"{}_acc_train_accuracy.csv".format(config.name)),os.path.join(ld,"{}_acc_eval_accuracy.csv".format(config.name))), epoch = WEIGHTS)
         LOSS_LOGGER.load((os.path.join(ld,"{}_loss_train_loss.csv".format(config.name)), os.path.join(ld,'{}_loss_eval_loss.csv'.format(config.name))), epoch = WEIGHTS)
         metadata = checkpoints.load_weights(ckptfile, model['l_out'])     
-    print('Training...')
+    log(config.log_file, 'Training...')
     itr = 0
     
     # Load data and shuffle training examples. 
@@ -228,7 +226,6 @@ def train(config):
     chunk_size = cfg['batch_size']*cfg['batches_per_chunk']
     # Determine number of chunks
     num_chunks = int(math.ceil(len(y)/float(chunk_size)))
-    print(num_chunks, chunk_size, num_chunks*chunk_size)
     # Get current learning rate
     new_lr = np.float32(tvars['learning_rate'].get_value())
     # Loop across training epochs!
@@ -248,15 +245,16 @@ def train(config):
             if any(x==epoch for x in cfg['learning_rate'].keys()):
                 lr = np.float32(tvars['learning_rate'].get_value())
                 new_lr = cfg['learning_rate'][epoch]
-                print('Changing learning rate from {} to {}'.format(lr, new_lr))
+                log(config.log_file, 'Changing learning rate from {} to {}'.format(lr, new_lr))
                 tvars['learning_rate'].set_value(np.float32(new_lr))
         if cfg['decay_rate'] and epoch > 0:
             lr = np.float32(tvars['learning_rate'].get_value())
             new_lr = lr*(1-cfg['decay_rate'])
-            print('Changing learning rate from {} to {}'.format(lr, new_lr))
+            log(config.log_file, 'Changing learning rate from {} to {}'.format(lr, new_lr))
             tvars['learning_rate'].set_value(np.float32(new_lr))         
         
         # Loop across chunks!
+        #for chunk_index in xrange(1):
         for chunk_index in xrange(num_chunks):
             # Define upper index of chunk to load
             # If you start doing complicated things with data loading, consider 
@@ -289,12 +287,12 @@ def train(config):
                 
                 # Update iteration counter
                 itr += 1
-                if it % max(config.train_log_frq/config.batch_size,1) == 0:
+                if itr % max(config.train_log_frq/config.batch_size,1) == 0:
                     [closs,c_acc] = [float(np.mean(lvs)),1.0-float(np.mean(accs))]
-                    ACC_LOGGER.log(c_acc,epoch,"train_accuracy")
-                    LOSS_LOGGER.log(closs,epoch,"train_loss")  
+                    ACC_LOGGER.log( c_acc,epoch,"train_accuracy")
+                    LOSS_LOGGER.log( closs,epoch,"train_loss")  
                     lvs, accs = [],[] 
-                    print('epoch: {0:^3d}, itr: {1:d}, c_loss: {2:.6f}, class_acc: {3:.5f}'.format(epoch, itr, closs, c_acc))       
+                    log(config.log_file, 'epoch: {0:^3d}, itr: {1:d}, c_loss: {2:.6f}, class_acc: {3:.5f}'.format(epoch, itr, closs, c_acc))       
                     
         if not (epoch % cfg['checkpoint_every_nth']) or epoch == end:
             weights_fname = os.path.join(config.log_dir,config.snapshot_prefix+str(epoch))
@@ -302,7 +300,7 @@ def train(config):
                                                 {'itr': itr, 'ts': time.time(),
                                                 'learning_rate': new_lr}) 
 
-    print('training done')
+    log(config.log_file, 'training done')
 
 
 def test(config):
@@ -312,7 +310,7 @@ def test(config):
     # Get model
     model = config_module.get_model()
     # Compile functions
-    print('Compiling theano functions...')
+    log(config.log_file, 'Compiling theano functions...')
     tfuncs, tvars, model = make_test_function(cfg, model, config)
 
     ckptfile = os.path.join(config.log_dir,config.snapshot_prefix+str(config.weights)+'.npz')
@@ -329,7 +327,7 @@ def test(config):
     evaluate(x_t, y_t, cfg, tfuncs, tvars, config)
 
 def evaluate(x_test, y_test, cfg, tfuncs, tvars, config, epoch=0):
-    print("testing")
+    log(config.log_file, "testing")
     n_rotations = cfg['n_rotations']
     chunk_size = n_rotations * cfg['batches_per_chunk']
     num_chunks = int(math.ceil(float(len(x_test))/chunk_size))
@@ -358,8 +356,8 @@ def evaluate(x_test, y_test, cfg, tfuncs, tvars, config, epoch=0):
     loss, acc = [float(np.mean(losses)),1.0-float(np.mean(accs))]    
     predictions = list(pred_array)
     if not config.test:
-        LOSS_LOGGER.log(loss, epoch, "eval_loss")
-        ACC_LOGGER.log(acc, epoch, "eval_accuracy")
+        LOSS_LOGGER.log( loss, epoch, "eval_loss")
+        ACC_LOGGER.log( acc, epoch, "eval_accuracy")
     else:
         import Evaluation_tools as et
         eval_file = os.path.join(config.log_dir, '{}.txt'.format(config.name))

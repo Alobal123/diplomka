@@ -18,3 +18,4 @@ docker run --runtime=nvidia --rm -id --name "$name" -v "$out_path":/workspace/lo
 docker exec -i -"$docker_hidden" "$name" sh -c "export CUDA_VISIBLE_DEVICES=$GPU && python train.py"
 
 ##########################################################################################################
+if [ "$docker_hidden" == d ]; then echo Container running in detached mode. Check the log file for the information; fi

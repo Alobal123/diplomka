@@ -68,5 +68,6 @@ RUN mkdir logs
 #Copy changed code
 COPY *.py ./
 COPY *.ini ./
+RUN mv meshgrid.py lib/generators
 
 ENTRYPOINT /bin/bash 

@@ -6,7 +6,7 @@ import os
 import random
 import vgg19_trainable
 import utils
-from Logger import Logger
+from Logger import Logger, log
 import skimage
 from config import get_config, add_to_config
 
@@ -65,7 +65,7 @@ def load_weights(config):
     return weights
 
 def evaluate(test_data, config):
-    print("Building net")
+    log(config.log_file, "Building net")
                        
     net = vgg19_trainable.Vgg19(vgg19_npy_path=load_weights(config), trainable = True)
     with tf.device('/gpu:0'):
@@ -75,7 +75,7 @@ def evaluate(test_data, config):
         _evaluate(net, sess, test_data, config)
         
 def _evaluate(net, sess, test_data, config, epoch=0):
-    print("starting evaluation")
+    log(config.log_file, "starting evaluation")
     labels = []
     predictions = []
     losses = []
@@ -99,11 +99,11 @@ def _evaluate(net, sess, test_data, config, epoch=0):
                 acc+=0
             count+=1
     acc = acc/float(count)
-    print("EVALUATING - acc: {} loss: {}".format(acc,loss))
+    log(config.log_file, "EVALUATING - acc: {} loss: {}".format(acc,loss))
     if not config.test:
         loss = np.mean(losses) 
-        LOSS_LOGGER.log(loss, epoch, "eval_loss")
-        ACC_LOGGER.log(acc, epoch, "eval_accuracy")
+        LOSS_LOGGER.log( loss, epoch, "eval_loss")
+        ACC_LOGGER.log( acc, epoch, "eval_accuracy")
     else:
         import Evaluation_tools as et
         eval_file = os.path.join(config.log_dir, '{}.txt'.format(config.name))
@@ -112,7 +112,7 @@ def _evaluate(net, sess, test_data, config, epoch=0):
  
  
 def train(train_data, test_data, config):
-    print("Starting training")
+    log(config.log_file, "Starting training")
     with tf.device('/gpu:0'):
         sess = tf.Session()
         
@@ -129,7 +129,7 @@ def train(train_data, test_data, config):
         
         net = vgg19_trainable.Vgg19(vgg19_npy_path=load_weights(config), trainable = True)    
 
-        print("Weights loaded")
+        log(config.log_file, "Weights loaded")
         net.build(lr=config.lr)
         sess.run(tf.global_variables_initializer())
         
@@ -137,7 +137,7 @@ def train(train_data, test_data, config):
         begin = start_epoch
         end = config.max_epoch+start_epoch
         for epoch in range(begin, end + 1):
-            _evaluate(net, sess, test_data, config, epoch=epoch)
+            
             accs = []
             losses = []
             for it in range(it_per_epoch):     
@@ -151,37 +151,38 @@ def train(train_data, test_data, config):
                 if it % max(config.train_log_frq/config.batch_size,1) == 0:
                     loss = np.mean(losses)
                     acc = np.mean(accs)
-                    print("TRAINING epoch: {} it: {}  loss: {} acc: {} ".format(epoch,it, loss, acc))
-                    LOSS_LOGGER.log(loss, epoch, "train_loss")
-                    ACC_LOGGER.log(acc, epoch, "train_accuracy")
+                    log(config.log_file, "TRAINING epoch: {} it: {}  loss: {} acc: {} ".format(epoch,it, loss, acc))
+                    LOSS_LOGGER.log( loss, epoch, "train_loss")
+                    ACC_LOGGER.log( acc, epoch, "train_accuracy")
                     
                     ACC_LOGGER.save(config.log_dir)
                     LOSS_LOGGER.save(config.log_dir)
                     ACC_LOGGER.plot(dest=config.log_dir)
                     LOSS_LOGGER.plot(dest=config.log_dir)
                     
+            _evaluate(net, sess, test_data, config, epoch=epoch)
             if epoch % config.save_period == 0 or epoch == end:
                 net.save_npy(sess, os.path.join(config.log_dir, config.snapshot_prefix + str(epoch)))
                 
             if epoch > 0 and epoch % config.lr_decay_step == 0:
                 net.update_lr(config.lr_decay)
-                print("Updated learning rate to {}".format(net.lr))
+                log(config.log_file, "Updated learning rate to {}".format(net.lr))
            
             
 
 def extract_features(config, train_data, test_data):
-    print("Building net...")
+    log(config.log_file, "Building net...")
     with tf.device('/gpu:0'):
         sess = tf.Session()
         net = vgg19_trainable.Vgg19(vgg19_npy_path=load_weights(config), trainable = True)  
         net.build()
         sess.run(tf.global_variables_initializer())
         out_dir = config.data
-        print("extracting test...")
+        log(config.log_file, "extracting test...")
         test_features, test_labels = _extract_features(test_data, net, sess, config)
         np.save(os.path.join(out_dir,'test_features.npy'), test_features)
         np.save(os.path.join(out_dir,'test_labels.npy'), test_labels)
-        print("extracting train...")        
+        log(config.log_file, "extracting train...")        
         train_features, train_labels = _extract_features(train_data, net, sess, config)        
         np.save(os.path.join(out_dir,'train_features.npy'), train_features)
         np.save(os.path.join(out_dir,'train_labels.npy'), train_labels)
@@ -227,11 +228,11 @@ if __name__ == '__main__':
         test_data = Dataset(test_images, test_labels, shuffle=False)
         train_images, train_labels = read_lists(os.path.join(config.data,'train.txt'))
         train_data = Dataset(train_images, train_labels, shuffle=True)
-        print('loaded data')
+        log(config.log_file, 'loaded data')
         LOSS_LOGGER = Logger("{}_loss".format(config.name))
         ACC_LOGGER = Logger("{}_acc".format(config.name))
         train(train_data, test_data, config)
-        print('training done')
+        log(config.log_file, 'training done')
         if config.weights == -1:
             config = add_to_config(config, 'weights', config.max_epoch)
         else:

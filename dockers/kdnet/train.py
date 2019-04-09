@@ -4,7 +4,7 @@ import h5py as h5
 import numpy as np
 import os
 from kdnet import KDNET
-from Logger import Logger
+from Logger import Logger, log
 from lib.generators.meshgrid import generate_clouds
 from lib.trees.kdtrees import KDTrees
 from lib.nn.utils import dump_weights, load_weights
@@ -23,7 +23,8 @@ def iterate_minibatches(*arrays, **kwargs):
         np.random.shuffle(indices)
         
     for start_idx in xrange(0, len(indices), config.batch_size):
-        excerpt = indices[start_idx:start_idx + config.batch_size]
+        excerpt = indices[start_idx:start_idx + config.batch_size]        
+
         tmp = generate_clouds(excerpt, config.steps, arrays[0], arrays[1], arrays[2])
         
         if config.flip:
@@ -103,9 +104,10 @@ if __name__ == "__main__":
 
     config = get_config()
     
-    print("Reading data...")
+    log(config.log_file, "Reading data...")
     path2data = os.path.join(config.data, 'data.h5')
     with h5.File(path2data, 'r') as hf:
+        log(config.log_file, list(hf.keys()))
         if not config.test:
             train_vertices = np.array(hf.get('train_vertices'))
             train_faces = np.array(hf.get('train_faces'))
@@ -115,27 +117,27 @@ if __name__ == "__main__":
         test_faces = np.array(hf.get('test_faces'))
         test_nFaces = np.array(hf.get('test_nFaces'))
         test_labels = np.array(hf.get('test_labels'))
-            
-    print("Compiling net...")
+
+    log(config.log_file, "Compiling net...")
     net = KDNET(config)    
-    
+
     if config.weights != -1:
         weights = config.weights
         load_weights(os.path.join(config.log_dir, config.snapshot_prefix+str(weights)), net.KDNet['output'])
-        print("Loaded weights")
+        log(config.log_file, "Loaded weights")
     
     if config.test:
-        print("Start testing")
+        log(config.log_file, "Start testing")
         _, predictions = acc_fun(net, test_vertices, test_faces, test_nFaces, test_labels, mode='test',config=config) 
         acc = 100.*(predictions == test_labels).sum()/len(test_labels)
         
-        print('Eval accuracy:  {}'.format(acc))
+        log(config.log_file, 'Eval accuracy:  {}'.format(acc))
         import Evaluation_tools as et
         eval_file = os.path.join(config.log_dir, '{}.txt'.format(config.name))
         et.write_eval_file(config.data, eval_file, predictions, test_labels, config.name)
         et.make_matrix(config.data, eval_file, config.log_dir)  
     else:
-        print("Start training")
+        log(config.log_file, "Start training")
         LOSS_LOGGER = Logger("{}_loss".format(config.name))
         ACC_LOGGER = Logger("{}_acc".format(config.name))
         start_epoch = 0
@@ -151,11 +153,11 @@ if __name__ == "__main__":
         end = config.max_epoch+start_epoch
         for epoch in xrange(begin, end):
             
-            loss, predictions = acc_fun(net,test_vertices, test_faces, test_nFaces, test_labels, mode='test',config=config)
+            loss, predictions = acc_fun(net, test_vertices, test_faces, test_nFaces, test_labels, mode='test',config=config)
             acc = (predictions == test_labels).sum()/float(len(test_labels))
-            print("evaluating loss:{} acc:{}".format(loss,acc))       
-            LOSS_LOGGER.log(loss, epoch, "eval_loss")
-            ACC_LOGGER.log(acc, epoch, "eval_accuracy")
+            log(config.log_file, "evaluating loss:{} acc:{}".format(loss,acc))       
+            LOSS_LOGGER.log( loss, epoch, "eval_loss")
+            ACC_LOGGER.log( acc, epoch, "eval_accuracy")
             
             losses = []
             accuracies = []
@@ -168,9 +170,9 @@ if __name__ == "__main__":
                 if i % max(config.train_log_frq/config.batch_size,1) == 0:
                     loss = np.mean(losses)
                     acc = np.mean(accuracies)
-                    LOSS_LOGGER.log(loss, epoch, "train_loss")
-                    ACC_LOGGER.log(acc, epoch, "train_accuracy")
-                    print('EPOCH {}, batch {}: loss {} acc {}'.format(epoch, i, loss, acc))
+                    LOSS_LOGGER.log( loss, epoch, "train_loss")
+                    ACC_LOGGER.log( acc, epoch, "train_accuracy")
+                    log(config.log_file, 'EPOCH {}, batch {}: loss {} acc {}'.format(epoch, i, loss, acc))
                     losses = []
                     accuracies = []
             
@@ -182,11 +184,11 @@ if __name__ == "__main__":
                 dump_weights(os.path.join(config.log_dir, config.snapshot_prefix+str(epoch)), net.KDNet['output'])
     
             
-        print("Start testing")
+        log(config.log_file, "Start testing")
         _, predictions = acc_fun(net, test_vertices, test_faces, test_nFaces, test_labels, mode='test',config=config) 
         acc = 100.*(predictions == test_labels).sum()/len(test_labels)
         
-        print('Eval accuracy:  {}'.format(acc))
+        log(config.log_file, 'Eval accuracy:  {}'.format(acc))
         import Evaluation_tools as et
         eval_file = os.path.join(config.log_dir, '{}.txt'.format(config.name))
         et.write_eval_file(config.data, eval_file, predictions, test_labels, config.name)

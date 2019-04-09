@@ -13,7 +13,7 @@ sys.path.append(os.path.join(BASE_DIR, 'models'))
 sys.path.append(os.path.join(BASE_DIR, 'utils'))
 import provider
 import tf_util
-from Logger import Logger
+from Logger import Logger, log
 from config import get_config, add_to_config
 
 config = get_config()
@@ -23,8 +23,6 @@ MODEL_FILE = os.path.join(BASE_DIR, 'models', config.model+'.py')
 LOG_DIR = config.log_dir
 if not os.path.exists(LOG_DIR): os.mkdir(LOG_DIR)
 os.system('cp %s %s' % ('config.ini', config.log_dir)) # bkp of model def
-LOG_FOUT = open(os.path.join(LOG_DIR, 'log_train.txt'), 'w')
-LOG_FOUT.write(str(config)+'\n')
 
 BN_INIT_DECAY = 0.5
 BN_DECAY_RATE = 0.5
@@ -36,14 +34,8 @@ TRAIN_FILES = provider.getDataFiles( \
     os.path.join(config.data,'train_files.txt'))
 TEST_FILES = provider.getDataFiles(\
     os.path.join(config.data, 'test_files.txt'))
-print(TEST_FILES)
+
 WEIGHTS = config.weights
-
-
-def log_string(out_str):
-    LOG_FOUT.write(out_str+'\n')
-    LOG_FOUT.flush()
-    print(out_str)
 
 
 def get_learning_rate(batch):
@@ -131,7 +123,7 @@ def train(config):
         begin = start_epoch
         end = config.max_epoch+start_epoch
         for epoch in range(begin, end+1):
-            log_string('**** EPOCH %03d ****' % (epoch))
+            log(config.log_file, ('**** EPOCH %03d ****' % (epoch))
             sys.stdout.flush()
             
             eval_one_epoch(config,sess, ops, epoch=epoch)
@@ -157,7 +149,7 @@ def train_one_epoch(config, sess, ops,epoch):
     np.random.shuffle(train_file_idxs)
     
     for fn in range(len(TRAIN_FILES)):
-        log_string('----' + str(fn) + '-----')
+        log(config.log_file, '----' + str(fn) + '-----')
         current_data, current_label = provider.loadDataFile(TRAIN_FILES[train_file_idxs[fn]])
         current_data = current_data[:,0:config.num_points,:]
         current_data, current_label, _ = provider.shuffle_data(current_data, np.squeeze(current_label))            
@@ -189,10 +181,10 @@ def train_one_epoch(config, sess, ops,epoch):
             if batch_idx % max(config.train_log_frq/config.batch_size,1) == 0:            
                 acc = total_correct / float(total_seen)
                 loss = loss_sum / float(num_batches)
-                log_string('mean loss: %f' % loss)
-                LOSS_LOGGER.log(loss, epoch, "train_loss")
-                log_string('accuracy: %f' % acc)
-                ACC_LOGGER.log(acc, epoch, "train_accuracy")
+                log(config.log_file, 'mean loss: %f' % loss)
+                LOSS_LOGGER.log( loss, epoch, "train_loss")
+                log(config.log_file, 'accuracy: %f' % acc)
+                ACC_LOGGER.log( acc, epoch, "train_accuracy")
         
 def eval_one_epoch(config, sess, ops, epoch=0):
     is_training = False
@@ -204,7 +196,7 @@ def eval_one_epoch(config, sess, ops, epoch=0):
     labels = []
     all = 0
     for fn in range(len(TEST_FILES)):
-        log_string('----' + str(fn) + '-----')
+        log(config.log_file, '----' + str(fn) + '-----')
         current_data, current_label = provider.loadDataFile(TEST_FILES[fn])
         current_data = current_data[:,0:config.num_points,:]
         current_label = np.squeeze(current_label)
@@ -255,8 +247,8 @@ def eval_one_epoch(config, sess, ops, epoch=0):
                 
     loss = loss_sum / float(total_seen)
     acc = sum([1 if predictions[i]==labels[i] else 0 for i in range(len(predictions))]) / float(len(predictions))
-    print(loss)
-    print(acc)
+    log(config.log_file, loss)
+    log(config.log_file, acc)
     
     if config.test:
         import Evaluation_tools as et
@@ -264,10 +256,10 @@ def eval_one_epoch(config, sess, ops, epoch=0):
         et.write_eval_file(config.data, eval_file, predictions, labels, config.name)
         et.make_matrix(config.data, eval_file, config.log_dir)  
     else:
-        log_string('eval mean loss: %f' % loss)
-        LOSS_LOGGER.log(loss, epoch, "eval_loss")
-        log_string('eval accuracy: %f' % acc)
-        ACC_LOGGER.log(acc, epoch, "eval_accuracy")
+        log(config.log_file, 'eval mean loss: %f' % loss)
+        LOSS_LOGGER.log( loss, epoch, "eval_loss")
+        log(config.log_file, 'eval accuracy: %f' % acc)
+        ACC_LOGGER.log( acc, epoch, "eval_accuracy")
     
 def test(config):     
     is_training = False
@@ -289,7 +281,7 @@ def test(config):
     ld = config.log_dir
     ckptfile = os.path.join(ld,config.snapshot_prefix+str(config.weights))
     saver.restore(sess, ckptfile)
-    log_string("Model restored.")
+    log(config.log_file, "Model restored.")
 
     ops = {'pointclouds_pl': pointclouds_pl,
            'labels_pl': labels_pl,
@@ -310,7 +302,6 @@ if __name__ == "__main__":
         else:
             config = add_to_config(config, 'weights', config.max_epoch + config.weights)
         config = add_to_config(config, 'test', True)
-    print(config)
+    log(config.log_file, , config)
     test(config)    
-    LOG_FOUT.close()
 

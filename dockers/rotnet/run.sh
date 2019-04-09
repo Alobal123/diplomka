@@ -1,10 +1,10 @@
 ##########################################################################################################
 # Set required variables
 name='rotnet'
-dataset_path="/home/krabec/phong_shapenet"
+dataset_path="/home/krabec/shapenet_phong"
 out_path="/home/krabec/dockers/rotnet/shapenet"
-GPU=0
-docker_hidden=d
+GPU=1
+docker_hidden=t
 
 ##########################################################################################################
 
@@ -21,3 +21,5 @@ docker exec -i -"$docker_hidden" "$name" sh -c "export CUDA_VISIBLE_DEVICES=$GPU
 ##########################################################################################################
 
 
+
+if [ "$docker_hidden" == d ]; then echo Container running in detached mode. Check the log file for the information; fi

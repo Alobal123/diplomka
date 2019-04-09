@@ -15,7 +15,7 @@ import torch.optim as optim
 import random
 import numpy as np
 
-from Logger import Logger
+from Logger import Logger, log
 from config import get_config, add_to_config
 from models.classifier import Model
 from data.modelnet_shrec_loader import ModelNet_Shrec_Loader
@@ -25,7 +25,7 @@ def train(model, config):
     trainset = ModelNet_Shrec_Loader(os.path.join(config.data, 'train_files.txt'), 'train', config.data, config)
     dataset_size = len(trainset)
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=config.batch_size, shuffle=True, num_workers=config.num_threads)
-    print('#training point clouds = %d' % len(trainset))
+    log(config.log_file, '#training point clouds = %d' % len(trainset))
     
     start_epoch = 0
     WEIGHTS = config.weights
@@ -37,7 +37,7 @@ def train(model, config):
         LOSS_LOGGER.load((os.path.join(ld,"{}_loss_train_loss.csv".format(config.name)),
                            os.path.join(ld,'{}_loss_eval_loss.csv'.format(config.name))), epoch = WEIGHTS)
         
-    print("Starting training")
+    log(config.log_file, "Starting training")
     best_accuracy = 0
     losses = []
     accs = []
@@ -62,9 +62,9 @@ def train(model, config):
             if i % max(config.train_log_frq/config.batch_size,1) == 0:
                 acc = np.mean(accs)
                 loss = np.mean(losses) 
-                LOSS_LOGGER.log(loss, epoch, "train_loss")
-                ACC_LOGGER.log(acc, epoch, "train_accuracy")
-                print("EPOCH {} acc: {} loss: {}".format(epoch, acc, loss))
+                LOSS_LOGGER.log( loss, epoch, "train_loss")
+                ACC_LOGGER.log( acc, epoch, "train_accuracy")
+                log(config.log_file, "EPOCH {} acc: {} loss: {}".format(epoch, acc, loss))
                 ACC_LOGGER.save(config.log_dir)
                 LOSS_LOGGER.save(config.log_dir)
                 ACC_LOGGER.plot(dest=config.log_dir)
@@ -75,7 +75,7 @@ def train(model, config):
         best_accuracy = test(model, config, best_accuracy=best_accuracy, epoch=epoch)
 
         if epoch % config.save_each == 0 or epoch == end:
-            print("Saving network...")
+            log(config.log_file, "Saving network...")
             save_path = os.path.join(config.log_dir,config.snapshot_prefix +'_encoder_'+str(epoch))
             model.save_network(model.encoder, save_path, 0)
             save_path = os.path.join(config.log_dir,config.snapshot_prefix +'_classifier_'+str(epoch))
@@ -90,7 +90,7 @@ def train(model, config):
                 next_epoch % config.bn_momentum_decay_step == 0):
             current_bn_momentum = config.bn_momentum * (
             config.bn_momentum_decay ** (next_epoch // config.bn_momentum_decay_step))
-            print('BN momentum updated to: %f' % current_bn_momentum)
+            log(config.log_file, 'BN momentum updated to: %f' % current_bn_momentum)
             
 def test(model, config, best_accuracy=0, epoch=None):
     batch_amount = 0
@@ -124,7 +124,6 @@ def test(model, config, best_accuracy=0, epoch=None):
     if config.test:
         predictions = [x.item() for x in predictions]
         labels = [x.item() for x in labels]
-        #print(sum([0 if abs(predictions[i] - labels[i]) else 1 for i in range(len(predictions))]) / 2648.0)
         import Evaluation_tools as et
         eval_file = os.path.join(config.log_dir, '{}.txt'.format(config.name))
         et.write_eval_file(config.data, eval_file, predictions, labels, config.name)
@@ -134,10 +133,10 @@ def test(model, config, best_accuracy=0, epoch=None):
             best_accuracy = model.test_accuracy.item()
         loss = model.test_loss.item()
         acc = model.test_accuracy.item()
-        print('Tested network. So far best: %f' % best_accuracy)
-        print("TESTING EPOCH {} acc: {} loss: {}".format(epoch, acc, loss ))       
-        LOSS_LOGGER.log(loss, epoch, "eval_loss")
-        ACC_LOGGER.log(acc, epoch, "eval_accuracy")
+        log(config.log_file, 'Tested network. So far best: {}'.format( best_accuracy))
+        log(config.log_file, "TESTING EPOCH {} acc: {} loss: {}".format(epoch, acc, loss ))       
+        LOSS_LOGGER.log( loss, epoch, "eval_loss")
+        ACC_LOGGER.log( acc, epoch, "eval_accuracy")
         return best_accuracy
 
 if __name__=='__main__':

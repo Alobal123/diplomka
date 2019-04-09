@@ -4,7 +4,7 @@ import caffe
 import numpy as np
 import os
 import lmdb
-from Logger import Logger
+from Logger import Logger, log
 from config import get_config, prepare_solver_file, add_to_config
 
 def get_highest_model(config):
@@ -51,10 +51,10 @@ def eval(config, solver, epoch=0):
     loss  /= test_iters + 1
     
     if not config.test:
-        print("Accuracy: {:.3f}".format(acc))
-        print("Loss: {:.3f}".format(loss))
-        LOSS_LOGGER.log(loss, epoch, "eval_loss")
-        ACC_LOGGER.log(acc, epoch, "eval_accuracy")
+        log(config.log_file, "Accuracy: {:.3f}".format(acc))
+        log(config.log_file, "Loss: {:.3f}".format(loss))
+        LOSS_LOGGER.log( loss, epoch, "eval_loss")
+        ACC_LOGGER.log( acc, epoch, "eval_accuracy")
     else:
         import Evaluation_tools as et
         labels = [int(l) for l in labels]
@@ -99,8 +99,8 @@ def train(config, solver):
             accs.append(acc)
             
             if it % max(config.train_log_frq/config.batch_size,1) == 0:
-                LOSS_LOGGER.log(np.mean(losses), epoch, "train_loss")
-                ACC_LOGGER.log(np.mean(accs), epoch, "train_accuracy")
+                LOSS_LOGGER.log( np.mean(losses), epoch, "train_loss")
+                ACC_LOGGER.log( np.mean(accs), epoch, "train_accuracy")
                 ACC_LOGGER.save(config.log_dir)
                 LOSS_LOGGER.save(config.log_dir)
                 losses = []
@@ -109,8 +109,8 @@ def train(config, solver):
                 
         ACC_LOGGER.plot(dest=config.log_dir)
         LOSS_LOGGER.plot(dest=config.log_dir)        
-        print("LOSS: ", np.mean(losses))
-        print("ACCURACY", np.mean(accs))
+        log(config.log_file, "LOSS: {}".format( np.mean(losses)))
+        log(config.log_file, "ACCURACY {}".format(np.mean(accs)))
 
 
 if __name__ == '__main__':
@@ -134,6 +134,6 @@ if __name__ == '__main__':
     caffemodel = os.path.splitext(snapshot)[0] + '.caffemodel'
     solver.net.copy_from(caffemodel)
     solver.test_nets[0].copy_from(caffemodel)
-    print('Model restored')
+    log(config.log_file, 'Model restored')
     eval(config, solver)
         

@@ -2,12 +2,11 @@ from __future__ import print_function
 import tensorflow as tf
 import numpy as np
 import os
-from Logger import Logger
+from Logger import Logger, log
 from seq_rnn_model import SequenceRNNModel
 import model_data
 import csv
 from config import get_config, add_to_config
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 config = get_config()
 
 def train(config):
@@ -22,7 +21,6 @@ def train(config):
                                      use_attention=config.use_attention,
                                      use_embedding=config.use_embedding,
                                      num_heads=config.num_heads)
-                                     #init_decoder_embedding=model_data.read_class_yes_embedding(config.log_dir))
                                      
     seq_rnn_model_test = SequenceRNNModel(config.n_input_fc, config.num_views, config.n_hidden, config.decoder_embedding_size, config.num_classes+1, config.n_hidden,
                                  batch_size=test_data.size(),
@@ -75,9 +73,9 @@ def train(config):
                 if batch % max(config.train_log_frq/config.batch_size, 1) == 0:
                     loss = np.mean(losses)
                     acc = np.mean(accs)
-                    LOSS_LOGGER.log(loss, epoch, "train_loss")
-                    ACC_LOGGER.log(acc, epoch, "train_accuracy")
-                    print("epoch %d batch %d: loss=%f acc=%f" %(epoch, batch, loss, acc))
+                    LOSS_LOGGER.log( loss, epoch, "train_loss")
+                    ACC_LOGGER.log( acc, epoch, "train_accuracy")
+                    log(config.log_file, "epoch %d batch %d: loss=%f acc=%f" %(epoch, batch, loss, acc))
                     accs = []
                     losses = []
                 batch += 1
@@ -119,9 +117,9 @@ def eval_during_training(weights, model, epoch):
         sess.run(init)
         model.assign_weights(sess, weights, "eval")
         acc, loss, _, _ = _test(data, model, sess)
-    print("evaluation, acc=%f" %(acc[0]))
-    LOSS_LOGGER.log(loss, epoch,"eval_loss")
-    ACC_LOGGER.log(acc[0],epoch, "eval_accuracy")
+    log(config.log_file, "evaluation, acc=%f" %(acc[0]))
+    LOSS_LOGGER.log( loss, epoch,"eval_loss")
+    ACC_LOGGER.log( acc[0],epoch, "eval_accuracy")
     
     
 def eval_alone(config):
@@ -141,7 +139,7 @@ def eval_alone(config):
         saver = tf.train.Saver()
         saver.restore(sess, get_modelpath(config.weights))
         acc, loss, predictions, labels = _test(data, seq_rnn_model, sess)
-    print("model:%s, acc_instance=%f, acc_class=%f" % ("Model", acc[0], acc[1]))
+    log(config.log_file, "model:%s, acc_instance=%f, acc_class=%f" % ("Model", acc[0], acc[1]))
     
     predictions = [x-1 for x in predictions]  
     labels = [x-1 for x in labels]

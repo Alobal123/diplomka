@@ -7,7 +7,7 @@ import pickle
 import os
 import time
 
-from Logger import Logger
+from Logger import Logger, log
 
 
 class ModelNetTrainer(object):
@@ -31,6 +31,18 @@ class ModelNetTrainer(object):
 
         self.model.train()
         for epoch in range(config.max_epoch+1):
+        
+            # evaluation
+            with torch.no_grad():
+                loss, val_overall_acc, val_mean_class_acc = self.update_validation_accuracy(config,epoch)
+            
+            self.LOSS_LOGGER.log(loss, epoch, "eval_loss")
+            self.ACC_LOGGER.log(val_overall_acc, epoch, "eval_accuracy")
+            self.ACC_LOGGER.save(self.log_dir)
+            self.LOSS_LOGGER.save(self.log_dir)
+            self.ACC_LOGGER.plot(dest=self.log_dir)
+            self.LOSS_LOGGER.plot(dest=self.log_dir)     
+        
             # permute data for mvcnn
             rand_idx = np.random.permutation(int(len(self.train_loader.dataset.filepaths)/self.num_views))
             filepaths_new = []
@@ -69,27 +81,20 @@ class ModelNetTrainer(object):
 
                 loss.backward()
                 self.optimizer.step()
-                
+
                 if i % max(config.train_log_frq/batch_size,1) == 0:
                     acc = np.mean(accs)
                     loss = np.mean(losses)
                     self.LOSS_LOGGER.log(loss, epoch, "train_loss")
                     self.ACC_LOGGER.log(acc, epoch, "train_accuracy")
+                    self.ACC_LOGGER.save(self.log_dir)
+                    self.LOSS_LOGGER.save(self.log_dir)
                     log_str = 'epoch %d, step %d: train_loss %.3f; train_acc %.3f' % (epoch+1, i+1, loss, acc)
                     losses = []
                     accs = []
-                    print(log_str)
+                    log(config.log_file, log_str)
             
-            # evaluation
-            with torch.no_grad():
-                loss, val_overall_acc, val_mean_class_acc = self.update_validation_accuracy(epoch)
-            
-            self.LOSS_LOGGER.log(loss, epoch, "eval_loss")
-            self.ACC_LOGGER.log(val_overall_acc, epoch, "eval_accuracy")
-            self.ACC_LOGGER.save(self.log_dir)
-            self.LOSS_LOGGER.save(self.log_dir)
-            self.ACC_LOGGER.plot(dest=self.log_dir)
-            self.LOSS_LOGGER.plot(dest=self.log_dir)        
+   
 
             # save model
             if epoch % config.save_period == 0 or epoch == config.max_epoch:
@@ -101,12 +106,12 @@ class ModelNetTrainer(object):
                 for param_group in self.optimizer.param_groups:
                     param_group['lr'] = param_group['lr']*0.5
 
-    def update_validation_accuracy(self, epoch, test=False):
+    def update_validation_accuracy(self, config, epoch, test=False):
         all_correct_points = 0
         all_points = 0
 
-        wrong_class = np.zeros(40)
-        samples_class = np.zeros(40)
+        wrong_class = np.zeros(config.num_classes)
+        samples_class = np.zeros(config.num_classes)
         all_loss = 0
 
         self.model.eval()
@@ -143,15 +148,15 @@ class ModelNetTrainer(object):
             all_target += target.tolist()
             all_pred += pred.tolist()
 
-        print ('Total # of test models: ', all_points)
+        log(config.log_file, 'Total # of test models: {}'.format( all_points))
         val_mean_class_acc = np.mean((samples_class-wrong_class)/samples_class)
         acc = float(all_correct_points) / all_points
-        val_overall_acc = acc#acc.cpu().data.numpy()
+        val_overall_acc = acc
         loss = all_loss / len(self.val_loader)
 
-        print ('val mean class acc. : ', val_mean_class_acc)
-        print ('val overall acc. : ', val_overall_acc)
-        print ('val loss : ', loss)
+        log(config.log_file, 'val mean class acc. : {}'.format( val_mean_class_acc))
+        log(config.log_file, 'val overall acc. : {}'.format( val_overall_acc))
+        log(config.log_file, 'val loss : {}'.format( loss))
 
         self.model.train()
         if test:

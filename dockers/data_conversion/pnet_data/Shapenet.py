@@ -3,7 +3,7 @@ import os
 import json
 import numpy as np
 from mesh_files import find_files
-
+'This code parses ShapeNet labels and categories'
 decoding ={
     0:'train',
     1:'test'

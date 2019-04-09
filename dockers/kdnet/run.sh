@@ -2,10 +2,10 @@
 # Set required variables
 
 name='kdnet'
-dataset_path="/local/krabec/ModelNet40A/kdnet"
-out_path="/home/krabec/dockers/kdnet/out2/"
-GPU=1
-docker_hidden=d
+dataset_path="/local/krabec/ShapeNet/kdnet"
+out_path="/home/krabec/dockers/kdnet/shapenet/"
+GPU=2
+docker_hidden=t
 
 ##########################################################################################################
 
@@ -23,3 +23,5 @@ docker exec -i -"$docker_hidden" "$name" sh -c "export CUDA_VISIBLE_DEVICES=$GPU
 
 #docker exec -i -"$docker_hidden" "$name" sh -c "rm -rf /kdnets/logs/*"
 
+
+if [ "$docker_hidden" == d ]; then echo Container running in detached mode. Check the log file for the information; fi

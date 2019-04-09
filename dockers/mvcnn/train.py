@@ -8,7 +8,7 @@ import hickle as hkl
 import sklearn.metrics as metrics
 
 from input import Dataset
-from Logger import Logger
+from Logger import Logger, log
 from config import get_config, add_to_config
 
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
@@ -17,14 +17,14 @@ sys.path.append(parentdir)
 import model
 
 def train(dataset_train, dataset_test, caffemodel=''):
-    print ('train() called')
+    log (config.log_file, 'train() called')
     V = config.num_views
     batch_size =config.batch_size
     
     dataset_train.shuffle()
     data_size = dataset_train.size()
     
-    print ('training size:', data_size)
+    log (config.log_file, 'training size: {}'.format( data_size))
 
     with tf.Graph().as_default():
         with tf.device('/gpu:0'):
@@ -59,17 +59,17 @@ def train(dataset_train, dataset_test, caffemodel=''):
                 if caffemodel:
                     sess.run(init_op)
                     model.load_alexnet_to_mvcnn(sess, caffemodel)
-                    print ('loaded pretrained caffemodel:', caffemodel)
+                    log (config.log_file, 'loaded pretrained caffemodel: {}'.format(caffemodel))
                 else:
                     sess.run(init_op)
-                    print ('init_op done')  
+                    log (config.log_file, 'init_op done')  
             else:
                 ld = config.log_dir
                 startepoch = weights + 1
                 ckptfile = os.path.join(ld,config.snapshot_prefix+str(weights))
 
                 saver.restore(sess, ckptfile)
-                print ('restore variables done')
+                log (config.log_file, 'restore variables done')
     
             total_seen = 0
             total_correct = 0
@@ -80,10 +80,10 @@ def train(dataset_train, dataset_test, caffemodel=''):
             end = config.max_epoch + startepoch
             for epoch in xrange(begin, end + 1):
                 acc, eval_loss, predictions, labels = _test(dataset_test, config, sess, placeholders)
-                print ('epoch %d: step %d, validation loss=%.4f, acc=%f' % (epoch, step, eval_loss, acc*100.))
+                log (config.log_file, 'epoch %d: step %d, validation loss=%.4f, acc=%f' % (epoch, step, eval_loss, acc*100.))
                 
-                LOSS_LOGGER.log(eval_loss, epoch, "eval_loss")
-                ACC_LOGGER.log(acc, epoch, "eval_accuracy")
+                LOSS_LOGGER.log( eval_loss, epoch, "eval_loss")
+                ACC_LOGGER.log( acc, epoch, "eval_accuracy")
                 ACC_LOGGER.save(config.log_dir)
                 LOSS_LOGGER.save(config.log_dir)
                 ACC_LOGGER.plot(dest=config.log_dir)
@@ -109,10 +109,10 @@ def train(dataset_train, dataset_test, caffemodel=''):
     
                     if step % max(config.train_log_frq/config.batch_size,1) == 0:
                         acc_ = total_correct / float(total_seen)
-                        ACC_LOGGER.log(acc_, epoch, "train_accuracy")
+                        ACC_LOGGER.log( acc_, epoch, "train_accuracy")
                         loss_ = total_loss / float(total_seen/batch_size) 
-                        LOSS_LOGGER.log(loss_, epoch,"train_loss")           
-                        print ('epoch %d step %d, loss=%.2f, acc=%.2f' %(epoch, step, loss_, acc_))
+                        LOSS_LOGGER.log( loss_, epoch,"train_loss")           
+                        log (config.log_file, 'epoch %d step %d, loss=%.2f, acc=%.2f' %(epoch, step, loss_, acc_))
                         total_seen = 0
                         total_correct = 0
                         total_loss = 0
@@ -123,13 +123,13 @@ def train(dataset_train, dataset_test, caffemodel=''):
                             
 
 def test(dataset, config):
-    print ('test() called')
+    log (config.log_file, 'test() called')
     weights = config.weights
     V = config.num_views
     batch_size = config.batch_size
     ckptfile = os.path.join(config.log_dir,config.snapshot_prefix+str(weights))
     data_size = dataset.size()
-    print ('dataset size:', data_size)
+    log (config.log_file, 'dataset size: {}'.format(data_size))
 
     with tf.Graph().as_default():
 
@@ -150,13 +150,13 @@ def test(dataset, config):
         sess = tf.Session(config=tf.ConfigProto(log_device_placement=False))
 
         saver.restore(sess, ckptfile)
-        print ('restore variables done')
-        print ("Start testing")
-        print ("Size:", data_size)
-        print ("It'll take", int(math.ceil(data_size/batch_size)), "iterations.")
+        log (config.log_file, 'restore variables done')
+        log (config.log_file, "Start testing")
+        log (config.log_file, "Size: {}".format( data_size))
+        log (config.log_file, "It'll take {} iterations.".format(int(math.ceil(data_size/batch_size))))
 
         acc, _, predictions, labels = _test(dataset, config, sess, placeholders)
-        print ('acc:', acc*100)
+        log (config.log_file, 'acc: {}'.format(acc*100))
     
     import Evaluation_tools as et
     eval_file = os.path.join(config.log_dir, '{}.txt'.format(config.name))
@@ -200,9 +200,9 @@ if __name__ == '__main__':
                 pass
             else:
                 test+=1
-                print(line)
+                log(config.log_file, line)
    
-    print ('start loading data')
+    log (config.log_file, 'start loading data')
     
     listfiles_test, labels_test = read_lists(os.path.join(data_path, 'test.txt'))
     dataset_test = Dataset(listfiles_test, labels_test, subtract_mean=False, V=config.num_views)
