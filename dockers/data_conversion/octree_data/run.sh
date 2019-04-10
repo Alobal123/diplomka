@@ -1,10 +1,10 @@
 ##########################################################################################################
 # Set required variables
 set -e
-name="octree_adaptive"
-dataset_path="/home/krabec/Ssmall"
+name="octree_adaptive_12"
+dataset_path="/local/krabec/ModelNet40A"
 output_dir="/home/krabec/"
-docker_hidden=t
+docker_hidden=d
 
 ##########################################################################################################
 

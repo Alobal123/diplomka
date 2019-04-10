@@ -9,9 +9,7 @@ layer {
   }
   data_param {
     source: "/data/train_lmdb"
-
-
-    batch_size: 32
+    batch_size: $BATCHSIZE
     backend: LMDB
   }
   octree_param {

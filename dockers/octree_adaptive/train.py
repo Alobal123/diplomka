@@ -22,37 +22,42 @@ def get_dataset_size(config, name):
 def eval(config, solver, epoch=0):
     acc = 0
     loss = 0
-    labels = []
+    all_labels = []
     predictions = []
-    test_count = get_dataset_size(config,'test')
+    test_count = get_dataset_size(config, 'test')
 
+    logits = []
     keys = solver.test_nets[0].blobs.keys()
-    batch_size = (solver.test_nets[0].blobs['label_data_1_split_0'].data.shape[0])    
+    batch_size = (solver.test_nets[0].blobs['label_data_1_split_0'].data.shape[0]) 
     test_iters = test_count / batch_size
 
     for i in range(test_iters):
         solver.test_nets[0].forward()
-           
-        acc += solver.test_nets[0].blobs['accuracy'].data
         loss += solver.test_nets[0].blobs['loss'].data
-       
-        probs = solver.test_nets[0].blobs['ip2'].data
-        predictions += list(np.argmax(np.array(probs), axis=1))
-        labels += list(solver.test_nets[0].blobs['label'].data) 
+        probs = solver.test_nets[0].blobs['ip2'].datas
+        logits += list(np.array(probs).flatten())
+        all_labels += list(solver.test_nets[0].blobs['label'].data) 
 
     solver.test_nets[0].forward()
-    acc += solver.test_nets[0].blobs['accuracy'].data
     loss += solver.test_nets[0].blobs['loss'].data
     probs = solver.test_nets[0].blobs['ip2'].data
+    logits += list(np.array(probs).flatten())[0:test_count%batch_size]
     predictions += list(np.argmax(np.array(probs), axis=1))[0:test_count%batch_size]
-    labels += list(solver.test_nets[0].blobs['label'].data)[0:test_count%batch_size]
+    all_labels += list(solver.test_nets[0].blobs['label'].data)[0:test_count%batch_size]
        
-    acc /= test_iters + 1
     loss  /= test_iters + 1
     
+    predictions = []
+    labels = []
+    for i in range(len(logits) / config.num_rotations):
+        predictions.append(np.argmax(np.array(logits[i*config.num_rotations:(i+1)*config.num_rotations])))
+        labels.append(all_labels[i*config.num_rotations])
+        
+    acc = sum([1  for i in range(len(labels)) if predictions[i] == labels[i]])/float(len(labels))
+    
     if not config.test:
-        log(config.log_file, "Accuracy: {:.3f}".format(acc))
-        log(config.log_file, "Loss: {:.3f}".format(loss))
+        log(config.log_file, "EPOCH: {} Test loss: {}".format(epoch, loss))
+        log(config.log_file, "EPOCH: {} Test accuracy: {}".format(epoch, acc))
         LOSS_LOGGER.log( loss, epoch, "eval_loss")
         ACC_LOGGER.log( acc, epoch, "eval_accuracy")
     else:
@@ -80,9 +85,10 @@ def train(config, solver):
         solver.net.copy_from(snapshot + '.caffemodel')
         solver.test_nets[0].copy_from(snapshot + '.caffemodel')
         
-    steps_per_epoch = get_dataset_size(config, 'train') / config.batch_size
+    steps_per_epoch = get_dataset_size(config, 'train') / config.batch_size + 1
 
     for epoch in range(startepoch, startepoch + config.max_iter + 1):
+        log(config.log_file, 'EPOCH: {}'.format(epoch))
         eval(config, solver, epoch=epoch)            
         losses = []
         accs = []
@@ -93,24 +99,26 @@ def train(config, solver):
             losses.append(loss)
             accs.append(acc)
             
-            if it % max(config.train_log_frq/config.batch_size,1) == 0:
-                LOSS_LOGGER.log( np.mean(losses), epoch, "train_loss")
-                ACC_LOGGER.log( np.mean(accs), epoch, "train_accuracy")
+            if it % max(config.train_log_frq/config.batch_size, 1) == 0:
+                loss_ = np.mean(losses)
+                acc_ = np.mean(accs)
+                LOSS_LOGGER.log( loss_, epoch, "train_loss")
+                ACC_LOGGER.log( acc_, epoch, "train_accuracy")
                 ACC_LOGGER.save(config.log_dir)
                 LOSS_LOGGER.save(config.log_dir)
+                log(config.log_file, "EPOCH: {} ITERATION {} Training loss: {}".format(epoch, it, loss_))
+                log(config.log_file, "EPOCH: {} ITERATION {} Training accuracy: {}".format(epoch, it, acc_))
                 losses = []
                 accs = []
-                global highest_model_saved
-                highest_model_saved = it
                 
         ACC_LOGGER.plot(dest=config.log_dir)
         LOSS_LOGGER.plot(dest=config.log_dir)        
-        log(config.log_file, "LOSS: {}".format(np.mean(losses)))
-        log(config.log_file, "ACCURACY {}".format(np.mean(accs)))
+
 
 def set_num_cats(config):
     import prepare_nets
-    prepare_nets.set_num_cats(config.net[1:-1], config.num_classes)
+    prepare_nets.set_num_cats(config.net[1:-1], config.num_classes, 0)
+    prepare_nets.set_batch_size(config.net[1:-1], config.batch_size)
 
 if __name__ == '__main__':
     config = get_config()
@@ -123,20 +131,20 @@ if __name__ == '__main__':
     caffe.set_mode_gpu()
     solver = caffe.get_solver(config.solver)
 
-
     if not config.test:
         LOSS_LOGGER = Logger("{}_loss".format(config.name))
         ACC_LOGGER = Logger("{}_acc".format(config.name))
         train(config, solver)
-        config = add_to_config(config, 'weights', highest_model_saved)
+        snapshot = get_highest_model(config)
+        solver.restore(snapshot)
         config = add_to_config(config, 'test', True)
-    
-    snapshot = get_highest_model(config)
-
-    solver.restore(snapshot)
-    caffemodel = os.path.splitext(snapshot)[0] + '.caffemodel'
-    solver.net.copy_from(caffemodel)
-    solver.test_nets[0].copy_from(caffemodel)
-    log(config.log_file, 'Model restored')
-    eval(config, solver)
+        eval(config, solver)
+    else:
+        weights = config.weights
+        solver.restore(snapshot)
+        snapshot = os.path.join(config.snapshot_prefix[1:-1]+'_iter_'+str(weights))
+        solver.restore(snapshot + '.solverstate')
+        solver.test_nets[0].copy_from(snapshot + '.caffemodel')
+        log(config.log_file, 'Model restored')
+        eval(config, solver)
         

@@ -2,9 +2,9 @@
 # Set required variables
 
 name='octree_adaptive'
-dataset_path="/home/krabec/shapenet_octree_adaptive"
-out_path="/home/krabec/dockers/octree_adaptive/shapenet2/"
-GPU=1
+dataset_path="/local/krabec/octree_adaptive_12"
+out_path="/home/krabec/dockers/octree_adaptive/out/12voting"
+GPU=3
 docker_hidden=t
 
 ##########################################################################################################
