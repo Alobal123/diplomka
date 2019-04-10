@@ -25,33 +25,35 @@ def eval(config, solver, epoch=0):
     all_labels = []
     predictions = []
     test_count = get_dataset_size(config, 'test')
-
-    logits = []
     keys = solver.test_nets[0].blobs.keys()
-    batch_size = (solver.test_nets[0].blobs['label_octreedatabase_1_split_0'].data.shape[0])
+    batch_size = (solver.test_nets[0].blobs['label_data_1_split_0'].data.shape[0]) 
     test_iters = test_count / batch_size
-
+    
+    logits = np.zeros((test_count, config.num_classes))
+    print(logits.shape)
     for i in range(test_iters):
         solver.test_nets[0].forward()
         loss += solver.test_nets[0].blobs['loss'].data
-        logits += list(np.array(probs).flatten())
         probs = solver.test_nets[0].blobs['ip2'].data
-        all_labels += list(solver.test_nets[0].blobs['label'].data) 
         
+        logits[i*batch_size:(i+1)*batch_size] = probs
+        all_labels += list(solver.test_nets[0].blobs['label'].data) 
+
     solver.test_nets[0].forward()
     loss += solver.test_nets[0].blobs['loss'].data
     probs = solver.test_nets[0].blobs['ip2'].data
-    predictions += list(np.argmax(np.array(probs), axis=1))[0:test_count%batch_size]
-    all_labels += list(solver.test_nets[0].blobs['label'].data)[0:test_count%batch_size]
-        
+    logits[batch_size*(test_iters):] = probs[0 : test_count % batch_size]
+    all_labels += list(solver.test_nets[0].blobs['label'].data)[0 : test_count % batch_size]
+       
     loss  /= test_iters + 1
     
     predictions = []
     labels = []
+    
     for i in range(len(all_labels) / config.num_rotations):
-        predictions.append(np.argmax(np.array(logits[i*config.num_rotations:(i+1)*config.num_rotations])))
+        predictions.append( np.argmax( np.sum(logits[i*config.num_rotations : (i+1)*config.num_rotations], axis = 0 ) ) )
         labels.append(all_labels[i*config.num_rotations])
-        
+    
     acc = sum([1  for i in range(len(labels)) if predictions[i] == labels[i]])/float(len(labels))
     
     if not config.test:
@@ -122,7 +124,9 @@ def train(config, solver):
 if __name__ == '__main__':
     config = get_config()
     set_num_cats(config)
-
+    with open(config.log_file, 'w') as f:
+        print("STARTING", file=f)
+        print("STARTING")
     data_size = get_dataset_size(config, 'train')
     prepare_solver_file(data_size=data_size)
  

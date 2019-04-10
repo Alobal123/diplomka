@@ -14,8 +14,8 @@ def replace(file, what, for_what):
         f.write(filedata)
         
 def set_num_cats(file, num_cats, views):
-    replace(file, '$NUMCATS', str(num_cats+1))
-    replace(file, "$INNER", str(num_cats+1 * views))
+    replace(file, '$NUMCATS', str(num_cats))
+    replace(file, "$INNER", str(num_cats * views))
     
 def set_batch_size(file, batch_size):
     replace(file, "$BATCHSIZE", str(batch_size))
