@@ -54,7 +54,6 @@ def eval(config, solver, epoch=0):
         predictions.append( np.argmax( np.sum(logits[i*config.num_rotations : (i+1)*config.num_rotations], axis = 0 ) ) )
         labels.append(all_labels[i*config.num_rotations])
     
-    
     acc = sum([1  for i in range(len(labels)) if predictions[i] == labels[i]])/float(len(labels))
     
     if not config.test:

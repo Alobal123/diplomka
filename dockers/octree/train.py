@@ -26,7 +26,7 @@ def eval(config, solver, epoch=0):
     predictions = []
     test_count = get_dataset_size(config, 'test')
     keys = solver.test_nets[0].blobs.keys()
-    batch_size = (solver.test_nets[0].blobs['label_data_1_split_0'].data.shape[0]) 
+    batch_size = (solver.test_nets[0].blobs['label_octreedatabase_1_split_0'].data.shape[0]) 
     test_iters = test_count / batch_size
     
     logits = np.zeros((test_count, config.num_classes))
@@ -129,7 +129,7 @@ if __name__ == '__main__':
         print("STARTING")
     data_size = get_dataset_size(config, 'train')
     prepare_solver_file(data_size=data_size)
- 
+    set_num_cats(config)
     caffe.set_device(0)
     caffe.set_mode_gpu()
     solver = caffe.get_solver(config.solver)

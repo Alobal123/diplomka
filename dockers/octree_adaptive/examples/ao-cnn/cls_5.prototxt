@@ -28,7 +28,7 @@ layer {
   data_param {
     source: "/data/test_lmdb"
 
-    batch_size: 32
+    batch_size: $BATCHSIZE
     backend: LMDB
   }
   octree_param {
@@ -247,7 +247,7 @@ layer {
   top: "Oct2Vox1"
   octree_param {
     curr_depth: 2
-    batch_size: 32
+    batch_size: $BATCHSIZE
   }
 }
 layer {
