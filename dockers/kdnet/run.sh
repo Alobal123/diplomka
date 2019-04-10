@@ -2,9 +2,9 @@
 # Set required variables
 
 name='kdnet'
-dataset_path="/local/krabec/ShapeNet/kdnet"
+dataset_path="/home/krabec/kdnet_small"
 out_path="/home/krabec/dockers/kdnet/shapenet/"
-GPU=2
+GPU=3
 docker_hidden=t
 
 ##########################################################################################################

@@ -103,24 +103,25 @@ def acc_fun(net, vertices, faces, nFaces, labels, **kwargs):
 if __name__ == "__main__":
 
     config = get_config()
+    log(config.log_file, "STARTING")
     
-    log(config.log_file, "Reading data...")
     path2data = os.path.join(config.data, 'data.h5')
     with h5.File(path2data, 'r') as hf:
         log(config.log_file, list(hf.keys()))
         if not config.test:
+            log(config.log_file, "Reading training data")
             train_vertices = np.array(hf.get('train_vertices'))
             train_faces = np.array(hf.get('train_faces'))
             train_nFaces = np.array(hf.get('train_nFaces'))
             train_labels = np.array(hf.get('train_labels'))
+        log(config.log_file, "Reading test data")
         test_vertices = np.array(hf.get('test_vertices'))
         test_faces = np.array(hf.get('test_faces'))
         test_nFaces = np.array(hf.get('test_nFaces'))
         test_labels = np.array(hf.get('test_labels'))
 
-    log(config.log_file, "Compiling net...")
+    log(config.log_file, "Compiling net. This may take a while.")
     net = KDNET(config)    
-
     if config.weights != -1:
         weights = config.weights
         load_weights(os.path.join(config.log_dir, config.snapshot_prefix+str(weights)), net.KDNet['output'])
@@ -145,17 +146,20 @@ if __name__ == "__main__":
             ld = config.log_dir
             WEIGHTS = config.weights
             ckptfile = os.path.join(ld,config.snapshot_prefix+str(WEIGHTS))
+            log(config.log_file, "Loaded weights")
+            load_weights(os.path.join(config.log_dir, config.snapshot_prefix+str(weights)), net.KDNet['output'])
             start_epoch = WEIGHTS + 1
             ACC_LOGGER.load((os.path.join(ld,"{}_acc_train_accuracy.csv".format(config.name)),os.path.join(ld,"{}_acc_eval_accuracy.csv".format(config.name))), epoch = WEIGHTS)
             LOSS_LOGGER.load((os.path.join(ld,"{}_loss_train_loss.csv".format(config.name)), os.path.join(ld,'{}_loss_eval_loss.csv'.format(config.name))), epoch = WEIGHTS)
-          
+             
         begin = start_epoch
         end = config.max_epoch+start_epoch
         for epoch in xrange(begin, end):
             
             loss, predictions = acc_fun(net, test_vertices, test_faces, test_nFaces, test_labels, mode='test',config=config)
-            acc = (predictions == test_labels).sum()/float(len(test_labels))
-            log(config.log_file, "evaluating loss:{} acc:{}".format(loss,acc))       
+            acc = (predictions == test_labels).sum()/float(len(test_labels)) 
+            log(config.log_file, "EPOCH: {} Test loss: {}".format(epoch, loss))
+            log(config.log_file, "EPOCH: {} Test accuracy: {}".format(epoch, acc))    
             LOSS_LOGGER.log( loss, epoch, "eval_loss")
             ACC_LOGGER.log( acc, epoch, "eval_accuracy")
             
@@ -172,7 +176,8 @@ if __name__ == "__main__":
                     acc = np.mean(accuracies)
                     LOSS_LOGGER.log( loss, epoch, "train_loss")
                     ACC_LOGGER.log( acc, epoch, "train_accuracy")
-                    log(config.log_file, 'EPOCH {}, batch {}: loss {} acc {}'.format(epoch, i, loss, acc))
+                    log(config.log_file, "EPOCH: {} ITERATION {} Training loss: {}".format(epoch, i, loss))
+                    log(config.log_file, "EPOCH: {} ITERATION {} Training accuracy: {}".format(epoch, i, acc))
                     losses = []
                     accuracies = []
             

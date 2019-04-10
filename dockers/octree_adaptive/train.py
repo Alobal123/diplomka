@@ -34,7 +34,7 @@ def eval(config, solver, epoch=0):
     for i in range(test_iters):
         solver.test_nets[0].forward()
         loss += solver.test_nets[0].blobs['loss'].data
-        probs = solver.test_nets[0].blobs['ip2'].datas
+        probs = solver.test_nets[0].blobs['ip2'].data
         logits += list(np.array(probs).flatten())
         all_labels += list(solver.test_nets[0].blobs['label'].data) 
 
@@ -49,7 +49,7 @@ def eval(config, solver, epoch=0):
     
     predictions = []
     labels = []
-    for i in range(len(logits) / config.num_rotations):
+    for i in range(len(all_labels) / config.num_rotations):
         predictions.append(np.argmax(np.array(logits[i*config.num_rotations:(i+1)*config.num_rotations])))
         labels.append(all_labels[i*config.num_rotations])
         

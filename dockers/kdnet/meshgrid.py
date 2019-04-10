@@ -6,7 +6,6 @@ def generate_clouds(idx, steps, vertices, faces, nFaces):
 
     for i, ind in enumerate(idx):
         triangles = np.float64(vertices[faces[nFaces[ind]:nFaces[ind+1]]])
-        
         probs = np.sqrt((np.cross(triangles[:, 1, :] - triangles[:, 0, :],
                                   triangles[:, 2, :] - triangles[:, 0, :])**2).sum(axis=1))/2.
         probs /= probs.sum()

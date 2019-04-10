@@ -32,23 +32,50 @@ def join_npz(directory, regex, output):
 def join_h5(directory, regex, output):
     files = find_regex_files(regex, directory)
     dict = {}
+    test_nFaces = [0]
+    train_nFaces = [0]
+    test_offset = 0
+    train_offset = 0
     for file in files:
         print('loading ' + file)
         arch = h5py.File(file, 'r')
         for key in arch.keys():
-            if key not in dict:
-                dict[key] = []
-            dataset = arch.get(key)
-            copy = np.copy(np.array(dataset))
-            dict[key].append(copy)
+            if key == 'test_nnFaces':
+                for n in arch[key]:
+                    test_offset += n
+                    test_nFaces.append(test_offset)
+            elif key == 'train_nnFaces':
+                for n in arch[key]:
+                    train_offset += n
+                    train_nFaces.append(train_offset)
+            else:
+                if key not in dict:
+                    dict[key] = []
+                dataset = arch.get(key)
+                copy = np.copy(np.array(dataset))
+                dict[key].append(copy)
         arch.close()
+        
+    dict['test_nFaces'] = test_nFaces  
+    dict['train_nFaces'] = train_nFaces    
+    print(test_nFaces)
+    print(train_nFaces)
     if files:
         hf = h5py.File(os.path.join(directory, output), 'w')
         for key in dict.keys():
-            arr = np.concatenate(dict[key])
-            hf.create_dataset(key, data=arr)
+            try:
+                arr = np.concatenate(dict[key])
+            except ValueError:
+                arr = np.array(dict[key])
+            hf.create_dataset(key, data=arr)  
+        
+        hf.close()
+        hf = h5py.File(os.path.join(directory, output), 'r')
+        print(hf['test_nFaces'])
         hf.close()
         delete_files(files)
+        
+    return os.path.join(directory, output)
     
         
         

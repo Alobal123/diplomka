@@ -9,19 +9,17 @@ from Shapenet import *
 from MultiProcesor import MultiProcesor
 from npz_join import join_h5
 
-
 def write_for_kdnet(buffer, buffer_cats, dataset, id, config):
-    nFaces = [0]
+    nnFaces = []
     all_faces = []
     all_vertices = []
     offset = 0
     for vertices, faces in buffer:
-        offset+= len(faces)
-        nFaces.append(offset)
+        nnFaces.append(len(faces))
         all_faces += list(faces)
         all_vertices+=list(vertices)
-    names = ['{}_nFaces','{}_faces','{}_vertices','{}_labels']
-    data = [nFaces, all_faces, all_vertices, buffer_cats]
+    names = ['{}_nnFaces','{}_faces','{}_vertices','{}_labels']
+    data = [nnFaces, all_faces, all_vertices, buffer_cats]
     data = [np.array(dato) for dato in data]
     hf = h5.File(os.path.join(config.output, dataset + '_data_' + str(id) +'.h5') , 'w')
     for dato, name in zip(data, names):
@@ -36,10 +34,9 @@ def load_mesh(filename, type, args):
 
       
 def merge_h5_files(directory):
-    join_h5(directory, '.*\.h5', 'data.h5')
-    
+    file = join_h5(directory, '.*\.h5', 'data.h5')
        
-def save_for_kdnetfiles,config, categories, split):
+def save_for_kdnet(files, config, categories, split):
     procesor = MultiProcesor(files, config.num_threads, config.log_file, categories, split, config.dataset_type, load_mesh, write_for_kdnet)
     procesor.run(config._asdict())
 

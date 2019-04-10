@@ -48,7 +48,7 @@ def eval(config, solver, epoch=0):
     
     predictions = []
     labels = []
-    for i in range(len(logits) / config.num_rotations):
+    for i in range(len(all_labels) / config.num_rotations):
         predictions.append(np.argmax(np.array(logits[i*config.num_rotations:(i+1)*config.num_rotations])))
         labels.append(all_labels[i*config.num_rotations])
         

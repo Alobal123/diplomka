@@ -6,6 +6,7 @@ except:
     import configparser as cp
 
 def Parse(value):
+    """Parses value from .ini file and returns corresponding python value"""
     if value in ['False','false']:
         return False
     if value in ['True','true']:
@@ -76,3 +77,4 @@ def add_to_config(config, key, value):
 
 def epoch_to_iters(epochs, batch_size, data_size):
     return epochs * data_size / batch_size
+    

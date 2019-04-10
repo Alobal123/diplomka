@@ -2,8 +2,8 @@
 # Set required variables
 
 name='octree_adaptive'
-dataset_path="/local/krabec/octree_adaptive_12"
-out_path="/home/krabec/dockers/octree_adaptive/out/12voting"
+dataset_path="/home/krabec/octree_adaptive_12"
+out_path="/home/krabec/dockers/octree_adaptive/out/"
 GPU=3
 docker_hidden=t
 
