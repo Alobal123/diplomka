@@ -29,7 +29,7 @@ theano.config.cycle_detection = 'fast'
 #
 
 def make_test_function(cfg, model, config):
-    log(config.log_file, "Compiling test function")
+    log(config.log_file, "Compiling test function. This make take several minutes")
     X_ = T.TensorType('float32', [False]*5)('X')    
     y_ = T.TensorType('int32', [False]*1)('y')    
     l_out = model['l_out']
@@ -72,7 +72,7 @@ def make_test_function(cfg, model, config):
     return tfuncs, tvars, model
 
 def make_training_functions(cfg, model, config):
-    log(config.log_file, "Compiling training function")
+    log(config.log_file, "Compiling training function. This my take tens of minutes.")
     # Input Array
     X = T.TensorType('float32', [False]*5)('X')  
     
@@ -201,16 +201,18 @@ def train(config):
         ld = config.log_dir
         WEIGHTS = config.weights
         ckptfile = os.path.join(ld,config.snapshot_prefix+str(WEIGHTS)+'.npz')
+        log(config.log_file, 'Loaded weights.')
         start_epoch = WEIGHTS + 1
         ACC_LOGGER.load((os.path.join(ld,"{}_acc_train_accuracy.csv".format(config.name)),os.path.join(ld,"{}_acc_eval_accuracy.csv".format(config.name))), epoch = WEIGHTS)
         LOSS_LOGGER.load((os.path.join(ld,"{}_loss_train_loss.csv".format(config.name)), os.path.join(ld,'{}_loss_eval_loss.csv'.format(config.name))), epoch = WEIGHTS)
         metadata = checkpoints.load_weights(ckptfile, model['l_out'])     
-    log(config.log_file, 'Training...')
+
     itr = 0
     
     # Load data and shuffle training examples. 
     # Note that this loads the entire dataset into RAM! If you don't
     # have a lot of RAM, consider only loading chunks of this at a time.
+    log(config.log_file, 'Loading Data')
     x_test = np.load(os.path.join(config.data, 'test.npz'))['features']
     y_test = np.load(os.path.join(config.data, 'test.npz'))['targets']
     x = np.load(os.path.join(config.data, 'train.npz'))['features']
@@ -232,6 +234,7 @@ def train(config):
     
     begin = start_epoch
     end = cfg['max_epochs']+start_epoch
+    log(config.log_file, 'Starting Training')
     for epoch in xrange(begin, end + 1):    
         #EVAL
         evaluate(x_test, y_test, cfg, tfuncs, tvars, config, epoch=epoch)
@@ -292,7 +295,7 @@ def train(config):
                     ACC_LOGGER.log( c_acc,epoch,"train_accuracy")
                     LOSS_LOGGER.log( closs,epoch,"train_loss")  
                     lvs, accs = [],[] 
-                    log(config.log_file, 'epoch: {0:^3d}, itr: {1:d}, c_loss: {2:.6f}, class_acc: {3:.5f}'.format(epoch, itr, closs, c_acc))       
+                    log(config.log_file, 'TRAINING: epoch: {0:^3d}, itr: {1:d}, c_loss: {2:.6f}, class_acc: {3:.5f}'.format(epoch, itr, closs, c_acc))       
                     
         if not (epoch % cfg['checkpoint_every_nth']) or epoch == end:
             weights_fname = os.path.join(config.log_dir,config.snapshot_prefix+str(epoch))
@@ -300,7 +303,7 @@ def train(config):
                                                 {'itr': itr, 'ts': time.time(),
                                                 'learning_rate': new_lr}) 
 
-    log(config.log_file, 'training done')
+    log(config.log_file, 'Training done')
 
 
 def test(config):
@@ -355,6 +358,7 @@ def evaluate(x_test, y_test, cfg, tfuncs, tvars, config, epoch=0):
             
     loss, acc = [float(np.mean(losses)),1.0-float(np.mean(accs))]    
     predictions = list(pred_array)
+    log(config.log_file, 'EVALUTAION: epoch: {0:^3d}, loss: {2:.6f}, acc: {3:.5f}'.format(epoch, loss, acc))   
     if not config.test:
         LOSS_LOGGER.log( loss, epoch, "eval_loss")
         ACC_LOGGER.log( acc, epoch, "eval_accuracy")

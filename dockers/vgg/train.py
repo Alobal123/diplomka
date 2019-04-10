@@ -70,12 +70,13 @@ def evaluate(test_data, config):
     net = vgg19_trainable.Vgg19(vgg19_npy_path=load_weights(config), trainable = True)
     with tf.device('/gpu:0'):
         sess = tf.Session()
-        net.build()
+        net.build(num_cats=config.num_classes)
         sess.run(tf.global_variables_initializer())
+        log(config.log_file, "starting evaluation")
         _evaluate(net, sess, test_data, config)
         
 def _evaluate(net, sess, test_data, config, epoch=0):
-    log(config.log_file, "starting evaluation")
+    
     labels = []
     predictions = []
     losses = []
@@ -99,7 +100,7 @@ def _evaluate(net, sess, test_data, config, epoch=0):
                 acc+=0
             count+=1
     acc = acc/float(count)
-    log(config.log_file, "EVALUATING - acc: {} loss: {}".format(acc,loss))
+    log(config.log_file, "EVALUATING epoch {} - acc: {} loss: {}".format(epoch, acc, loss))
     if not config.test:
         loss = np.mean(losses) 
         LOSS_LOGGER.log( loss, epoch, "eval_loss")
@@ -130,7 +131,7 @@ def train(train_data, test_data, config):
         net = vgg19_trainable.Vgg19(vgg19_npy_path=load_weights(config), trainable = True)    
 
         log(config.log_file, "Weights loaded")
-        net.build(lr=config.lr)
+        net.build(lr=config.lr, num_cats=config.num_classes)
         sess.run(tf.global_variables_initializer())
         
         it_per_epoch =  train_data.size / config.batch_size
@@ -175,7 +176,7 @@ def extract_features(config, train_data, test_data):
     with tf.device('/gpu:0'):
         sess = tf.Session()
         net = vgg19_trainable.Vgg19(vgg19_npy_path=load_weights(config), trainable = True)  
-        net.build()
+        net.build(num_cats=config.num_classes)
         sess.run(tf.global_variables_initializer())
         out_dir = config.data
         log(config.log_file, "extracting test...")
