@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.3.19)  8 APR 2019 10:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.3.19)  11 APR 2019 10:17
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1057,21 +1057,21 @@ Overfull \hbox (0.50066pt too wide) in paragraph at lines 2--25
 [][] |
  []
 
-) (img/voxnet.tex)
-
-LaTeX Warning: Reference `[' on page 11 undefined on input line 20.
-
-[11
+) (img/voxnet.tex) [11
 
 
 
 ] [12] (img/voxblock.tex) (img/vrn.tex
 Missing character: There is no ; in font nullfont!
-) [13] [14] [15] [16]
-(img/pointnet.tex
+) [13] [14]
+[15] (img/mvcnn.tex
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-) [17] [18] (tables/shapenet_cats.tex
+) [16] [17] (img/pointnet.tex
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+) [18] [19]
+(tables/shapenet_cats.tex
 
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 1.
@@ -1081,7 +1081,7 @@ LaTeX Warning: No positions in optional float specifier.
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 1.
 
-)) [19] [20] [21]
+)) [20] [21] [22]
 \openout2 = `chap04.aux'.
 
  (chap04.tex
@@ -1096,48 +1096,48 @@ LaTeX Warning: No positions in optional float specifier.
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 1.
 
-[22
+[23
 
 
 
-]) [23] [24]
-<./img/myplane_2.png, id=590, 478.4274pt x 479.1501pt>
+]) [24] [25]
+<./img/myplane_2.png, id=603, 478.4274pt x 479.1501pt>
 File: ./img/myplane_2.png Graphic file (type png)
 <use ./img/myplane_2.png>
 Package pdftex.def Info: ./img/myplane_2.png  used on input line 37.
 (pdftex.def)             Requested size: 181.52959pt x 181.8011pt.
-<./img/vrnesn_plane_2.png, id=592, 483.4863pt x 482.7636pt>
+<./img/vrnesn_plane_2.png, id=605, 483.4863pt x 482.7636pt>
 File: ./img/vrnesn_plane_2.png Graphic file (type png)
 <use ./img/vrnesn_plane_2.png>
 Package pdftex.def Info: ./img/vrnesn_plane_2.png  used on input line 39.
 (pdftex.def)             Requested size: 181.52959pt x 181.25688pt.
-<./img/airplane_rotnet.png, id=602, 224.84pt x 224.84pt>
+<./img/airplane_rotnet.png, id=615, 224.84pt x 224.84pt>
 File: ./img/airplane_rotnet.png Graphic file (type png)
 <use ./img/airplane_rotnet.png>
 Package pdftex.def Info: ./img/airplane_rotnet.png  used on input line 49.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
-<./img/airplane_pbrt.png, id=603, 224.84pt x 224.84pt>
+<./img/airplane_pbrt.png, id=616, 224.84pt x 224.84pt>
 File: ./img/airplane_pbrt.png Graphic file (type png)
 <use ./img/airplane_pbrt.png>
 Package pdftex.def Info: ./img/airplane_pbrt.png  used on input line 51.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
-<./img/airplane_depth.png, id=604, 224.84pt x 224.84pt>
+<./img/airplane_depth.png, id=617, 224.84pt x 224.84pt>
 File: ./img/airplane_depth.png Graphic file (type png)
 <use ./img/airplane_depth.png>
 Package pdftex.def Info: ./img/airplane_depth.png  used on input line 54.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
-<./img/airplane_shaded.png, id=605, 224.84pt x 224.84pt>
+<./img/airplane_shaded.png, id=618, 224.84pt x 224.84pt>
 File: ./img/airplane_shaded.png Graphic file (type png)
 <use ./img/airplane_shaded.png>
 Package pdftex.def Info: ./img/airplane_shaded.png  used on input line 56.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
- [25 <./img/myplane_2.png> <./img/vrnesn_plane_2.png>]
-<./img/myplane_1.png, id=620, 868.6854pt x 579.6054pt>
+ [26 <./img/myplane_2.png> <./img/vrnesn_plane_2.png>]
+<./img/myplane_1.png, id=633, 868.6854pt x 579.6054pt>
 File: ./img/myplane_1.png Graphic file (type png)
 <use ./img/myplane_1.png>
 Package pdftex.def Info: ./img/myplane_1.png  used on input line 66.
 (pdftex.def)             Requested size: 181.52959pt x 121.11932pt.
-<./img/pnet_plane_1.png, id=621, 868.6854pt x 579.6054pt>
+<./img/pnet_plane_1.png, id=634, 868.6854pt x 579.6054pt>
 File: ./img/pnet_plane_1.png Graphic file (type png)
 <use ./img/pnet_plane_1.png>
 Package pdftex.def Info: ./img/pnet_plane_1.png  used on input line 68.
@@ -1146,8 +1146,8 @@ Package pdftex.def Info: ./img/pnet_plane_1.png  used on input line 68.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[26 <./img/airplane_rotnet.png (PNG copy)> <./img/airplane_pbrt.png (PNG copy)>
- <./img/airplane_depth.png> <./img/airplane_shaded.png>]) [27 <./img/myplane_1.
+[27 <./img/airplane_rotnet.png (PNG copy)> <./img/airplane_pbrt.png (PNG copy)>
+ <./img/airplane_depth.png> <./img/airplane_shaded.png>]) [28 <./img/myplane_1.
 png> <./img/pnet_plane_1.png>]
 \openout2 = `chap05.aux'.
 
@@ -1188,16 +1188,16 @@ Overfull \hbox (4.83673pt too wide) in paragraph at lines 2--51
 [][] [] |
  []
 
-)) [28
+)) [29
 
 
 
-] [29] [30] [31]
+] [30] [31] [32]
 \openout2 = `chap06.aux'.
 
  (chap06.tex
 Chapter 6.
-) [32
+) [33
 
 
 
@@ -1216,7 +1216,7 @@ Underfull \hbox (badness 1005) in paragraph at lines 60--64
 un.  A
  []
 
-[33
+[34
 
 
 
@@ -1226,7 +1226,7 @@ Underfull \hbox (badness 2762) in paragraph at lines 110--115
 Neu-ral Net-
  []
 
-[34]
+[35]
 Underfull \hbox (badness 10000) in paragraph at lines 211--214
 []\OT1/lmr/m/n/12 machrisaa.  tensorflow-vgg.  URL []$\OT1/lmtt/m/n/12 https : 
 / / github . com / machrisaa /
@@ -1238,36 +1238,36 @@ Underfull \hbox (badness 1028) in paragraph at lines 290--296
 oint-
  []
 
-[35]
-Underfull \hbox (badness 2582) in paragraph at lines 307--312
+[36]
+Underfull \hbox (badness 2582) in paragraph at lines 313--318
 \OT1/lmr/m/it/12 [cs]\OT1/lmr/m/n/12 , April 2016.  URL []$\OT1/lmtt/m/n/12 htt
 p : / / arxiv . org / abs / 1604 . 03351$[]\OT1/lmr/m/n/12 .  arXiv:
  []
 
 
-Underfull \hbox (badness 3058) in paragraph at lines 350--356
+Underfull \hbox (badness 3058) in paragraph at lines 356--362
 \OT1/lmr/m/n/12 Multi-view Con-vo-lu-tional Neu-ral Net-works for 3d Shape Reco
 g-ni-tion.
  []
 
-[36])) [37] (thesis.lof)
+[37])) [38] (thesis.lof)
 \tf@lof=\write9
 \openout9 = `thesis.lof'.
 
- [38
+ [39
 
 
 ] (thesis.lot)
 \tf@lot=\write10
 \openout10 = `thesis.lot'.
 
- [39
+ [40
 
-] [40
+] [41
 
 ]
 Appendix A.
-[41
+[42
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 166.
@@ -1277,10 +1277,7 @@ hap05.aux) (chap06.aux) (bibliography.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 166.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 166.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 4398E6A99046C4912B5CF51C34872446;7350.
-
-
-LaTeX Warning: There were undefined references.
+(rerunfilecheck)             Checksum: DA5A6739A55027678A7A366BFD9D3D7E;7350.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1288,13 +1285,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 166.
  ) 
 Here is how much of TeX's memory you used:
- 30197 strings out of 492946
- 551091 string characters out of 3135527
- 648118 words of memory out of 3000000
- 33310 multiletter control sequences out of 15000+200000
+ 30207 strings out of 492946
+ 551320 string characters out of 3135527
+ 649344 words of memory out of 3000000
+ 33314 multiletter control sequences out of 15000+200000
  58092 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,16n,71p,1175b,2327s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,16n,71p,1179b,2327s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rmtt.enc}{C:/Program Files
 /MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc
 /dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-math
@@ -1309,9 +1306,9 @@ ype1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr
 Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (45 pages, 1392403 bytes).
+Output written on thesis.pdf (46 pages, 1398459 bytes).
 PDF statistics:
- 885 PDF objects out of 1000 (max. 8388607)
- 171 named destinations out of 1000 (max. 500000)
+ 899 PDF objects out of 1000 (max. 8388607)
+ 174 named destinations out of 1000 (max. 500000)
  446 words of extra memory for PDF output out of 10000 (max. 10000000)
 
