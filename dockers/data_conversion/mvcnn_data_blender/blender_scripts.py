@@ -123,9 +123,20 @@ def render_one_model(model_path, file_id, output_dir, nviews=12, resolution=224)
     scene.render.resolution_y = resolution
     scene.render.resolution_percentage = 100 
     
+    for ob in bpy.context.scene.objects:
+        if ob.type == 'MESH':
+            ob.select = True
+            bpy.context.scene.objects.active = ob
+        else:
+            ob.select = False
+    bpy.ops.object.join()
+    
+    
     imported = bpy.context.selected_objects[0]
+    print(bpy.context.selected_objects)
     bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY')
     maxDimension = 5.0
+
     scaleFactor = maxDimension / max(imported.dimensions)
     imported.scale = (scaleFactor,scaleFactor,scaleFactor)
     imported.location = (0, 0, 0)
@@ -136,10 +147,8 @@ def render_one_model(model_path, file_id, output_dir, nviews=12, resolution=224)
 
     
     for i in range(nviews):
+        #imported.rotation_euler[1] = np.pi
         imported.rotation_euler[2] = views[i]
-        #imported.rotation_euler[0] = np.pi
-        filename = model_path.split("/")[-1]
-        print (filename)
         bpy.ops.view3d.camera_to_view_selected()
         context.scene.render.filepath = get_name_of_image_file(output_dir, file_id, i)
         bpy.ops.render.render( write_still=True )
