@@ -8,6 +8,9 @@ In this section we introduce datasets of 3D models which we used or considered t
 
 \subsection{ModelNet40}
 ModelNet \cite{wu_3d_2014} is one of the most well-known and commonly used dataset containing annotated 3D models in a mesh format. It was developed by a team at Princeton University. Its subset, called ModelNet40, in particular is used as a baseline for testing different approaches. We therefore decided to use this dataset as a starting point for our evaluations. ModelNet40 contains forty different categories and 12 311 individual models. The dataset has an official split to training and testing subsets, which we adhere to in all cases. The test set contains 2648 models and is never used for training. \par
+
+\input{./img/examples/modelnet}
+
 The models in original ModelNet40 are not aligned and have widely different scales. Therefore when preprocessing the data for neural networks we rescale all models to fit a  unit sphere and we use manually aligned version of the dataset \cite{sedaghat_orientation-boosted_2016}. Also the categories are not equally populated for example there are over 700 airplane models and only over 100 wardrobe models. The exact numbers of models in particular categories can be found in \autoref{Table:modelnetcats}. ModelNet40 contains files in .off format so our scripts have to be able to read this particular format. The dataset is available to download for academic purposes.
 
 \input{./tables/modelnet_cats.tex}
@@ -15,6 +18,9 @@ The models in original ModelNet40 are not aligned and have widely different scal
 
 \subsection{ShapeNetCore}
 ShapeNet \cite{chang_shapenet:_2015} is an ongoing effort to establish a richly-annotated, large-scale dataset of 3D shapes. ShapeNet is a collaborative effort between researchers at Princeton, Stanford and Toyota Technological Institute at Chicago. We used its subset called ShapeNetCore which contains 51 209 individual models in 55 categories. There is also an official split to training, test and validation sets. However, this split does not contain all models and is not divided uniformly. We therefore decided to construct our own split -- 80\% of models in each category is assigned to the training set and the rest to the test set. By doing this we obtained a training set with 40 939 models and a test set with 10 270 models. \par \autoref{Table:shapenetcats} lists the exact numbers of models in particular categories. During our exploration of the dataset we noticed that some models are assigned to more than one category so we were forced to choose one of them somewhat arbitrarily. You can find our final split into sets and categories in csv file [TODO:priloha x].\par
+
+\input{./img/examples/shapenet}
+
 All models in ShapeNetCore are already aligned and rescaled to fit a unit sphere. The categories are not distributed equally at all as you can see from the table. The dataset is also freely available to download for academic purposes.
 
 
