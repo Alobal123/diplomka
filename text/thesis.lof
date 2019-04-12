@@ -12,17 +12,18 @@
 \contentsline {figure}{\numberline {3.5}{\ignorespaces PointNet architecture. Layers labeled "for each point" are applied for each point separatly with same weights. $n$ is number of input points.\relax }}{19}{figure.caption.11}% 
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Illustration of models in ModelNet40 (bathtub, bed, flower pot, lamp, radio and sofa)\relax }}{23}{figure.caption.12}% 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Illustration of voxel representation\relax }}{26}{figure.caption.15}% 
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Original voxel representation provided by authors of VRN}}}{26}{subfigure.2.1}% 
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Our voxelization using OpenVDB}}}{26}{subfigure.2.2}% 
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Illustration of different image representations\relax }}{27}{figure.caption.16}% 
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Phong shading in blender}}}{27}{subfigure.3.1}% 
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Our pbrt rendering}}}{27}{subfigure.3.2}% 
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Depth image in blender}}}{27}{subfigure.3.3}% 
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Shaded image in blender}}}{27}{subfigure.3.4}% 
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Illustration of point cloud representation\relax }}{28}{figure.caption.17}% 
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Original point cloud representation provided by the authors of PointNet (2048 points)}}}{28}{subfigure.4.1}% 
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Our point cloud representation (2048 points)}}}{28}{subfigure.4.2}% 
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Illustration of models in ShapeNetCore (bathtub, bed, flower pot, lamp, radio and sofa)\relax }}{25}{figure.caption.14}% 
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Illustration of voxel representation\relax }}{27}{figure.caption.16}% 
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Original voxel representation provided by authors of VRN}}}{27}{subfigure.3.1}% 
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Our voxelization using OpenVDB}}}{27}{subfigure.3.2}% 
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Illustration of different image representations\relax }}{28}{figure.caption.17}% 
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Phong shading in blender}}}{28}{subfigure.4.1}% 
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Our pbrt rendering}}}{28}{subfigure.4.2}% 
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Depth image in blender}}}{28}{subfigure.4.3}% 
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Shaded image in blender}}}{28}{subfigure.4.4}% 
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Illustration of point cloud representation\relax }}{29}{figure.caption.18}% 
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Original point cloud representation provided by the authors of PointNet (2048 points)}}}{29}{subfigure.5.1}% 
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Our point cloud representation (2048 points)}}}{29}{subfigure.5.2}% 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

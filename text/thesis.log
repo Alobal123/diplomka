@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.3.19)  12 APR 2019 12:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.3.19)  12 APR 2019 14:00
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -872,6 +872,9 @@ Package hyperref Info: Option `breaklinks' set `true' on input line 123.
 
 LaTeX Warning: Label `renderimages' multiply defined.
 
+
+LaTeX Warning: Label `renderimages' multiply defined.
+
 ) (chap05.aux) (chap06.aux) (bibliography.aux))
 \openout1 = `thesis.aux'.
 
@@ -1102,6 +1105,36 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 1.
 
+) (img/examples/shapenet.tex
+File: ./img/examples/bathtub_m.png Graphic file (type png)
+<use ./img/examples/bathtub_m.png>
+Package pdftex.def Info: ./img/examples/bathtub_m.png  used on input line 3.
+(pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
+File: ./img/examples/bed_m.png Graphic file (type png)
+<use ./img/examples/bed_m.png>
+Package pdftex.def Info: ./img/examples/bed_m.png  used on input line 5.
+(pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
+File: ./img/examples/flower_pot_m.png Graphic file (type png)
+<use ./img/examples/flower_pot_m.png>
+Package pdftex.def Info: ./img/examples/flower_pot_m.png  used on input line 8.
+
+(pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
+File: ./img/examples/lamp_m.png Graphic file (type png)
+<use ./img/examples/lamp_m.png>
+Package pdftex.def Info: ./img/examples/lamp_m.png  used on input line 10.
+(pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
+File: ./img/examples/radio_m.png Graphic file (type png)
+<use ./img/examples/radio_m.png>
+Package pdftex.def Info: ./img/examples/radio_m.png  used on input line 13.
+(pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
+File: ./img/examples/sofa_m.png Graphic file (type png)
+<use ./img/examples/sofa_m.png>
+Package pdftex.def Info: ./img/examples/sofa_m.png  used on input line 15.
+(pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 ) (tables/shapenet_cats.tex
 
 LaTeX Warning: No positions in optional float specifier.
@@ -1113,62 +1146,62 @@ LaTeX Warning: No positions in optional float specifier.
 
 ] [22]) [23 <./img/examples/bathtub_m.png> <./img/examples/bed_m.png> <./img/ex
 amples/flower_pot_m.png> <./img/examples/lamp_m.png> <./img/examples/radio_m.pn
-g> <./img/examples/sofa_m.png>] [24]
-<./img/myplane_2.png, id=702, 319.4334pt x 317.988pt>
+g> <./img/examples/sofa_m.png>] [24] [25]
+<./img/myplane_2.png, id=713, 319.4334pt x 317.988pt>
 File: ./img/myplane_2.png Graphic file (type png)
 <use ./img/myplane_2.png>
-Package pdftex.def Info: ./img/myplane_2.png  used on input line 42.
+Package pdftex.def Info: ./img/myplane_2.png  used on input line 45.
 (pdftex.def)             Requested size: 181.52959pt x 180.7116pt.
-<./img/vrnesn_plane_2.png, id=703, 323.0469pt x 321.6015pt>
+<./img/vrnesn_plane_2.png, id=714, 323.0469pt x 321.6015pt>
 File: ./img/vrnesn_plane_2.png Graphic file (type png)
 <use ./img/vrnesn_plane_2.png>
-Package pdftex.def Info: ./img/vrnesn_plane_2.png  used on input line 44.
+Package pdftex.def Info: ./img/vrnesn_plane_2.png  used on input line 47.
 (pdftex.def)             Requested size: 181.52959pt x 180.72372pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[25]
-<./img/airplane_rotnet.png, id=725, 224.84pt x 224.84pt>
+<./img/airplane_rotnet.png, id=724, 224.84pt x 224.84pt>
 File: ./img/airplane_rotnet.png Graphic file (type png)
 <use ./img/airplane_rotnet.png>
-Package pdftex.def Info: ./img/airplane_rotnet.png  used on input line 55.
+Package pdftex.def Info: ./img/airplane_rotnet.png  used on input line 58.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
-<./img/airplane_pbrt.png, id=726, 224.84pt x 224.84pt>
+<./img/airplane_pbrt.png, id=725, 224.84pt x 224.84pt>
 File: ./img/airplane_pbrt.png Graphic file (type png)
 <use ./img/airplane_pbrt.png>
-Package pdftex.def Info: ./img/airplane_pbrt.png  used on input line 57.
+Package pdftex.def Info: ./img/airplane_pbrt.png  used on input line 60.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
-<./img/airplane_depth.png, id=727, 224.84pt x 224.84pt>
+<./img/airplane_depth.png, id=726, 224.84pt x 224.84pt>
 File: ./img/airplane_depth.png Graphic file (type png)
 <use ./img/airplane_depth.png>
-Package pdftex.def Info: ./img/airplane_depth.png  used on input line 60.
+Package pdftex.def Info: ./img/airplane_depth.png  used on input line 63.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
-<./img/airplane_shaded.png, id=728, 224.84pt x 224.84pt>
+<./img/airplane_shaded.png, id=727, 224.84pt x 224.84pt>
 File: ./img/airplane_shaded.png Graphic file (type png)
 <use ./img/airplane_shaded.png>
-Package pdftex.def Info: ./img/airplane_shaded.png  used on input line 62.
+Package pdftex.def Info: ./img/airplane_shaded.png  used on input line 65.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
 
-
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./img/pnet_plane_1.png, id=729, 578.8827pt x 579.6054pt>
+[26]
+<./img/pnet_plane_1.png, id=741, 578.8827pt x 579.6054pt>
 File: ./img/pnet_plane_1.png Graphic file (type png)
 <use ./img/pnet_plane_1.png>
-Package pdftex.def Info: ./img/pnet_plane_1.png  used on input line 72.
+Package pdftex.def Info: ./img/pnet_plane_1.png  used on input line 75.
 (pdftex.def)             Requested size: 181.52959pt x 181.75417pt.
-<./img/myplane_1.png, id=730, 578.8827pt x 579.6054pt>
+<./img/myplane_1.png, id=742, 578.8827pt x 579.6054pt>
 File: ./img/myplane_1.png Graphic file (type png)
 <use ./img/myplane_1.png>
-Package pdftex.def Info: ./img/myplane_1.png  used on input line 74.
+Package pdftex.def Info: ./img/myplane_1.png  used on input line 77.
 (pdftex.def)             Requested size: 181.52959pt x 181.75417pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[26 <./img/myplane_2.png> <./img/vrnesn_plane_2.png>]) [27 <./img/airplane_rotn
+[27 <./img/myplane_2.png> <./img/vrnesn_plane_2.png>]) [28 <./img/airplane_rotn
 et.png (PNG copy)> <./img/airplane_pbrt.png (PNG copy)> <./img/airplane_depth.p
-ng> <./img/airplane_shaded.png>] [28 <./img/pnet_plane_1.png> <./img/myplane_1.
+ng> <./img/airplane_shaded.png>] [29 <./img/pnet_plane_1.png> <./img/myplane_1.
 png>]
 \openout2 = `chap05.aux'.
 
@@ -1179,7 +1212,7 @@ Chapter 5.
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 1.
 
-) [29
+) [30
 
 
 
@@ -1193,34 +1226,34 @@ LaTeX Warning: No positions in optional float specifier.
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 1.
 
-) [30]
+) [31]
 LaTeX Font Info:    Try loading font information for OMS+lmr on input line 33.
  ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 33.
- [31]
+ [32]
 (tables/multiview.tex
 
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 1.
 
-) [32] [33] (tables/cataccuracies.tex
+) [33] [34] (tables/cataccuracies.tex
 
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 1.
 
-)) [34] [35]
+)) [35] [36]
 \openout2 = `chap06.aux'.
 
  (chap06.tex
 Chapter 6.
-[36
+[37
 
 
 
-]) [37]
+]) [38]
 \openout2 = `bibliography.aux'.
 
  (bibliography.tex (thesis.bbl
@@ -1235,7 +1268,7 @@ Underfull \hbox (badness 1005) in paragraph at lines 66--70
 un.  A
  []
 
-[38
+[39
 
 
 
@@ -1245,7 +1278,7 @@ Underfull \hbox (badness 2762) in paragraph at lines 128--133
 Neu-ral Net-
  []
 
-[39] [40]
+[40] [41]
 Underfull \hbox (badness 1028) in paragraph at lines 334--340
 []\OT1/lmr/m/n/12 Charles R. Qi, Hao Su, Kaichun Mo, and Leonidas J. Guibas.  P
 oint-
@@ -1257,30 +1290,30 @@ Underfull \hbox (badness 1817) in paragraph at lines 369--374
 http : / / arxiv . org / abs / 1604 . 03351$[][]\OT1/lmr/m/n/12 .  arXiv:
  []
 
-[41]
+[42]
 Underfull \hbox (badness 3058) in paragraph at lines 418--424
 \OT1/lmr/m/n/12 Multi-view Con-vo-lu-tional Neu-ral Net-works for 3d Shape Reco
 g-ni-tion.
  []
 
-[42])) [43] (thesis.lof)
+[43])) [44] (thesis.lof)
 \tf@lof=\write9
 \openout9 = `thesis.lof'.
 
- [44
+ [45
 
 
 ] (thesis.lot)
 \tf@lot=\write10
 \openout10 = `thesis.lot'.
 
- [45
+ [46
 
-] [46
+] [47
 
 ]
 Appendix A.
-[47
+[48
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 181.
@@ -1290,7 +1323,7 @@ hap05.aux) (chap06.aux) (bibliography.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 181.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 181.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 80A698191B8EC3C53FA7F8CF687BB629;8470.
+(rerunfilecheck)             Checksum: E2B5D5BFB5284C0B7EEAA5D2428FC040;8470.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1298,8 +1331,8 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 181.
  ) 
 Here is how much of TeX's memory you used:
- 30354 strings out of 492946
- 554439 string characters out of 3135527
+ 30365 strings out of 492946
+ 554638 string characters out of 3135527
  650533 words of memory out of 3000000
  33418 multiletter control sequences out of 15000+200000
  58092 words of font info for 51 fonts, out of 3000000 for 9000
@@ -1319,9 +1352,9 @@ ype1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr
 Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (51 pages, 1229672 bytes).
+Output written on thesis.pdf (52 pages, 1232225 bytes).
 PDF statistics:
- 1076 PDF objects out of 1200 (max. 8388607)
- 207 named destinations out of 1000 (max. 500000)
+ 1091 PDF objects out of 1200 (max. 8388607)
+ 215 named destinations out of 1000 (max. 500000)
  532 words of extra memory for PDF output out of 10000 (max. 10000000)
 
