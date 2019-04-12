@@ -144,7 +144,7 @@ if __name__ == '__main__':
     
     #Do not convert already existing files
     all_files = files
-    files = [x for x in files if not exists(x)]
+    #files = [x for x in files if not exists(x)]
     
     save_for_mvcnn(config, files, categories, split)
     collect_files(all_files, split,categories, config)

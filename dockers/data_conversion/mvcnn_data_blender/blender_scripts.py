@@ -10,6 +10,24 @@ from os.path import isfile, join
 scene = bpy.context.scene
 context = bpy.context
 
+def center_model(obj):
+    bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+    obj.location = (0, 0, 0)
+
+
+def normalize_model(obj):
+    dim = obj.dimensions
+    if max(dim) > 0:
+        dim = dim / max(dim)
+    obj.dimensions = dim
+
+
+def remove_materials():
+    for m in bpy.data.materials:
+        print(m)
+        bpy.data.materials.remove(m)
+
+
 def get_name_of_image_file(output_dir, file_id, i):
     return os.path.join(output_dir, file_id +'_'+ str(i) + ".png")
 
@@ -17,7 +35,7 @@ def render_phong(model_path, file_id, output_dir, nviews=12, resolution=224):
     
     def delete_model(name):
         for ob in scene.objects:
-            if ob.type == 'MESH' and ob.name.startswith(name):
+            if ob.type == 'MESH':
                 ob.select = True
             else:
                 ob.select = False
@@ -54,12 +72,31 @@ def render_phong(model_path, file_id, output_dir, nviews=12, resolution=224):
             else:
                 print('Currently .{} file type is not supported.'.format(ext))
                 exit(-1)
+        print(name)
         return name
     
     def do_model(path, output_dir, file_id):
         name = load_model(path)
-        #center_model(name)
-        #normalize_model(name)
+        print(bpy.context.selected_objects)
+        
+        for ob in bpy.context.scene.objects:
+            if ob.type == 'MESH':
+                ob.select = True
+                bpy.context.scene.objects.active = ob
+            else:
+                ob.select = False
+        bpy.ops.object.join()
+        print(bpy.context.selected_objects)
+        imported = bpy.context.selected_objects[0]
+        imported.rotation_mode = 'XYZ'
+        center_model(imported)
+        normalize_model(imported)
+        remove_materials()
+        #imported.rotation_euler[2] = np.pi
+        maxDimension = 2
+        scaleFactor = maxDimension / max(imported.dimensions)
+        imported.scale = (scaleFactor,scaleFactor,scaleFactor)
+
         def move_camera(coord):
             def deg2rad(deg):
                 return deg * math.pi / 180.
@@ -74,7 +111,6 @@ def render_phong(model_path, file_id, output_dir, nviews=12, resolution=224):
             move_camera(c)
             bpy.ops.render.render()
             D.images['Render Result'].save_render(filepath=get_name_of_image_file(output_dir, file_id, i))
-
         delete_model(name)
         
     def fix_camera_to_origin():
@@ -130,21 +166,18 @@ def render_one_model(model_path, file_id, output_dir, nviews=12, resolution=224)
         else:
             ob.select = False
     bpy.ops.object.join()
-    
-    
     imported = bpy.context.selected_objects[0]
-    print(bpy.context.selected_objects)
+    
     bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY')
     maxDimension = 5.0
 
     scaleFactor = maxDimension / max(imported.dimensions)
     imported.scale = (scaleFactor,scaleFactor,scaleFactor)
     imported.location = (0, 0, 0)
-    
+    remove_materials()
     imported.rotation_mode = 'XYZ'
     imported.rotation_euler[1] = np.pi
     views = np.linspace(0, 2*np.pi, nviews, endpoint=False)
-
     
     for i in range(nviews):
         #imported.rotation_euler[1] = np.pi

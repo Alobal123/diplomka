@@ -1,9 +1,9 @@
 ##########################################################################################################
 # Set required variables
 set -e
-name="shaded_shapenet"
+name="shaded"
 dataset_path="/local/krabec/ShapeNet/ShapeNet"
-output_dir="/home/krabec/Shapenet"
+output_dir="/local/krabec/ShapeNet"
 docker_hidden=d
 
 #This must be one of phong, shaded or depth
