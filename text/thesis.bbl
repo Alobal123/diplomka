@@ -1,4 +1,4 @@
-\begin{thebibliography}{50}
+\begin{thebibliography}{66}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -27,6 +27,12 @@ Bishop and Weimer.
 \newblock Fast {Phong} {Shading}.
 \newblock \emph{Computer Graphics (20) 4 pp. 103-106}, 20, 1986.
 \newblock \doi{10.1145/15886.15897}.
+
+\bibitem[Brock(2016)]{brock_vrn_2016}
+Andrew Brock.
+\newblock {VRN} in {Theano} with lasagne, 2016.
+\newblock URL
+  \url{https://github.com/ajbrock/Generative-and-Discriminative-Voxel-Modeling}.
 
 \bibitem[Brock et~al.(2016)Brock, Lim, Ritchie, and
   Weston]{brock_generative_2016}
@@ -82,6 +88,11 @@ Sander Dieleman, Jan Schlüter, Colin Raffel, Eben Olson, Søren~Kaae
 \newblock \doi{10.5281/zenodo.27878}.
 \newblock URL \url{http://dx.doi.org/10.5281/zenodo.27878}.
 
+\bibitem[Dominguez(2018)]{dominguez_g3dnet_2018}
+Miguel Dominguez.
+\newblock G3dnet in {Tensorflow}, 2018.
+\newblock URL \url{https://github.com/WDot/G3DNet}.
+
 \bibitem[Dominguez et~al.(2018)Dominguez, Dhamdhere, Petkar, Jain, Sah, and
   Ptucha]{dominguez_general-purpose_2018}
 Miguel Dominguez, Rohan Dhamdhere, Atir Petkar, Saloni Jain, Shagan Sah, and
@@ -90,6 +101,13 @@ Miguel Dominguez, Rohan Dhamdhere, Atir Petkar, Saloni Jain, Shagan Sah, and
   {Extractor}}.
 \newblock March 2018.
 \newblock \doi{10.1109/WACV.2018.00218}.
+
+\bibitem[Feng et~al.(2018)Feng, Zhang, Zhao, Ji, and Gao]{feng_gvcnn:_2018}
+Yifan Feng, Zizhao Zhang, Xibin Zhao, Rongrong Ji, and Yue Gao.
+\newblock {GVCNN}: {Group}-{View} {Convolutional} {Neural} {Networks} for 3d
+  {Shape} {Recognition}.
+\newblock In \emph{The {IEEE} {Conference} on {Computer} {Vision} and {Pattern}
+  {Recognition} ({CVPR})}, June 2018.
 
 \bibitem[Goodfellow et~al.(2016)Goodfellow, Bengio, and
   Courville]{goodfellow_deep_2016}
@@ -156,12 +174,17 @@ Yangqing Jia, Evan Shelhamer, Jeff Donahue, Sergey Karayev, Jonathan Long, Ross
 \newblock URL \url{http://doi.acm.org/10.1145/2647868.2654889}.
 \newblock event-place: Orlando, Florida, USA.
 
-\bibitem[Kanezaki et~al.(2016)Kanezaki, Matsushita, and
-  Nishida]{kanezaki_rotationnet:_2016}
+\bibitem[Kanezaki(2018)]{kanezaki_rotationnet_2018}
+Asako Kanezaki.
+\newblock {RotationNet} in {Caffe}, 2018.
+\newblock URL \url{https://github.com/kanezaki/rotationnet}.
+
+\bibitem[Kanezaki et~al.(2018)Kanezaki, Matsushita, and
+  Nishida]{kanezaki_rotationnet:_2018}
 Asako Kanezaki, Yasuyuki Matsushita, and Yoshifumi Nishida.
 \newblock {RotationNet}: {Joint} {Object} {Categorization} and {Pose}
   {Estimation} {Using} {Multiviews} from {Unsupervised} {Viewpoints}.
-\newblock \emph{arXiv:1603.06208 [cs]}, March 2016.
+\newblock \emph{arXiv:1603.06208 [cs]}, March 2018.
 \newblock URL \url{http://arxiv.org/abs/1603.06208}.
 \newblock arXiv: 1603.06208.
 
@@ -172,13 +195,18 @@ Diederik~P. Kingma and Jimmy Ba.
 \newblock URL \url{http://arxiv.org/abs/1412.6980}.
 \newblock arXiv: 1412.6980.
 
-\bibitem[Klokov and Lempitsky(2017)]{klokov_escape_2017}
+\bibitem[Klokov and Lempitsky(2017{\natexlab{a}})]{klokov_escape_2017}
 Roman Klokov and Victor Lempitsky.
 \newblock Escape from {Cells}: {Deep} {Kd}-{Networks} for the {Recognition} of
   3d {Point} {Cloud} {Models}.
-\newblock \emph{arXiv:1704.01222 [cs]}, April 2017.
+\newblock \emph{arXiv:1704.01222 [cs]}, April 2017{\natexlab{a}}.
 \newblock URL \url{http://arxiv.org/abs/1704.01222}.
 \newblock arXiv: 1704.01222.
+
+\bibitem[Klokov and Lempitsky(2017{\natexlab{b}})]{klokov_kd-net_2017}
+Roman Klokov and Victor Lempitsky.
+\newblock {KD}-{Net} in {Theano} and {Lasagne}, 2017{\natexlab{b}}.
+\newblock URL \url{https://github.com/Regenerator/kdnets}.
 
 \bibitem[Krizhevsky et~al.(2012)Krizhevsky, Sutskever, and
   Hinton]{krizhevsky_imagenet_2012}
@@ -199,6 +227,16 @@ Y.~LeCun, B.~Boser, J.~S. Denker, D.~Henderson, R.~E. Howard, W.~Hubbard, and
   {Recognition}.
 \newblock \emph{Neural Computation}, 1\penalty0 (4):\penalty0 541--551, 1989.
 
+\bibitem[Lee(2016)]{lee_multi-view_2016}
+Tang Lee.
+\newblock Multi-{View} {CNN} in {Tensorflow}, 2016.
+\newblock URL \url{https://github.com/WeiTang114/MVCNN-TensorFlow}.
+
+\bibitem[Li(2018)]{li_sonet_2018}
+Jiaxin Li.
+\newblock {SONET} in {TensorFlow}, 2018.
+\newblock URL \url{https://github.com/lijx10/SO-Net}.
+
 \bibitem[Li et~al.(2018)Li, Chen, and Lee]{li_so-net:_2018}
 Jiaxin Li, Ben~M. Chen, and Gim~Hee Lee.
 \newblock {SO}-{Net}: {Self}-{Organizing} {Network} for {Point} {Cloud}
@@ -207,9 +245,9 @@ Jiaxin Li, Ben~M. Chen, and Gim~Hee Lee.
 \newblock URL \url{http://arxiv.org/abs/1803.04249}.
 \newblock arXiv: 1803.04249.
 
-\bibitem[machrisaa()]{machrisaa_tensorflow-vgg_nodate}
+\bibitem[machrisaa(2017)]{machrisaa_vgg_2017}
 machrisaa.
-\newblock tensorflow-vgg.
+\newblock {VGG} in {Tensorflow}, 2017.
 \newblock URL \url{https://github.com/machrisaa/tensorflow-vgg}.
 
 \bibitem[{Martín Abadi} et~al.(2015){Martín Abadi}, {Ashish Agarwal}, {Paul
@@ -242,6 +280,11 @@ D.~Maturana and S.~Scherer.
 \newblock Voxnet: {A} 3d convolutional neural network for real-time object
   recognition.
 \newblock In \emph{{IROS} 2015}, 2015.
+
+\bibitem[Maturana and Scherer(2016)]{maturana_voxnet_2016}
+Daniel Maturana and Sebastian Scherer.
+\newblock {VoxNet} in {TensorFlow}, 2016.
+\newblock URL \url{https://github.com/Durant35/VoxNet}.
 
 \bibitem[Meagher(1980)]{meagher_octree_1980}
 Donald Meagher.
@@ -286,19 +329,32 @@ Matt Pharr and Greg Humphreys.
   2010.
 \newblock ISBN 0-12-375079-2 978-0-12-375079-2.
 
-\bibitem[Qi et~al.(2016)Qi, Su, Mo, and Guibas]{qi_pointnet:_2016}
+\bibitem[Qi et~al.(2016{\natexlab{a}})Qi, Su, Mo, and
+  Guibas]{qi_pointnet:_2016}
 Charles~R. Qi, Hao Su, Kaichun Mo, and Leonidas~J. Guibas.
 \newblock {PointNet}: {Deep} {Learning} on {Point} {Sets} for 3d
   {Classification} and {Segmentation}.
-\newblock \emph{arXiv:1612.00593 [cs]}, December 2016.
+\newblock \emph{arXiv:1612.00593 [cs]}, December 2016{\natexlab{a}}.
 \newblock URL \url{http://arxiv.org/abs/1612.00593}.
 \newblock arXiv: 1612.00593.
 
-\bibitem[Qi et~al.(2017)Qi, Yi, Su, and Guibas]{qi_pointnet++:_2017}
+\bibitem[Qi et~al.(2016{\natexlab{b}})Qi, Su, Mo, and Guibas]{qi_pointnet_2016}
+Charles~R. Qi, Hao Su, Kaichun Mo, and Leonidas~J. Guibas.
+\newblock {PointNet} {TensorFlow}, 2016{\natexlab{b}}.
+\newblock URL \url{https://github.com/charlesq34/pointnet}.
+
+\bibitem[Qi et~al.(2017{\natexlab{a}})Qi, Su, Mo, and
+  Guibas]{qi_pointnet++_2017}
+Charles~R. Qi, Hao Su, Kaichun Mo, and Leonidas~J. Guibas.
+\newblock {PointNet}++ {TensorFlow}, 2017{\natexlab{a}}.
+\newblock URL \url{https://github.com/charlesq34/pointnet2}.
+
+\bibitem[Qi et~al.(2017{\natexlab{b}})Qi, Yi, Su, and
+  Guibas]{qi_pointnet++:_2017}
 Charles~R. Qi, Li~Yi, Hao Su, and Leonidas~J. Guibas.
 \newblock {PointNet}++: {Deep} {Hierarchical} {Feature} {Learning} on {Point}
   {Sets} in a {Metric} {Space}.
-\newblock \emph{arXiv:1706.02413 [cs]}, June 2017.
+\newblock \emph{arXiv:1706.02413 [cs]}, June 2017{\natexlab{b}}.
 \newblock URL \url{http://arxiv.org/abs/1706.02413}.
 \newblock arXiv: 1706.02413.
 
@@ -308,13 +364,19 @@ Frank Rosenblatt.
   of {Brain} {Mechanisms}}.
 \newblock Spartan Books, Washington DC, 1961.
 
-\bibitem[Sedaghat et~al.(2016)Sedaghat, Zolfaghari, Amiri, and
+\bibitem[Sedaghat et~al.(2016{\natexlab{a}})Sedaghat, Zolfaghari, Amiri, and
   Brox]{sedaghat_orientation-boosted_2016}
 Nima Sedaghat, Mohammadreza Zolfaghari, Ehsan Amiri, and Thomas Brox.
 \newblock Orientation-boosted {Voxel} {Nets} for 3d {Object} {Recognition}.
-\newblock \emph{arXiv:1604.03351 [cs]}, April 2016.
+\newblock \emph{arXiv:1604.03351 [cs]}, April 2016{\natexlab{a}}.
 \newblock URL \url{http://arxiv.org/abs/1604.03351}.
 \newblock arXiv: 1604.03351.
+
+\bibitem[Sedaghat et~al.(2016{\natexlab{b}})Sedaghat, Zolfaghari, Amiri, and
+  Brox]{sedaghat_orion_2016}
+Nima Sedaghat, Mohammadreza Zolfaghari, Ehsan Amiri, and Thomas Brox.
+\newblock {ORION} in {Caffe}, 2016{\natexlab{b}}.
+\newblock URL \url{https://github.com/lmb-freiburg/orion}.
 
 \bibitem[Seide and Agarwal(2016)]{seide_cntk:_2016}
 Frank Seide and Amit Agarwal.
@@ -360,10 +422,17 @@ Hang Su, Subhransu Maji, Evangelos Kalogerakis, and Erik Learned-Miller.
 \newblock URL \url{http://arxiv.org/abs/1505.00880}.
 \newblock arXiv: 1505.00880.
 
-\bibitem[Su et~al.(2018)Su, Gadelha, Wang, and Maji]{su_deeper_2018}
+\bibitem[Su et~al.(2018{\natexlab{a}})Su, Gadelha, and
+  Wang]{su_multi-view_2018}
+Jong-Chyi Su, Matheus Gadelha, and Rui Wang.
+\newblock Multi-view {CNN} in {Pytorch}, 2018{\natexlab{a}}.
+\newblock URL \url{https://github.com/jongchyisu/mvcnn_pytorch}.
+
+\bibitem[Su et~al.(2018{\natexlab{b}})Su, Gadelha, Wang, and
+  Maji]{su_deeper_2018}
 Jong-Chyi Su, Matheus Gadelha, Rui Wang, and Subhransu Maji.
 \newblock A {Deeper} {Look} at 3d {Shape} {Classifiers}.
-\newblock \emph{arXiv:1809.02560 [cs]}, September 2018.
+\newblock \emph{arXiv:1809.02560 [cs]}, September 2018{\natexlab{b}}.
 \newblock URL \url{http://arxiv.org/abs/1809.02560}.
 \newblock arXiv: 1809.02560.
 
@@ -397,12 +466,19 @@ Peng-Shuai Wang, Yang Liu, Yu-Xiao Guo, Chun-Yu Sun, and Xin Tong.
 \newblock \emph{ACM Transactions on Graphics (SIGGRAPH)}, 36\penalty0 (4),
   2017.
 
-\bibitem[Wang et~al.(2018)Wang, Liu, Guo, Sun, and Tong]{wang_adaptive_2018}
+\bibitem[Wang et~al.(2018{\natexlab{a}})Wang, Liu, Guo, Sun, and
+  Tong]{wang_adaptive_2018}
 Peng-Shuai Wang, Yang Liu, Yu-Xiao Guo, Chun-Yu Sun, and Xin Tong.
 \newblock Adaptive {O}-{CNN}: {A} {Patch}-based {Deep} {Representation} of 3d
   {Shapes}.
 \newblock \emph{ACM Transactions on Graphics (SIGGRAPH Asia)}, 37\penalty0 (6),
-  2018.
+  2018{\natexlab{a}}.
+
+\bibitem[Wang et~al.(2018{\natexlab{b}})Wang, Liu, Guo, Sun, and
+  Tong]{wang_o-cnn_2018}
+Peng-Shuai Wang, Yang Liu, Yu-Xiao Guo, Chun-Yu Sun, and Xin Tong.
+\newblock O-{CNN} in {Caffe}, 2018{\natexlab{b}}.
+\newblock URL \url{https://github.com/Microsoft/O-CNN}.
 
 \bibitem[Wu et~al.(2014)Wu, Song, Khosla, Yu, Zhang, Tang, and
   Xiao]{wu_3d_2014}
@@ -423,12 +499,33 @@ Yu~Xiang, Wonhui Kim, Wei Chen, Jingwei Ji, Christopher Choy, Hao Su, Roozbeh
 \newblock In \emph{European {Conference} {Computer} {Vision} ({ECCV})}, 2016.
 \newblock URL \url{http://cvgl.stanford.edu/projects/objectnet3d/}.
 
-\bibitem[Zhizhong et~al.(2018)Zhizhong, Mingyang, and
+\bibitem[You et~al.(2018)You, Feng, Ji, and Gao]{you_pvnet:_2018}
+Haoxuan You, Yifan Feng, Rongrong Ji, and Yue Gao.
+\newblock {PVNet}: {A} {Joint} {Convolutional} {Network} of {Point} {Cloud} and
+  {Multi}-{View} for 3d {Shape} {Recognition}.
+\newblock \emph{arXiv:1808.07659 [cs]}, August 2018.
+\newblock URL \url{http://arxiv.org/abs/1808.07659}.
+\newblock arXiv: 1808.07659.
+
+\bibitem[Yu et~al.(2018)Yu, Meng, and Yuan]{yu_multi-view_2018}
+Tan Yu, Jingjing Meng, and Junsong Yuan.
+\newblock Multi-view {Harmonized} {Bilinear} {Network} for 3d {Object}
+  {Recognition}.
+\newblock \emph{2018 IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition}, pages 186--194, 2018.
+
+\bibitem[Zhizhong et~al.(2018{\natexlab{a}})Zhizhong, Mingyang, and
+  Zhenbao]{zhizhong_seq2seq_2018}
+Han Zhizhong, Shang Mingyang, and Liu Zhenbao.
+\newblock {SEQ}2seq in {Tensorflow}, 2018{\natexlab{a}}.
+\newblock URL \url{https://github.com/mingyangShang/SeqViews2SeqLabels}.
+
+\bibitem[Zhizhong et~al.(2018{\natexlab{b}})Zhizhong, Mingyang, and
   Zhenbao]{zhizhong_seqviews2seqlabels:_2018}
 Han Zhizhong, Shang Mingyang, and Liu Zhenbao.
 \newblock {SeqViews}2seqlabels: {Learning} 3d {Global} {Features} via
   {Aggregating} {Sequential} {Views} by {RNN} {With} {Attention}.
 \newblock \emph{IEEE Transactions on Image Processing}, 28\penalty0
-  (2):\penalty0 658 -- 672, September 2018.
+  (2):\penalty0 658 -- 672, September 2018{\natexlab{b}}.
 
 \end{thebibliography}

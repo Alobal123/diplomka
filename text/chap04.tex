@@ -3,6 +3,7 @@
 We begin this chapter by introducing the data used for our experiments as well as some additional sources for further research. We continue by briefly discussing the methods of converting 3D meshes to various other representations and we end with discussing our software decisions.
 
 \section{Datasets}
+\label{sec:dataset}
 In this section we introduce datasets of 3D models which we used or considered to use for testing.
 
 \subsection{ModelNet40}
@@ -10,6 +11,7 @@ ModelNet \cite{wu_3d_2014} is one of the most well-known and commonly used datas
 The models in original ModelNet40 are not aligned and have widely different scales. Therefore when preprocessing the data for neural networks we rescale all models to fit a  unit sphere and we use manually aligned version of the dataset \cite{sedaghat_orientation-boosted_2016}. Also the categories are not equally populated for example there are over 700 airplane models and only over 100 wardrobe models. The exact numbers of models in particular categories can be found in \autoref{Table:modelnetcats}. ModelNet40 contains files in .off format so our scripts have to be able to read this particular format. The dataset is available to download for academic purposes.
 
 \input{./tables/modelnet_cats.tex}
+
 
 \subsection{ShapeNetCore}
 ShapeNet \cite{chang_shapenet:_2015} is an ongoing effort to establish a richly-annotated, large-scale dataset of 3D shapes. ShapeNet is a collaborative effort between researchers at Princeton, Stanford and Toyota Technological Institute at Chicago. We used its subset called ShapeNetCore which contains 51 209 individual models in 55 categories. There is also an official split to training, test and validation sets. However, this split does not contain all models and is not divided uniformly. We therefore decided to construct our own split -- 80\% of models in each category is assigned to the training set and the rest to the test set. By doing this we obtained a training set with 40 939 models and a test set with 10 270 models. \par \autoref{Table:shapenetcats} lists the exact numbers of models in particular categories. During our exploration of the dataset we noticed that some models are assigned to more than one category so we were forced to choose one of them somewhat arbitrarily. You can find our final split into sets and categories in csv file [TODO:priloha x].\par
@@ -41,6 +43,7 @@ In order to use voxel based systems we need to convert mesh files to voxel occup
 \end{figure}
 
 \subsection{Mesh to Images}
+\label{subsec:meshtoimgs}
 For multi-view based neural network we have to be able to render images taken from arbitrary viewpoints of a 3D mesh. Firstly we tried to replicate results used by the authors of MVCNN \cite{su_multi-view_2015} and we used pbrt \cite{pharr_physically_2010}, which is physically based rendering software with publicly available code. This turned out to be a plausible approach. We also used the original blender scripts using phong shading \cite{bishop_fast_1986} in blender to render the images.
 Later in our research we found blender scripts from the authors of MVCNN2 \cite{su_deeper_2018}. They provide two different rendering options -- shaded images and depth images. These work faster and achieve better accuracy than both ours and phong shaded images. In our framework we provide both approaches implemented with python scripts and multiprocessing support. \autoref{renderimages} shows one of the airplane models rendered by the four different scripts.
 
@@ -63,9 +66,9 @@ For the use of point cloud based neural networks we have to be able to construct
 
 \begin{figure}[!h]
 	\centering
-	\subfloat[Original point cloud representation provided by the authors of PointNet]{\includegraphics[width=0.44\columnwidth]{./img/myplane_1}}
+	\subfloat[Original point cloud representation provided by the authors of PointNet (2048 points)]{\includegraphics[width=0.44\columnwidth]{./img/pnet_plane_1}}
 	\qquad
-	\subfloat[Our point cloud representation]{\includegraphics[width=0.44\columnwidth]{./img/pnet_plane_1}}
+	\subfloat[Our point cloud representation (2048 points)]{\includegraphics[width=0.44\columnwidth]{./img/myplane_1}}
 	\caption{Illustration of point cloud representation}
 \end{figure}
 
