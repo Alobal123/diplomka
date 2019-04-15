@@ -1,9 +1,9 @@
-##########################################################################################################
+    ##########################################################################################################
 # Set required variables
 set -e
 name="kdnet"
-dataset_path="/local/krabec/ShapeNet/ShapeNet"
-output_dir="/home/krabec/ShapeNet"
+dataset_path="/local/krabec/ShapeNet"
+output_dir="/home/krabec/"
 docker_hidden=d
 
 ##########################################################################################################
