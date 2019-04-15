@@ -12,7 +12,7 @@
 \contentsline {figure}{\numberline {3.5}{\ignorespaces PointNet architecture. Layers labeled "for each point" are applied for each point separatly with same weights. $n$ is number of input points.\relax }}{19}{figure.caption.11}% 
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Illustration of models in ModelNet40 (bathtub, bed, flower pot, lamp, radio and sofa)\relax }}{23}{figure.caption.12}% 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Illustration of models in ShapeNetCore (bathtub, bed, flower pot, lamp, radio and sofa)\relax }}{25}{figure.caption.14}% 
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Illustration of models in ShapeNetCore (bag, birdhouse, cellular telephone, microwave, rifle, tower)\relax }}{25}{figure.caption.14}% 
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Illustration of voxel representation\relax }}{27}{figure.caption.16}% 
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Original voxel representation provided by authors of VRN}}}{27}{subfigure.3.1}% 
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Our voxelization using OpenVDB}}}{27}{subfigure.3.2}% 

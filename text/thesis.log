@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.3.19)  12 APR 2019 14:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.3.19)  15 APR 2019 09:49
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1106,30 +1106,36 @@ LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 1.
 
 ) (img/examples/shapenet.tex
-File: ./img/examples/bathtub_m.png Graphic file (type png)
-<use ./img/examples/bathtub_m.png>
-Package pdftex.def Info: ./img/examples/bathtub_m.png  used on input line 3.
+<./img/examples/bag.png, id=658, 224.84pt x 224.84pt>
+File: ./img/examples/bag.png Graphic file (type png)
+<use ./img/examples/bag.png>
+Package pdftex.def Info: ./img/examples/bag.png  used on input line 3.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
-File: ./img/examples/bed_m.png Graphic file (type png)
-<use ./img/examples/bed_m.png>
-Package pdftex.def Info: ./img/examples/bed_m.png  used on input line 5.
+<./img/examples/birdhouse.png, id=659, 224.84pt x 224.84pt>
+File: ./img/examples/birdhouse.png Graphic file (type png)
+<use ./img/examples/birdhouse.png>
+Package pdftex.def Info: ./img/examples/birdhouse.png  used on input line 5.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
-File: ./img/examples/flower_pot_m.png Graphic file (type png)
-<use ./img/examples/flower_pot_m.png>
-Package pdftex.def Info: ./img/examples/flower_pot_m.png  used on input line 8.
-
+<./img/examples/cellulartelephone.png, id=660, 224.84pt x 224.84pt>
+File: ./img/examples/cellulartelephone.png Graphic file (type png)
+<use ./img/examples/cellulartelephone.png>
+Package pdftex.def Info: ./img/examples/cellulartelephone.png  used on input li
+ne 8.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
-File: ./img/examples/lamp_m.png Graphic file (type png)
-<use ./img/examples/lamp_m.png>
-Package pdftex.def Info: ./img/examples/lamp_m.png  used on input line 10.
+<./img/examples/microwave.png, id=661, 224.84pt x 224.84pt>
+File: ./img/examples/microwave.png Graphic file (type png)
+<use ./img/examples/microwave.png>
+Package pdftex.def Info: ./img/examples/microwave.png  used on input line 10.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
-File: ./img/examples/radio_m.png Graphic file (type png)
-<use ./img/examples/radio_m.png>
-Package pdftex.def Info: ./img/examples/radio_m.png  used on input line 13.
+<./img/examples/rifle.png, id=662, 224.84pt x 224.84pt>
+File: ./img/examples/rifle.png Graphic file (type png)
+<use ./img/examples/rifle.png>
+Package pdftex.def Info: ./img/examples/rifle.png  used on input line 13.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
-File: ./img/examples/sofa_m.png Graphic file (type png)
-<use ./img/examples/sofa_m.png>
-Package pdftex.def Info: ./img/examples/sofa_m.png  used on input line 15.
+<./img/examples/tower.png, id=663, 224.84pt x 224.84pt>
+File: ./img/examples/tower.png Graphic file (type png)
+<use ./img/examples/tower.png>
+Package pdftex.def Info: ./img/examples/tower.png  used on input line 15.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
 
 
@@ -1146,13 +1152,15 @@ LaTeX Warning: No positions in optional float specifier.
 
 ] [22]) [23 <./img/examples/bathtub_m.png> <./img/examples/bed_m.png> <./img/ex
 amples/flower_pot_m.png> <./img/examples/lamp_m.png> <./img/examples/radio_m.pn
-g> <./img/examples/sofa_m.png>] [24] [25]
-<./img/myplane_2.png, id=713, 319.4334pt x 317.988pt>
+g> <./img/examples/sofa_m.png>] [24] [25 <./img/examples/bag.png> <./img/exampl
+es/birdhouse.png> <./img/examples/cellulartelephone.png> <./img/examples/microw
+ave.png> <./img/examples/rifle.png> <./img/examples/tower.png>]
+<./img/myplane_2.png, id=725, 319.4334pt x 317.988pt>
 File: ./img/myplane_2.png Graphic file (type png)
 <use ./img/myplane_2.png>
 Package pdftex.def Info: ./img/myplane_2.png  used on input line 45.
 (pdftex.def)             Requested size: 181.52959pt x 180.7116pt.
-<./img/vrnesn_plane_2.png, id=714, 323.0469pt x 321.6015pt>
+<./img/vrnesn_plane_2.png, id=726, 323.0469pt x 321.6015pt>
 File: ./img/vrnesn_plane_2.png Graphic file (type png)
 <use ./img/vrnesn_plane_2.png>
 Package pdftex.def Info: ./img/vrnesn_plane_2.png  used on input line 47.
@@ -1161,22 +1169,22 @@ Package pdftex.def Info: ./img/vrnesn_plane_2.png  used on input line 47.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./img/airplane_rotnet.png, id=724, 224.84pt x 224.84pt>
+<./img/airplane_rotnet.png, id=736, 224.84pt x 224.84pt>
 File: ./img/airplane_rotnet.png Graphic file (type png)
 <use ./img/airplane_rotnet.png>
 Package pdftex.def Info: ./img/airplane_rotnet.png  used on input line 58.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
-<./img/airplane_pbrt.png, id=725, 224.84pt x 224.84pt>
+<./img/airplane_pbrt.png, id=737, 224.84pt x 224.84pt>
 File: ./img/airplane_pbrt.png Graphic file (type png)
 <use ./img/airplane_pbrt.png>
 Package pdftex.def Info: ./img/airplane_pbrt.png  used on input line 60.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
-<./img/airplane_depth.png, id=726, 224.84pt x 224.84pt>
+<./img/airplane_depth.png, id=738, 224.84pt x 224.84pt>
 File: ./img/airplane_depth.png Graphic file (type png)
 <use ./img/airplane_depth.png>
 Package pdftex.def Info: ./img/airplane_depth.png  used on input line 63.
 (pdftex.def)             Requested size: 181.52959pt x 181.53616pt.
-<./img/airplane_shaded.png, id=727, 224.84pt x 224.84pt>
+<./img/airplane_shaded.png, id=739, 224.84pt x 224.84pt>
 File: ./img/airplane_shaded.png Graphic file (type png)
 <use ./img/airplane_shaded.png>
 Package pdftex.def Info: ./img/airplane_shaded.png  used on input line 65.
@@ -1185,12 +1193,12 @@ Package pdftex.def Info: ./img/airplane_shaded.png  used on input line 65.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [26]
-<./img/pnet_plane_1.png, id=741, 578.8827pt x 579.6054pt>
+<./img/pnet_plane_1.png, id=753, 578.8827pt x 579.6054pt>
 File: ./img/pnet_plane_1.png Graphic file (type png)
 <use ./img/pnet_plane_1.png>
 Package pdftex.def Info: ./img/pnet_plane_1.png  used on input line 75.
 (pdftex.def)             Requested size: 181.52959pt x 181.75417pt.
-<./img/myplane_1.png, id=742, 578.8827pt x 579.6054pt>
+<./img/myplane_1.png, id=754, 578.8827pt x 579.6054pt>
 File: ./img/myplane_1.png Graphic file (type png)
 <use ./img/myplane_1.png>
 Package pdftex.def Info: ./img/myplane_1.png  used on input line 77.
@@ -1331,10 +1339,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 181.
  ) 
 Here is how much of TeX's memory you used:
- 30365 strings out of 492946
- 554638 string characters out of 3135527
+ 30395 strings out of 492946
+ 555472 string characters out of 3135527
  650533 words of memory out of 3000000
- 33418 multiletter control sequences out of 15000+200000
+ 33442 multiletter control sequences out of 15000+200000
  58092 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,16n,71p,1203b,2327s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1352,9 +1360,9 @@ ype1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr
 Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (52 pages, 1232225 bytes).
+Output written on thesis.pdf (52 pages, 1278072 bytes).
 PDF statistics:
- 1091 PDF objects out of 1200 (max. 8388607)
+ 1103 PDF objects out of 1200 (max. 8388607)
  215 named destinations out of 1000 (max. 500000)
- 532 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 562 words of extra memory for PDF output out of 10000 (max. 10000000)
 
