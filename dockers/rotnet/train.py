@@ -48,6 +48,7 @@ def eval(config, solver, epoch=0):
         log(config.log_file, "Loss: {:.3f}".format(loss))
         LOSS_LOGGER.log( loss, epoch, "eval_loss")
         ACC_LOGGER.log( acc, epoch, "eval_accuracy")
+        log(config.log_file, "EVALUATING epoch {} - loss: {} acc: {} ".format(epoch, loss, acc))
     else:
         import Evaluation_tools as et
         eval_file = os.path.join(config.log_dir, '{}.txt'.format(config.name))
@@ -87,18 +88,18 @@ def train(config, solver):
             accs.append(acc)
             
             if it % max(config.train_log_frq/config.batch_size,1) == 0:
-                LOSS_LOGGER.log( np.mean(losses), epoch, "train_loss")
-                ACC_LOGGER.log( np.mean(accs), epoch, "train_accuracy")
+                loss = np.mean(losses)
+                acc = np.mean(accs)
+                LOSS_LOGGER.log( loss, epoch, "train_loss")
+                ACC_LOGGER.log( acc , epoch, "train_accuracy")
                 ACC_LOGGER.save(config.log_dir)
                 LOSS_LOGGER.save(config.log_dir)
                 losses = []
                 accs = []
                 highest_model_saved = it
-                
+                log(config.log_file, "TRAINING epoch: {} it: {}  loss: {} acc: {} ".format(epoch,it, loss, acc))
         ACC_LOGGER.plot(dest=config.log_dir)
         LOSS_LOGGER.plot(dest=config.log_dir)        
-        log(config.log_file, "LOSS: ", np.mean(losses))
-        log(config.log_file, "ACCURACY", np.mean(accs))
 
 
 def set_num_cats(config):
@@ -111,6 +112,10 @@ if __name__ == '__main__':
     
     config = get_config()
     set_num_cats(config)
+    
+    with open(config.log_file, 'w') as f:
+        print('Starting')
+        print('Starting', file=f)
     
     prepare_data(os.path.join(config.data, 'train.txt'), views=config.num_views, shuffle=True)
     prepare_data(os.path.join(config.data, 'test.txt'), views=config.num_views, shuffle=False)
