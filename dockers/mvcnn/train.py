@@ -78,8 +78,8 @@ def train(dataset_train, dataset_test, caffemodel=''):
             step = 0
             begin = startepoch
             end = config.max_epoch + startepoch
-            while False:
-            #for epoch in xrange(begin, end + 1):
+
+            for epoch in xrange(begin, end + 1):
                 acc, eval_loss, predictions, labels = _test(dataset_test, config, sess, placeholders)
                 log (config.log_file, 'epoch %d: step %d, validation loss=%.4f, acc=%f' % (epoch, step, eval_loss, acc*100.))
                 
