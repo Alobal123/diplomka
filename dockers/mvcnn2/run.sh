@@ -3,14 +3,14 @@ set -e
 # Set required variables
 
 name='mvcnn2'
-dataset_path="/home/krabec/shaded"
+dataset_path="/local/krabec/ShapeNet/shaded"
 out_path="/home/krabec/dockers/mvcnn2/shapenet"
-GPU=0
-docker_hidden=d
+GPU=1
+docker_hidden=t
 
 ##########################################################################################################
 
-mkdir "$out_path"
+mkdir -p "$out_path"
 docker build -t "$name" .
 docker kill "$name" 2>/dev/null | true
 docker rm "$name" 2>/dev/null | true

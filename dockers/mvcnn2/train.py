@@ -71,13 +71,13 @@ def test(config):
   
     val_path = os.path.join(config.data, "*/test")    
     
-    val_dataset = MultiviewImgDataset(val_path, scale_aug=False, rot_aug=False, num_views=config.num_views)
+    val_dataset = MultiviewImgDataset(val_path, config, scale_aug=False, rot_aug=False)
     val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=config.stage2_batch_size, shuffle=False, num_workers=0)
 
     pretraining = not config.no_pretraining
-    cnet = SVCNN(config.name, nclasses=config.num_classes, cnn_name=config.cnn_name, pretraining=pretraining)
+    cnet = SVCNN(config, pretraining=pretraining)
     
-    cnet_2 = MVCNN(config.name, cnet, nclasses=config.num_classes, cnn_name=config.cnn_name, num_views=config.num_views)
+    cnet_2 = MVCNN(cnet, config)
     cnet_2.load(os.path.join(log_dir, config.snapshot_prefix + str(config.weights)))
     optimizer = optim.Adam(cnet_2.parameters(), lr=config.learning_rate, weight_decay=config.weight_decay, betas=(0.9, 0.999))
     

@@ -19,7 +19,7 @@ class Model(nn.Module):
         
     def load(self, file):    
         if not os.path.exists(file):
-            raise IOError("{} directory does not exist in {}".format(self.name, path))
+            raise IOError("File {} does not exist!".format(file))
         self.load_state_dict(torch.load(file))
 
 
