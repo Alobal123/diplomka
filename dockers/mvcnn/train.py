@@ -78,7 +78,8 @@ def train(dataset_train, dataset_test, caffemodel=''):
             step = 0
             begin = startepoch
             end = config.max_epoch + startepoch
-            for epoch in xrange(begin, end + 1):
+            while False:
+            #for epoch in xrange(begin, end + 1):
                 acc, eval_loss, predictions, labels = _test(dataset_test, config, sess, placeholders)
                 log (config.log_file, 'epoch %d: step %d, validation loss=%.4f, acc=%f' % (epoch, step, eval_loss, acc*100.))
                 
@@ -193,14 +194,6 @@ if __name__ == '__main__':
     config = get_config()
     
     data_path = config.data
-    test = 0
-    with open(os.path.join(data_path, 'test.txt'), 'r') as f:
-        for line in f:
-            if os.path.exists(line.split()[0]):
-                pass
-            else:
-                test+=1
-                log(config.log_file, line)
    
     log (config.log_file, 'start loading data')
     
