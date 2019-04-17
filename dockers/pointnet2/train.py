@@ -187,11 +187,11 @@ def train_one_epoch(config, sess, ops, epoch=0):
         
         
         if batch_idx % max(config.train_log_frq/config.batch_size,1) == 0:
-            log(config.log_file,(' ---- batch: %03d ----' % (batch_idx+1)))
-            log(config.log_file,('mean loss: %f' % (loss_sum / 200)))
+            loss = (loss_sum / max(config.train_log_frq/config.batch_size,1))
             LOSS_LOGGER.log( (loss_sum / 200), epoch, "train_loss")
-            log(config.log_file,('accuracy: %f' % (total_correct / float(total_seen))))
+            acc = total_correct / float(total_seen)
             ACC_LOGGER.log( (total_correct / float(total_seen)), epoch, "train_accuracy")
+            log(config.log_file, "TRAINING epoch: {} it: {}  loss: {} acc: {} ".format(epoch, batch_idx, loss, acc))
             total_correct = 0
             total_seen = 0
             loss_sum = 0
@@ -283,19 +283,18 @@ def eval_one_epoch(config, sess, ops, topk=1, epoch=0):
         total_seen += bsize
         loss_sum += loss_val
         batch_idx += 1
-    
-    log(config.log_file, ('eval mean loss: %f' % (loss_sum / float(batch_idx))))
-    log(config.log_file, ('eval accuracy: %f'% (total_correct / float(total_seen))))
+        
+    loss = (loss_sum / float(batch_idx))
+    acc = (total_correct / float(total_seen))
+    log(config.log_file, "EVALUATING epoch {} - loss: {} acc: {} ".format(epoch, loss, acc))
     if config.test:
         import Evaluation_tools as et
         eval_file = os.path.join(config.log_dir, '{}.txt'.format(config.name))
         et.write_eval_file(config.data, eval_file, predictions, labels, config.name)
         et.make_matrix(config.data, eval_file, config.log_dir)
     else:
-        log(config.log_file, ('eval mean loss: %f' % (loss_sum / float(batch_idx))))
-        LOSS_LOGGER.log( (loss_sum / float(len(TEST_FILES))),epoch, "eval_loss")
-        log(config.log_file, ('eval accuracy: %f'% (total_correct / float(total_seen))))
-        ACC_LOGGER.log( (total_correct / float(total_seen)),epoch, "eval_accuracy")
+        LOSS_LOGGER.log( loss, epoch, "eval_loss")
+        ACC_LOGGER.log( acc ,epoch, "eval_accuracy")
         TEST_DATASET.reset()
         return total_correct/float(total_seen)
 
