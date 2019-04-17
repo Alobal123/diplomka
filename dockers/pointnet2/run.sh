@@ -3,14 +3,14 @@ set -e
 # Set required variables
 
 name='pnet2'
-dataset_path="/local/krabec/ShapeNet/pnet"
-out_path="/home/krabec/dockers/pointnet2/shapenet/"
-GPU=1
-docker_hidden=d
+dataset_path="/home/krabec/lloyd"
+out_path="/home/krabec/dockers/pointnet2/lloyd/"
+GPU=0
+docker_hidden=t
 
 ##########################################################################################################
 
-mkdir "$out_path"
+mkdir -p "$out_path"
 docker build -t "$name" .
 docker kill "$name" 2>/dev/null | true
 docker rm "$name" 2>/dev/null | true

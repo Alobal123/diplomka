@@ -138,8 +138,8 @@ def train(config):
         begin = start_epoch
         end = config.max_epoch+start_epoch
         for epoch in range(begin, end + 1):
-            log(config.log_file('**** EPOCH %03d ****' % (epoch))
-            sys.stdout.flush()
+            log(config.log_file, ('**** EPOCH %03d ****' % (epoch)))
+
             eval_one_epoch(config,sess, ops, epoch = epoch)             
             train_one_epoch(config,sess, ops, epoch = epoch)
             
@@ -158,7 +158,7 @@ def train(config):
 def train_one_epoch(config, sess, ops, epoch=0):
     """ ops: dict mapping from string to tf ops """
     is_training = True
-    log(config.log_file(str(datetime.now()))
+    log(config.log_file, (str(datetime.now())))
 
     # Make sure batch data is of same size
     cur_batch_data = np.zeros((config.batch_size,config.num_points,TRAIN_DATASET.num_channel()))
@@ -187,10 +187,10 @@ def train_one_epoch(config, sess, ops, epoch=0):
         
         
         if batch_idx % max(config.train_log_frq/config.batch_size,1) == 0:
-            log(config.log_file(' ---- batch: %03d ----' % (batch_idx+1))
-            log(config.log_file('mean loss: %f' % (loss_sum / 200))
+            log(config.log_file,(' ---- batch: %03d ----' % (batch_idx+1)))
+            log(config.log_file,('mean loss: %f' % (loss_sum / 200)))
             LOSS_LOGGER.log( (loss_sum / 200), epoch, "train_loss")
-            log(config.log_file('accuracy: %f' % (total_correct / float(total_seen)))
+            log(config.log_file,('accuracy: %f' % (total_correct / float(total_seen))))
             ACC_LOGGER.log( (total_correct / float(total_seen)), epoch, "train_accuracy")
             total_correct = 0
             total_seen = 0
@@ -225,7 +225,7 @@ def test(config):
     ld = config.log_dir
     ckptfile = os.path.join(ld,config.snapshot_prefix+str(config.weights))
     saver.restore(sess, ckptfile)
-    log(config.log_file("Model restored.")
+    log(config.log_file, ("Model restored."))
 
     ops = {'pointclouds_pl': pointclouds_pl,
            'labels_pl': labels_pl,
@@ -253,7 +253,6 @@ def eval_one_epoch(config, sess, ops, topk=1, epoch=0):
     while TEST_DATASET.has_next_batch():
         batch_data, batch_label = TEST_DATASET.next_batch(augment=False)
         bsize = batch_data.shape[0]
-        log(config.log_file, 'Batch: %03d, batch size: %d'%(batch_idx, bsize))
         # for the last batch in the epoch, the bsize:end are from last batch
         cur_batch_data[0:bsize,...] = batch_data
         cur_batch_label[0:bsize] = batch_label
@@ -285,17 +284,17 @@ def eval_one_epoch(config, sess, ops, topk=1, epoch=0):
         loss_sum += loss_val
         batch_idx += 1
     
-    log(config.log_file('eval mean loss: %f' % (loss_sum / float(batch_idx)))
-    log(config.log_file('eval accuracy: %f'% (total_correct / float(total_seen)))
+    log(config.log_file, ('eval mean loss: %f' % (loss_sum / float(batch_idx))))
+    log(config.log_file, ('eval accuracy: %f'% (total_correct / float(total_seen))))
     if config.test:
         import Evaluation_tools as et
         eval_file = os.path.join(config.log_dir, '{}.txt'.format(config.name))
         et.write_eval_file(config.data, eval_file, predictions, labels, config.name)
         et.make_matrix(config.data, eval_file, config.log_dir)
     else:
-        log(config.log_file('eval mean loss: %f' % (loss_sum / float(batch_idx)))
+        log(config.log_file, ('eval mean loss: %f' % (loss_sum / float(batch_idx))))
         LOSS_LOGGER.log( (loss_sum / float(len(TEST_FILES))),epoch, "eval_loss")
-        log(config.log_file('eval accuracy: %f'% (total_correct / float(total_seen)))
+        log(config.log_file, ('eval accuracy: %f'% (total_correct / float(total_seen))))
         ACC_LOGGER.log( (total_correct / float(total_seen)),epoch, "eval_accuracy")
         TEST_DATASET.reset()
         return total_correct/float(total_seen)
