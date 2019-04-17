@@ -74,12 +74,6 @@ sys.path.insert(0, caffe_root + 'python')
 
 import caffe
 
-fname =  'classes.txt'
-f = open(fname)
-classes = f.readlines()
-f.close()
-classes = [f[:-1] for f in classes]
-
 
 def main(argv):
     pycaffe_dir = caffe_root + 'python/'
@@ -210,9 +204,8 @@ def get_mean(mean_file):
     return mean
     
 
-def classify(prediction, alligned = True):
-    
-    clsnum = len(classes)
+def classify(prediction, num_classes, alligned = True):
+    clsnum = num_classes
     clsid = -1
     classified  = []
     
@@ -246,6 +239,7 @@ def classify(prediction, alligned = True):
                 for j in range(clsnum):
                     for k in range(numR):
                         s[ i * clsnum + j ] = s[ i * clsnum + j ] * scores[ n * numR + ang[ i ][ k ] ][ k * clsnum + j ]
+
             classified.append(np.argmax( s ) % clsnum)
         
     return classified

@@ -15,8 +15,7 @@ def get_highest_model(config):
     latest_file = max(files, key=os.path.getctime)
     return latest_file
 
-def get_dataset_size(config, name):
-    file = os.path.join(config.data, '{}.txt'.format(name))
+def get_dataset_size(file):
     with open(file, 'r') as f:
         count = len(f.readlines())
     return count
@@ -24,31 +23,32 @@ def get_dataset_size(config, name):
 def eval(config, solver, epoch=0):
     acc = 0
     loss = 0
+    
     labels = []
     predictions = []
     
-    test_file = os.path.join(config.data, 'testrotnet.txt')
     mean = get_mean(config.mean_file)
-    
-    batch_size = solver.test_nets[0].blobs['data'].num
-    test_iters = int(get_dataset_size(config, 'testrotnet') / config.batch_size)
+    test_file = os.path.join(config.data, 'testrotnet.txt')
+    batch_size = config.num_views
+    test_iters = int(get_dataset_size(test_file) / batch_size)
     
     for i in range(test_iters):
         solver.test_nets[0].forward()
         acc += solver.test_nets[0].blobs['my_accuracy'].data
         loss += solver.test_nets[0].blobs['(automatic)'].data
         probs = solver.test_nets[0].blobs['prob'].data
-        predictions+= classify(probs)
+        predictions += classify(probs, config.num_classes)
         labels.append(int(solver.test_nets[0].blobs['label'].data[0]))
         
     acc /= test_iters
     loss  /= test_iters
+    log(config.log_file, "EVALUATING epoch {} - loss: {} acc: {} ".format(epoch, loss, acc))
     if not config.test:
         log(config.log_file, "Accuracy: {:.3f}".format(acc))
         log(config.log_file, "Loss: {:.3f}".format(loss))
         LOSS_LOGGER.log( loss, epoch, "eval_loss")
         ACC_LOGGER.log( acc, epoch, "eval_accuracy")
-        log(config.log_file, "EVALUATING epoch {} - loss: {} acc: {} ".format(epoch, loss, acc))
+
     else:
         import Evaluation_tools as et
         eval_file = os.path.join(config.log_dir, '{}.txt'.format(config.name))
@@ -96,7 +96,6 @@ def train(config, solver):
                 LOSS_LOGGER.save(config.log_dir)
                 losses = []
                 accs = []
-                highest_model_saved = it
                 log(config.log_file, "TRAINING epoch: {} it: {}  loss: {} acc: {} ".format(epoch,it, loss, acc))
         ACC_LOGGER.plot(dest=config.log_dir)
         LOSS_LOGGER.plot(dest=config.log_dir)        
@@ -122,7 +121,7 @@ if __name__ == '__main__':
     
     caffe.set_device(0)
     caffe.set_mode_gpu()
-    data_size = get_dataset_size(config, 'trainrotnet')
+    data_size = get_dataset_size(os.path.join(config.data, 'trainrotnet.txt'))
     prepare_solver_file(data_size=data_size)
     solver = caffe.get_solver(config.solver)
     
@@ -130,7 +129,7 @@ if __name__ == '__main__':
         LOSS_LOGGER = Logger("{}_loss".format(config.name))
         ACC_LOGGER = Logger("{}_acc".format(config.name))
         train(config, solver)
-        config = add_to_config(config, 'weights', highest_model_saved)
+        config = add_to_config(config, 'weights', get_highest_model(config))
         config = add_to_config(config, 'test', True)
         
     snapshot = get_highest_model(config)
