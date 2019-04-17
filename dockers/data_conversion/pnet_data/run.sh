@@ -1,9 +1,9 @@
 ##########################################################################################################
 # Set required variables
 set -e
-name="pnet"
-dataset_path="/local/krabec/ShapeNet/ShapeNet"
-output_dir="/local/krabec/ShapeNet"
+name="lloyd"
+dataset_path="/local/krabec/ModelNet40A"
+output_dir="/home/krabec/"
 docker_hidden=t
 
 ##########################################################################################################

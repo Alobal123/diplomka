@@ -9,10 +9,14 @@ RUN apt-get update -yq && apt-get install -yq \
     python3-dev \
     python3-pip \
     python3-numpy \
-    libhdf5-dev
+    libhdf5-dev \
+    cmake \
+    git
 
 # Install python libraries        
 RUN pip3 install h5py
+
+RUN pip3 install git+git://github.com/fwilliams/point-cloud-utils
 
 # Copy changed files
 COPY *.py ./

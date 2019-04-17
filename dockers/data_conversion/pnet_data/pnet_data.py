@@ -10,6 +10,8 @@ import sys
 from config import get_config
 # ['data'], ['label'] h5py format trainfiles.txt and testfiles.txt
 
+
+
 DATASETS = ['train', 'test', 'val']
 
 def save_for_pnet(config, files, categories, split):
@@ -33,7 +35,6 @@ def collect_files(dest):
                 if file.split('_')[0] == dataset:
                     print(os.path.join(dest,file),file=f)
  
-
    
 if __name__ == '__main__':
   
