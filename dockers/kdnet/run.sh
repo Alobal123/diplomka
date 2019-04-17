@@ -3,9 +3,9 @@ set -e
 # Set required variables
 
 name='kdnet'
-dataset_path="/home/krabec/kdnet_small"
-out_path="/home/krabec/dockers/kdnet/shapenet/"
-GPU=3
+dataset_path="/local/krabec/ModelNet40A/kdnet"
+out_path="/home/krabec/dockers/kdnet/out3/"
+GPU=2
 docker_hidden=t
 
 ##########################################################################################################
