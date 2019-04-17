@@ -7,15 +7,13 @@ if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
    
-        
-    path = "D:\\workspace\\diplomka\\data\\points\\ply_data_test0.h5"
-    path = "D:\\workspace\\diplomka\\data\\test_0.h5"
-    path = ".\\train_0.h5"
+    path = "D:\\workspace\\diplomka\\dockers\\data_conversion\\test_0.h5"
+    #path = ".\\train_0.h5"
     parser.add_argument("-f", default= path, type=str, help="npz file to load")
     args = parser.parse_args()
     
     f = h5py.File(args.f)
-    index = 0
+    index = 1
     labels = np.array(f['label'])
     points = np.array(f['data'])
     print(points.shape)
