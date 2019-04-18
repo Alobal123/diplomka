@@ -1,4 +1,4 @@
-\begin{thebibliography}{66}
+\begin{thebibliography}{68}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -245,6 +245,14 @@ Jiaxin Li, Ben~M. Chen, and Gim~Hee Lee.
 \newblock URL \url{http://arxiv.org/abs/1803.04249}.
 \newblock arXiv: 1803.04249.
 
+\bibitem[Lloyd(1982)]{lloyd_least_1982}
+S.~Lloyd.
+\newblock Least squares quantization in {PCM}.
+\newblock \emph{IEEE Transactions on Information Theory}, 28\penalty0
+  (2):\penalty0 129--137, March 1982.
+\newblock ISSN 0018-9448.
+\newblock \doi{10.1109/TIT.1982.1056489}.
+
 \bibitem[machrisaa(2017)]{machrisaa_vgg_2017}
 machrisaa.
 \newblock {VGG} in {Tensorflow}, 2017.
@@ -479,6 +487,10 @@ Peng-Shuai Wang, Yang Liu, Yu-Xiao Guo, Chun-Yu Sun, and Xin Tong.
 Peng-Shuai Wang, Yang Liu, Yu-Xiao Guo, Chun-Yu Sun, and Xin Tong.
 \newblock O-{CNN} in {Caffe}, 2018{\natexlab{b}}.
 \newblock URL \url{https://github.com/Microsoft/O-CNN}.
+
+\bibitem[Williams(2019)]{williams_point_2019}
+Francis Williams.
+\newblock Point {Cloud} {Utils}, 2019.
 
 \bibitem[Wu et~al.(2014)Wu, Song, Khosla, Yu, Zhang, Tang, and
   Xiao]{wu_3d_2014}

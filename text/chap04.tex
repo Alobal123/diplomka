@@ -68,14 +68,17 @@ Later in our research we found blender scripts from the authors of MVCNN2 \cite{
 \end{figure}
 
 \subsection{Mesh to Point Cloud}
-For the use of point cloud based neural networks we have to be able to construct a point cloud from a 3D mesh. This is a much more straightforward problem than the conversions described above. A point cloud is created by random sampling from the polygons forming the mesh. First, we select a polygon with a probability proportional to the area of that polygon. Then we sample a random point within the selected polygon by generating random barycentric coordinates. We provide a python script with support for multiprocessing and this is sufficiently fast for our purposes.  
+For the use of point cloud based neural networks we have to be able to construct a point cloud from a 3D mesh. This is a much more straightforward problem than the conversions described above. A point cloud is created by uniform random sampling from the polygons forming the mesh. First, we select a polygon with a probability proportional to the area of that polygon. Then we sample a random point within the selected polygon by generating random barycentric coordinates. We provide a python script with support for multiprocessing and this is sufficiently fast for our purposes. When we failed to achieve the reported results of the original papers, we inspected the data provided by \cite{qi_pointnet_2016} and it seemed to be more regular than our uniformly sampled points. Therefore we employed Lloyd's algorithm (\cite{lloyd_least_1982}) which samples the mesh very regularly using the Point Cloud Utils library (\cite{williams_point_2019}). \autoref{img:points} shows a visual comparison of our methods a well as original PointNet point cloud.
 
 \begin{figure}[!h]
 	\centering
-	\subfloat[Original point cloud representation provided by the authors of PointNet (2048 points)]{\includegraphics[width=0.44\columnwidth]{./img/pnet_plane_1}}
+	\subfloat[Original point cloud provided by the authors of PointNet (2048 points)]{\includegraphics[width=0.48\columnwidth]{./img/pnet_plane_1}}
 	\qquad
-	\subfloat[Our point cloud representation (2048 points)]{\includegraphics[width=0.44\columnwidth]{./img/myplane_1}}
-	\caption{Illustration of point cloud representation}
+	\subfloat[Uniform sampling  (2048 points)]{\includegraphics[width=0.48\columnwidth]{./img/myplane_1}}
+	\qquad
+	\subfloat[Lloyd sampling (2048 points)]{\includegraphics[width=0.48\columnwidth]{./img/lloyd}}
+	\caption{Illustration of point cloud representations}
+	\label{img:points}
 \end{figure}
 
 \section{Technical Setup}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.3.19)  17 APR 2019 13:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.3.19)  18 APR 2019 13:10
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1193,16 +1193,21 @@ Package pdftex.def Info: ./img/airplane_shaded.png  used on input line 65.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [26]
-<./img/pnet_plane_1.png, id=753, 578.8827pt x 579.6054pt>
+<./img/pnet_plane_1.png, id=760, 578.8827pt x 579.6054pt>
 File: ./img/pnet_plane_1.png Graphic file (type png)
 <use ./img/pnet_plane_1.png>
 Package pdftex.def Info: ./img/pnet_plane_1.png  used on input line 75.
-(pdftex.def)             Requested size: 181.52959pt x 181.75417pt.
-<./img/myplane_1.png, id=754, 578.8827pt x 579.6054pt>
+(pdftex.def)             Requested size: 198.0294pt x 198.27486pt.
+<./img/myplane_1.png, id=761, 578.8827pt x 579.6054pt>
 File: ./img/myplane_1.png Graphic file (type png)
 <use ./img/myplane_1.png>
 Package pdftex.def Info: ./img/myplane_1.png  used on input line 77.
-(pdftex.def)             Requested size: 181.52959pt x 181.75417pt.
+(pdftex.def)             Requested size: 198.0294pt x 198.27486pt.
+<./img/lloyd.png, id=762, 578.8827pt x 578.8827pt>
+File: ./img/lloyd.png Graphic file (type png)
+<use ./img/lloyd.png>
+Package pdftex.def Info: ./img/lloyd.png  used on input line 79.
+(pdftex.def)             Requested size: 198.0294pt x 198.02763pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1210,7 +1215,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [27 <./img/myplane_2.png> <./img/vrnesn_plane_2.png>]) [28 <./img/airplane_rotn
 et.png (PNG copy)> <./img/airplane_pbrt.png (PNG copy)> <./img/airplane_depth.p
 ng> <./img/airplane_shaded.png>] [29 <./img/pnet_plane_1.png> <./img/myplane_1.
-png>]
+png> <./img/lloyd.png>]
 \openout2 = `chap05.aux'.
 
  (chap05.tex
@@ -1287,19 +1292,19 @@ Neu-ral Net-
  []
 
 [40] [41]
-Underfull \hbox (badness 1028) in paragraph at lines 334--340
+Underfull \hbox (badness 1028) in paragraph at lines 342--348
 []\OT1/lmr/m/n/12 Charles R. Qi, Hao Su, Kaichun Mo, and Leonidas J. Guibas.  P
 oint-
  []
 
 
-Underfull \hbox (badness 1817) in paragraph at lines 369--374
+Underfull \hbox (badness 1817) in paragraph at lines 377--382
 \OT1/lmr/m/it/12 [cs]\OT1/lmr/m/n/12 , April 2016a.  URL [][]$\OT1/lmtt/m/n/12 
 http : / / arxiv . org / abs / 1604 . 03351$[][]\OT1/lmr/m/n/12 .  arXiv:
  []
 
 [42]
-Underfull \hbox (badness 3058) in paragraph at lines 418--424
+Underfull \hbox (badness 3058) in paragraph at lines 426--432
 \OT1/lmr/m/n/12 Multi-view Con-vo-lu-tional Neu-ral Net-works for 3d Shape Reco
 g-ni-tion.
  []
@@ -1339,10 +1344,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 182.
  ) 
 Here is how much of TeX's memory you used:
- 30395 strings out of 492946
- 555472 string characters out of 3135527
- 651652 words of memory out of 3000000
- 33442 multiletter control sequences out of 15000+200000
+ 30584 strings out of 492946
+ 558941 string characters out of 3135527
+ 651783 words of memory out of 3000000
+ 33627 multiletter control sequences out of 15000+200000
  58092 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,16n,71p,1203b,2327s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1360,9 +1365,9 @@ ype1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr
 Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (52 pages, 1279118 bytes).
+Output written on thesis.pdf (52 pages, 1418550 bytes).
 PDF statistics:
- 1103 PDF objects out of 1200 (max. 8388607)
- 215 named destinations out of 1000 (max. 500000)
- 562 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1119 PDF objects out of 1200 (max. 8388607)
+ 218 named destinations out of 1000 (max. 500000)
+ 567 words of extra memory for PDF output out of 10000 (max. 10000000)
 
