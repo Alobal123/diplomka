@@ -2,7 +2,7 @@ set -e
 ##########################################################################################################
 # Set required variables
 
-name='kdnet'
+name="kdnet"
 dataset_path="/local/krabec/ModelNet40A/kdnet"
 out_path="/home/krabec/dockers/kdnet/out3/"
 GPU=2
@@ -10,7 +10,7 @@ docker_hidden=t
 
 ##########################################################################################################
 
-mkdir "$out_path"
+mkdir -p "$out_path"
 docker build -t "$name" .
 docker kill "$name" 2>/dev/null | true
 docker rm "$name" 2>/dev/null | true

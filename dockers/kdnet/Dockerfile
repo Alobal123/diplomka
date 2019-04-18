@@ -1,6 +1,7 @@
 # Start with cuDNN base image
 FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu14.04
-MAINTAINER Kai Arulkumaran <design@kaixhin.com>
+#If cuda 8.0 does not work, try the following version:
+#FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu14.04
 
 # Install git, wget, python-dev, pip, BLAS + LAPACK and other dependencies
 RUN apt-get update && apt-get install -y \

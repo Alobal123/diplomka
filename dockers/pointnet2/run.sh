@@ -6,7 +6,7 @@ name='pnet2'
 dataset_path="/home/krabec/lloyd"
 out_path="/home/krabec/dockers/pointnet2/lloyd/"
 GPU=0
-docker_hidden=t
+docker_hidden=d
 
 ##########################################################################################################
 
