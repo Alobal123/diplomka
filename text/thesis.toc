@@ -42,13 +42,13 @@
 \contentsline {subsection}{\numberline {5.2.2}Time and Memory Requirements}{31}{subsection.5.2.2}% 
 \contentsline {subsection}{\numberline {5.2.3}Results on ModelNet40}{32}{subsection.5.2.3}% 
 \contentsline {subsection}{\numberline {5.2.4}Difficult Categories}{35}{subsection.5.2.4}% 
-\contentsline {section}{\numberline {5.3}ShapeNetCore Results}{35}{section.5.3}% 
+\contentsline {section}{\numberline {5.3}ShapeNetCore Results}{36}{section.5.3}% 
 \contentsline {chapter}{\numberline {6}Conclusions}{37}{chapter.6}% 
 \contentsline {section}{\numberline {6.1}Summary}{37}{section.6.1}% 
 \contentsline {section}{\numberline {6.2}Further Work}{37}{section.6.2}% 
-\contentsline {chapter}{Bibliography}{39}{chapter*.24}% 
-\contentsline {chapter}{List of Figures}{45}{chapter*.25}% 
-\contentsline {chapter}{List of Tables}{46}{chapter*.26}% 
-\contentsline {chapter}{List of Abbreviations}{47}{chapter*.27}% 
+\contentsline {chapter}{Bibliography}{39}{chapter*.25}% 
+\contentsline {chapter}{List of Figures}{45}{chapter*.26}% 
+\contentsline {chapter}{List of Tables}{46}{chapter*.27}% 
+\contentsline {chapter}{List of Abbreviations}{47}{chapter*.28}% 
 \contentsline {chapter}{\numberline {A}Attachments}{48}{appendix.A}% 
 \contentsline {section}{\numberline {A.1}First Attachment}{48}{section.A.1}% 

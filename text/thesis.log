@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.3.19)  18 APR 2019 13:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.3.19)  19 APR 2019 13:53
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1193,20 +1193,20 @@ Package pdftex.def Info: ./img/airplane_shaded.png  used on input line 65.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [26]
-<./img/pnet_plane_1.png, id=760, 578.8827pt x 579.6054pt>
+<./img/pnet_plane_1.png, id=759, 578.8827pt x 579.6054pt>
 File: ./img/pnet_plane_1.png Graphic file (type png)
 <use ./img/pnet_plane_1.png>
-Package pdftex.def Info: ./img/pnet_plane_1.png  used on input line 75.
+Package pdftex.def Info: ./img/pnet_plane_1.png  used on input line 76.
 (pdftex.def)             Requested size: 198.0294pt x 198.27486pt.
-<./img/myplane_1.png, id=761, 578.8827pt x 579.6054pt>
+<./img/myplane_1.png, id=760, 578.8827pt x 579.6054pt>
 File: ./img/myplane_1.png Graphic file (type png)
 <use ./img/myplane_1.png>
-Package pdftex.def Info: ./img/myplane_1.png  used on input line 77.
+Package pdftex.def Info: ./img/myplane_1.png  used on input line 78.
 (pdftex.def)             Requested size: 198.0294pt x 198.27486pt.
-<./img/lloyd.png, id=762, 578.8827pt x 578.8827pt>
+<./img/lloyd.png, id=761, 578.8827pt x 578.8827pt>
 File: ./img/lloyd.png Graphic file (type png)
 <use ./img/lloyd.png>
-Package pdftex.def Info: ./img/lloyd.png  used on input line 79.
+Package pdftex.def Info: ./img/lloyd.png  used on input line 80.
 (pdftex.def)             Requested size: 198.0294pt x 198.02763pt.
 
 
@@ -1240,24 +1240,29 @@ LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 1.
 
 ) [31]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 33.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 32.
  ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 33.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 32.
  [32]
 (tables/multiview.tex
 
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 1.
 
-) [33] [34] (tables/cataccuracies.tex
+) [33] (tables/pointnets.tex
 
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 1.
 
-)) [35] [36]
+[34]) [35] (tables/cataccuracies.tex
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 1.
+
+)) [36]
 \openout2 = `chap06.aux'.
 
  (chap06.tex
@@ -1336,7 +1341,7 @@ hap05.aux) (chap06.aux) (bibliography.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 182.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 182.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: E2B5D5BFB5284C0B7EEAA5D2428FC040;8470.
+(rerunfilecheck)             Checksum: D94088F9C9459F4B9EABE80AF7DE8558;8470.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1344,13 +1349,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 182.
  ) 
 Here is how much of TeX's memory you used:
- 30584 strings out of 492946
- 558941 string characters out of 3135527
- 651783 words of memory out of 3000000
- 33627 multiletter control sequences out of 15000+200000
+ 30589 strings out of 492946
+ 559040 string characters out of 3135527
+ 652052 words of memory out of 3000000
+ 33628 multiletter control sequences out of 15000+200000
  58092 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,16n,71p,1203b,2327s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,16n,71p,1207b,2327s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rmtt.enc}{C:/Program Files
 /MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc
 /dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-math
@@ -1365,9 +1370,9 @@ ype1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr
 Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (52 pages, 1418550 bytes).
+Output written on thesis.pdf (52 pages, 1420072 bytes).
 PDF statistics:
- 1119 PDF objects out of 1200 (max. 8388607)
- 218 named destinations out of 1000 (max. 500000)
+ 1123 PDF objects out of 1200 (max. 8388607)
+ 219 named destinations out of 1000 (max. 500000)
  567 words of extra memory for PDF output out of 10000 (max. 10000000)
 
