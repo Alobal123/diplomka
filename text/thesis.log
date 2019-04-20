@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.3.19)  19 APR 2019 13:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.3.19)  20 APR 2019 08:54
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1262,16 +1262,21 @@ LaTeX Warning: No positions in optional float specifier.
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 1.
 
-)) [36]
+) (tables/accuraciesshapenet.tex
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 1.
+
+)) [36] [37]
 \openout2 = `chap06.aux'.
 
  (chap06.tex
 Chapter 6.
-[37
+[38
 
 
 
-]) [38]
+]) [39]
 \openout2 = `bibliography.aux'.
 
  (bibliography.tex (thesis.bbl
@@ -1286,7 +1291,7 @@ Underfull \hbox (badness 1005) in paragraph at lines 66--70
 un.  A
  []
 
-[39
+[40
 
 
 
@@ -1296,7 +1301,7 @@ Underfull \hbox (badness 2762) in paragraph at lines 128--133
 Neu-ral Net-
  []
 
-[40] [41]
+[41] [42]
 Underfull \hbox (badness 1028) in paragraph at lines 342--348
 []\OT1/lmr/m/n/12 Charles R. Qi, Hao Su, Kaichun Mo, and Leonidas J. Guibas.  P
 oint-
@@ -1308,30 +1313,30 @@ Underfull \hbox (badness 1817) in paragraph at lines 377--382
 http : / / arxiv . org / abs / 1604 . 03351$[][]\OT1/lmr/m/n/12 .  arXiv:
  []
 
-[42]
+[43]
 Underfull \hbox (badness 3058) in paragraph at lines 426--432
 \OT1/lmr/m/n/12 Multi-view Con-vo-lu-tional Neu-ral Net-works for 3d Shape Reco
 g-ni-tion.
  []
 
-[43])) [44] (thesis.lof)
+[44])) [45] (thesis.lof)
 \tf@lof=\write9
 \openout9 = `thesis.lof'.
 
- [45
+ [46
 
 
 ] (thesis.lot)
 \tf@lot=\write10
 \openout10 = `thesis.lot'.
 
- [46
+ [47
 
-] [47
+] [48
 
 ]
 Appendix A.
-[48
+[49
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 182.
@@ -1340,39 +1345,48 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 182.
 hap05.aux) (chap06.aux) (bibliography.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 182.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 182.
-Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: D94088F9C9459F4B9EABE80AF7DE8558;8470.
 
+
+Package rerunfilecheck Warning: File `thesis.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `thesis.out':
+(rerunfilecheck)             Before: D94088F9C9459F4B9EABE80AF7DE8558;8470
+(rerunfilecheck)             After:  45ED2AB4ECFC0E0B92CB06255F8EA11D;8470.
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 182.
  ) 
 Here is how much of TeX's memory you used:
- 30589 strings out of 492946
- 559040 string characters out of 3135527
+ 30596 strings out of 492946
+ 559190 string characters out of 3135527
  652052 words of memory out of 3000000
- 33628 multiletter control sequences out of 15000+200000
+ 33629 multiletter control sequences out of 15000+200000
  58092 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,16n,71p,1207b,2327s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rmtt.enc}{C:/Program Files
-/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc
-/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-math
-sy.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}<C:/Progra
-m Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/public/lm/lmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
-lic/lm/lmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi6.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr
-17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/
-fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (52 pages, 1420072 bytes).
+pdfTeX warning (dest): name{chapter*.25} has been referenced but does not exi
+st, replaced by a fixed one
+
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rmtt.enc}{C:/Program Files/M
+iKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/d
+vips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy
+.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}<C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/lm/lmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/lm/lmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi6.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr17
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
+Output written on thesis.pdf (53 pages, 1421382 bytes).
 PDF statistics:
- 1123 PDF objects out of 1200 (max. 8388607)
- 219 named destinations out of 1000 (max. 500000)
+ 1129 PDF objects out of 1200 (max. 8388607)
+ 222 named destinations out of 1000 (max. 500000)
  567 words of extra memory for PDF output out of 10000 (max. 10000000)
 

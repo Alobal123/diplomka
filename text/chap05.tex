@@ -42,7 +42,7 @@ In this section we go into detail about results of individual networks. In this 
 	
 	\myitem{SEQ2SEQ (Sequential Views to Sequential Labels)}{Authors claim that they achieved accuracy of 92.5\% only with VGG and voting across twelve views. We failed to replicate this and and achieved only 91.2\%. Therefore we could not achieve the reported 93.31\% accuracy of the Seq2Seq network but only measured 91.12\%. However this means that the single view VGG performed better than most of the more complex networks and the recurrent Seq2seq did not bring any improvement.}
 	
-	\myitem{PointNet and PointNet++}{The authors report accuracy of 89.2\% and 91.9\% for PointNet and PointNet++ respectively. We were able to achieve only 84\% and 88.49\%. Authors provide most of the training parameters in their papers, so we use them along with the default values given in the code. We trained with point cloud data provided by authors as well as our own converted data (sampling techniques are described in \autoref{subsec:pointcloud})}. The full results of these tests are given in \autoref{Table:pn}. 
+	\myitem{PointNet and PointNet++}{The authors report accuracy of 89.2\% and 91.9\% for PointNet and PointNet++ respectively. We were able to achieve only 89\% and 88.49\%. Authors provide most of the training parameters in their papers, so we use them along with the default values given in the code. We trained with point cloud data provided by authors as well as our own converted data (sampling techniques are described in \autoref{subsec:pointcloud})}. The full results of these tests are given in \autoref{Table:pn}. 
 	
 	\input{./tables/pointnets.tex}
 	
@@ -60,3 +60,9 @@ When we take a look at the pairs of categories most often mistaken one for the o
 
 
 \section{ShapeNetCore Results}
+
+
+
+\input{./tables/accuraciesshapenet.tex}
+
+
