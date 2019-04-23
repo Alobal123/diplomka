@@ -1,26 +1,27 @@
 \begin{table}[]
+	\centering
 	\begin{tabular}{lcc}
 		\hline
-		\textbf{Network}       & Measured & Measured avg \\ \hline
-		                       &          &              \\
-		\textbf{Voxel }        &          &              \\
-		VRN                    &    \%    &      \%      \\
-		O-CNN                  &    \%    &      \%      \\
-		AO-CNN                 &    \%    &      \%      \\
-		                       &          &              \\
-		\textbf{Multi-view }   &          &              \\
-		VGG                    &    \%    &      \%      \\
-		MVCNN (shaded)         &    \%    &      \%      \\
-		MVCNN2 (shaded)        &    \%    &      \%      \\
-		RotationNet(shaded)    &    \%    &      \%      \\
-		Seq2Seq (shaded)       &    \%    &      \%      \\
-		                       &          &              \\
-		\textbf{Point cloud  } &          &              \\
-		PointNet               &    \%    &      \%      \\
-		PointNet++             &    \%    &      \%      \\
-		SO-Net                 &    \%    &      \%      \\
-		KD-Net                 &    \%    &      \%      \\
-		                       &          &              \\ \hline
+		\textbf{Network}       & Accuracy & Avg class accuracy \\ \hline
+		                       &          &                    \\
+		\textbf{Voxel }        &          &                    \\
+		VRN                    & 89.41 \% &      76.71 \%      \\
+		O-CNN                  & 90.75 \% &      75.48 \%      \\
+		AO-CNN                 & 91.33\%  &      77.14\%       \\
+		                       &          &                    \\
+		\textbf{Multi-view }   &          &                    \\
+		VGG (shaded)           & 92.45 \% &      81.0 \%       \\
+		MVCNN (shaded)         & 89.61\%  &         \%         \\
+		MVCNN2 (shaded)        & 92.22 \% &      85.56 \%      \\
+		RotationNet(shaded)    & 93.08 \% &      80.52 \%      \\
+		Seq2Seq (shaded)       &    \%    &         \%         \\
+		                       &          &                    \\
+		\textbf{Point cloud  } &          &                    \\
+		PointNet (uniform)     & 82.53 \% &      64.51 \%      \\
+		PointNet++ (uniform)   & 83.66 \% &      67.68 \%      \\
+		SO-Net (uniform)       & 87.87 \% &      73.36 \%      \\
+		KD-Net                 &    \%    &         \%         \\
+		                       &          &                    \\ \hline
 	\end{tabular}
 \caption{List of ShapeNetCore accuracies.}
 \label{Table:saccs}
