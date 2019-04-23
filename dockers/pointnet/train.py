@@ -1,3 +1,4 @@
+from __future__ import print_function
 import argparse
 import math
 import h5py
@@ -123,9 +124,7 @@ def train(config):
         begin = start_epoch
         end = config.max_epoch+start_epoch
         for epoch in range(begin, end+1):
-            log(config.log_file, ('**** EPOCH %03d ****' % (epoch))
-            sys.stdout.flush()
-            
+      
             eval_one_epoch(config,sess, ops, epoch=epoch)
             train_one_epoch(config,sess, ops, epoch=epoch)
             
@@ -141,7 +140,6 @@ def train(config):
             
 
 def train_one_epoch(config, sess, ops,epoch):
-    """ ops: dict mapping from string to tf ops """
     is_training = True
     
     # Shuffle train files
@@ -149,7 +147,6 @@ def train_one_epoch(config, sess, ops,epoch):
     np.random.shuffle(train_file_idxs)
     
     for fn in range(len(TRAIN_FILES)):
-        log(config.log_file, '----' + str(fn) + '-----')
         current_data, current_label = provider.loadDataFile(TRAIN_FILES[train_file_idxs[fn]])
         current_data = current_data[:,0:config.num_points,:]
         current_data, current_label, _ = provider.shuffle_data(current_data, np.squeeze(current_label))            
@@ -159,7 +156,7 @@ def train_one_epoch(config, sess, ops,epoch):
         
         total_correct = 0
         total_seen = 0
-        loss_sum = 0
+        losses = []
 
         for batch_idx in range(num_batches):
             start_idx = batch_idx * config.batch_size
@@ -177,13 +174,13 @@ def train_one_epoch(config, sess, ops,epoch):
             correct = np.sum(pred_val == current_label[start_idx:end_idx])
             total_correct += correct
             total_seen += config.batch_size
-            loss_sum += loss_val
+            losses.append(loss_val)
             if batch_idx % max(config.train_log_frq/config.batch_size,1) == 0:            
                 acc = total_correct / float(total_seen)
-                loss = loss_sum / float(num_batches)
-                log(config.log_file, 'mean loss: %f' % loss)
+                loss = np.mean(losses)
+                losses = []
+                log(config.log_file, 'TRAINING EPOCH {} - accuracy: {}    loss: {}'.format(epoch, acc, loss))
                 LOSS_LOGGER.log( loss, epoch, "train_loss")
-                log(config.log_file, 'accuracy: %f' % acc)
                 ACC_LOGGER.log( acc, epoch, "train_accuracy")
         
 def eval_one_epoch(config, sess, ops, epoch=0):
@@ -196,7 +193,6 @@ def eval_one_epoch(config, sess, ops, epoch=0):
     labels = []
     all = 0
     for fn in range(len(TEST_FILES)):
-        log(config.log_file, '----' + str(fn) + '-----')
         current_data, current_label = provider.loadDataFile(TEST_FILES[fn])
         current_data = current_data[:,0:config.num_points,:]
         current_label = np.squeeze(current_label)
@@ -247,18 +243,15 @@ def eval_one_epoch(config, sess, ops, epoch=0):
                 
     loss = loss_sum / float(total_seen)
     acc = sum([1 if predictions[i]==labels[i] else 0 for i in range(len(predictions))]) / float(len(predictions))
-    log(config.log_file, loss)
-    log(config.log_file, acc)
-    
+    log(config.log_file, 'EVALUATION EPOCH {} - accuracy: {}    loss: {}'.format(epoch, acc, loss))
+
     if config.test:
         import Evaluation_tools as et
         eval_file = os.path.join(config.log_dir, '{}.txt'.format(config.name))
         et.write_eval_file(config.data, eval_file, predictions, labels, config.name)
         et.make_matrix(config.data, eval_file, config.log_dir)  
     else:
-        log(config.log_file, 'eval mean loss: %f' % loss)
         LOSS_LOGGER.log( loss, epoch, "eval_loss")
-        log(config.log_file, 'eval accuracy: %f' % acc)
         ACC_LOGGER.log( acc, epoch, "eval_accuracy")
     
 def test(config):     
@@ -267,7 +260,7 @@ def test(config):
         pointclouds_pl, labels_pl = MODEL.placeholder_inputs(config.batch_size, config.num_points)
         is_training_pl = tf.placeholder(tf.bool, shape=())
         # simple model
-        pred, end_points = MODEL.get_model(pointclouds_pl, is_training_pl)
+        pred, end_points = MODEL.get_model(pointclouds_pl, is_training_pl, NUM_CLASSES=config.num_classes)
         loss = MODEL.get_loss(pred, labels_pl, end_points)
         # Add ops to save and restore all the variables.
         saver = tf.train.Saver()
@@ -293,6 +286,9 @@ def test(config):
     
     
 if __name__ == "__main__":
+    with open(config.log_file, 'w') as f:
+        print('STARTING')
+        print('STARTING', file = f)
     if not config.test:
         LOSS_LOGGER = Logger("{}_loss".format(config.name))
         ACC_LOGGER = Logger("{}_acc".format(config.name))
@@ -302,6 +298,5 @@ if __name__ == "__main__":
         else:
             config = add_to_config(config, 'weights', config.max_epoch + config.weights)
         config = add_to_config(config, 'test', True)
-    log(config.log_file, , config)
     test(config)    
 

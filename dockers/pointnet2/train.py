@@ -188,13 +188,14 @@ def train_one_epoch(config, sess, ops, epoch=0):
         
         if batch_idx % max(config.train_log_frq/config.batch_size,1) == 0:
             loss = (loss_sum / max(config.train_log_frq/config.batch_size,1))
-            LOSS_LOGGER.log( (loss_sum / 200), epoch, "train_loss")
+            LOSS_LOGGER.log( loss, epoch, "train_loss")
             acc = total_correct / float(total_seen)
-            ACC_LOGGER.log( (total_correct / float(total_seen)), epoch, "train_accuracy")
+            ACC_LOGGER.log( acc, epoch, "train_accuracy")
             log(config.log_file, "TRAINING epoch: {} it: {}  loss: {} acc: {} ".format(epoch, batch_idx, loss, acc))
             total_correct = 0
             total_seen = 0
             loss_sum = 0
+
         batch_idx += 1
 
     TRAIN_DATASET.reset()
@@ -207,7 +208,7 @@ def test(config):
         is_training_pl = tf.placeholder(tf.bool, shape=())
 
         # simple model
-        pred, end_points = MODEL.get_model(pointclouds_pl, is_training_pl)
+        pred, end_points = MODEL.get_model(pointclouds_pl, is_training_pl, NUM_CLASSES= config.num_classes)
         MODEL.get_loss(pred, labels_pl, end_points)
         losses = tf.get_collection('losses')
         total_loss = tf.add_n(losses, name='total_loss')
@@ -299,6 +300,9 @@ def eval_one_epoch(config, sess, ops, topk=1, epoch=0):
         return total_correct/float(total_seen)
 
 if __name__ == "__main__":
+    with open(config.log_file, 'w') as f:
+        print('STARTING')
+        print('STARTING', file = f)
     if not config.test:
         LOSS_LOGGER = Logger("{}_loss".format(config.name))
         ACC_LOGGER = Logger("{}_acc".format(config.name))
