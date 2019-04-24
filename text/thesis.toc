@@ -52,3 +52,9 @@
 \contentsline {chapter}{List of Abbreviations}{49}{chapter*.30}% 
 \contentsline {chapter}{\numberline {A}Attachments}{50}{appendix.A}% 
 \contentsline {section}{\numberline {A.1}Training parameters}{50}{section.A.1}% 
+\contentsline {section}{\numberline {A.2}Manual}{52}{section.A.2}% 
+\contentsline {subsection}{\numberline {A.2.1}Requirements}{52}{subsection.A.2.1}% 
+\contentsline {subsection}{\numberline {A.2.2}Datasets Setup}{52}{subsection.A.2.2}% 
+\contentsline {subsection}{\numberline {A.2.3}General Setup}{52}{subsection.A.2.3}% 
+\contentsline {subsection}{\numberline {A.2.4}Data conversion}{53}{subsection.A.2.4}% 
+\contentsline {subsection}{\numberline {A.2.5}Neural Networks}{54}{subsection.A.2.5}% 

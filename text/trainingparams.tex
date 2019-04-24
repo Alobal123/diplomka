@@ -76,3 +76,78 @@ In this attachment we present some of the most important parameters we used to t
 	number of rotations: 12\\}
 
 \end{itemize}
+
+\section{Manual}
+\label{Attachment:manual}
+This section contains instructions how to use the code used to conduct our experiments.
+\subsection{Requirements}
+To run the code you will need a computer with Linux operating system and NVIDIA GPU. \\
+
+You will need to install the following:
+\begin{itemize}
+	\item NVIDIA drivers \\(Installation guide here: https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)
+	\item Docker version 1.12 or higher \\(Installation guide here: https://docs.docker.com/install/)
+	\item NVIDIA Container Runtime for Docker \\(Installation guide here: https://github.com/NVIDIA/nvidia-docker)
+\end{itemize}
+Each neural network is an independent Docker image and all its dependencies are installed when building the image. All code is written in python.  
+
+\subsection{Datasets Setup}
+The code is made to work with ModelNet40 and ShapeNetCore datasets. The easiest way to run it with custom dataset is to restructure your data so it copies the structure of one of these datasets.\\
+\textbf{Modelnet40}
+\begin{itemize}
+	\item {Download the dataset (http://modelnet.cs.princeton.edu/). For experiments we used manually aligned version of the dataset.}
+	\item{Unpack the downloaded archive.}
+\end{itemize}
+\textbf{ShapeNetCore}
+\begin{itemize}
+		\item {Dowload the dataset(https://www.shapenet.org/download/shapenetcore). You need to register and wait for confirmation email.}
+	\item{Unpack the downloaded archive.}
+\end{itemize}
+
+\subsection{General Setup}
+Each network is implemented as a separate Docker image. To learn more about Docker, images and containers visit https://docs.docker.com.
+
+Each neural network is contained in one directory in /dockers. None of the networks accepts mesh files as their input directly, so some data conversion is required. All data conversion is implemented in docker with same structure as neural networks themselves. Code for data conversion is located in \textit{/dockers/data\_conversion}.
+
+Each directory contains two important files - \textit{config.ini} and run.sh, which you will need to open and edit. Another important file is Dockerfile which contains the definition of the docker image. Remaining files contain the code which differ from the original network implementation. Original network code is downloaded automatically when building the image and you can find the download link below.
+
+\textit{run.sh} is a runnable script which builds the docker image, runs the docker container and executes the neural network or data conversion. You will need to setup a couple of variables here:
+
+\begin{itemize}
+	\item  {name -- will be used as a name of the docker image and docker container. You can leave this at default value unless it is in conflict with some already existing image or you want to run more instances of this image at once. With data conversion scripts the name is the name of the converted dataset and directory of the same name will be created. The name of the image can be changed by changing variable image\_name in this case.}
+	\item{ dataset\_path -  contains path to the root directory of the dataset on your filesystem.}
+	\item{out\_path -- contains path to the directory where training logs and network weights will be saved. This directory will be created automatically.}
+	\item{ GPU -- index of GPU which will be visible to docker container. Have to be a single integer. We currently do not support multiple GPUs.}
+	\item{docker\_hidden -- Must be one of t or d. With t the container will be run in interactive mode, meaning it will run in your console. With d it will in detached mode i.e. in the background. For more information check docker documentation.}
+\end{itemize}
+
+config.ini contains most of the relevant parameters of the network or data conversion. The file is split to sections where each section is started by [SECTION] statement. Then on each line a parameter in format key = value. Explanation of network parameters in located in later sections.
+
+\subsection{Data conversion}
+To convert your dataset you need to set the parameters described above and then simply run script run.sh in your console. This will convert the dataset to various formats directly readable by the neural networks.\\
+Parameters for data conversion in config.ini file:
+\begin{itemize}
+	\item  {data -- path to the dataset inside the container. Does not have to be changed.}
+	\item{output -- path to the directory inside the container where converted dataset will be saved. Does not have to be changed.}
+	\item{log\_file -- path and name of the file where progress of the data conversion will be written. By default its located in the output directory and called log.txt.}
+	\item{num\_threads -- maximum number of threads to use.}
+	\item{dataset\_type --  which dataset is converting. Must be one of modelnet or shapenet currently.}
+\end{itemize}
+
+\subsection{Neural Networks}
+Each of the neural networks is implemented in python but in different framework. That is why we used the docker infrastructure. We try to present some unified framework to easily test and train the networks without changing the code. This section will briefly introduce used networks and some of their most important parameters.\\
+
+Parameters common to all neural networks:
+\begin{itemize}
+	\item{name -- will be used as the name of the experiment used in log files.}
+	\item{data -- path to the dataset inside the container. Does not have to be changed.}
+	\item{log\_dir -- path to the directory inside the container where logs and weights will be saved. Does not have to be changed.}
+	\item{num\_classes -- number of classes in the dataset. (40 for ModelNet40 and 55 for ShapeNetCore)}
+	\item{batch\_size -- size of the batch for training and testing neural networks.}
+	\item{weights -- if you want to test or fine-tune already trained network, this should be the number of this model. If you want to train from scratch, this should be -1.}
+	\item{snapshot\_prefix -- name of the file where weights will be saved. Number of training epoch when these weights are saved will be added to this.}
+	\item{max\_epoch -- number of epochs to train for. One epoch means one pass through the training part of the dataset.}
+	\item{save\_period -- the trained network will be saved every epoch divisible by save\_period.}
+	\item{train\_log\_frq -- frequency of logging during training. It is roughly number of examples seen by network.}
+	\item{test -- if you want to only test already trained network, set this to True. weights parameter has to have a valid value bigger than -1\. Should be False for training.}
+\end{itemize}
