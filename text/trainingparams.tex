@@ -1,0 +1,78 @@
+\appendix
+\chapter{Attachments}
+\section{Training parameters}
+\label{Attachment:params}
+In this attachment we present some of the most important parameters we used to train the neural networks.
+
+\def\myitem #1#2{
+	\item { \textbf{#1} \par #2
+	}
+}
+
+\begin{itemize}
+\myitem{VRN}{
+	training epochs: 20\\
+	batch size: 24\\
+	learning rate: 0.002 for 10 epochs and then 0.0002\\
+	number of rotations: 24\\}
+\myitem{O-CNN}{
+	training epochs: 50\\
+	batch size: 64\\
+	learning rate: 0.1, divided by ten every ten epochs\\
+	number of rotations: 12\\}
+\myitem{AO-CNN}{
+	training epochs: 50\\
+	batch size: 64\\
+	learning rate: 0.1, divided by ten every ten epochs\\
+	number of rotations: 12\\}
+\myitem{VGG}{
+	training epochs: 20\\
+	batch size: 60\\
+	learning rate: 0.0001, multiplied by 0.75 every three epochs\\
+	number of views: 12\\}
+\myitem{MVCNN}{
+	training epochs: 200\\
+	batch size: 64\\
+	learning rate: 0.0001\\
+	number of views: 12\\}
+\myitem{MVCNN2}{
+	training epochs: 30+30\\
+	batch size: 64\\
+	learning rate: 0.00005\\
+	number of views: 12\\}
+\myitem{RotationNet}{
+	training epochs: 200\\
+	batch size: 40\\
+	learning rate: 0.0001 divided by ten every fifty epochs\\
+	number of views: 12\\}
+\myitem{Seq2Seq}{
+	training epochs: 200\\
+	batch size: 32\\
+	learning rate: 0.0002\\
+	number of views: 12\\}
+\myitem{PointNet}{
+	training epochs: 200\\
+	batch size: 64\\
+	number of points: 2048\\
+	learning rate: 0.0001 multiplied by 0.8 every 20 epochs\\
+	number of rotations: 12\\}
+\myitem{PointNet++}{
+	training epochs: 200\\
+	batch size: 32\\
+	number of points: 2048\\
+	learning rate: 0.0001 multiplied by 0.7 every 20 epochs\\
+	number of rotations: 12\\}
+\myitem{SO-Net}{
+	training epochs: 400\\
+	batch size: 8\\
+	number of points: 5000\\	
+	learning rate: 0.001 divided by two every 40 epochs\\
+	number of rotations: 1\\}
+\myitem{KD-Net}{
+	training epochs: 200\\
+	batch size: 16\\
+	number of points: 2048\\
+	learning rate: 0.001\\
+	number of rotations: 12\\}
+
+\end{itemize}
