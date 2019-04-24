@@ -2,7 +2,7 @@
 
 ## Abstract
 
-We compiled set of publicly available neural networks for classification of 3D models. The code works with ModelNet40 and ShapeNetCore datasets which are also available online. This is a manual explaining how to convert datasets, train and test these networks.  
+We compiled set of publicly available neural networks for classification of 3D models. The code works with ModelNet40 and ShapeNetCore datasets which are also available online. This is a manual explaining how to convert the datasets, train and test these networks.  
 
 ## Requirements
 
@@ -74,9 +74,9 @@ Parameters common to all neural networks:
 *   name - will be used as the name of the experiment used in log files.
 *   data - path to the dataset inside the container. Does not have to be changed.
 *   log_dir - path to the directory inside the container where logs and weights will be saved. Does not have to be changed.
-*   num_classes - number of classes in the dataset.
+*   num_classes - number of classes in the dataset. (40 for ModelNet40 and 55 for ShapeNetCore)
 *   batch_size - size of the batch for training and testing neural networks.
-*   weights - if you want to test or finetune already trained network, this should be the number of this model. If you want to train from scratch, this should be -1\.
+*   weights - if you want to test or fine-tune already trained network, this should be the number of this model. If you want to train from scratch, this should be -1.
 *   snapshot_prefix - name of the file where weights will be saved. Number of training epoch when these weights are saved will be added to this.
 
 *   max_epoch - number of epochs to train for. One epoch means one pass through the training part of the dataset.

@@ -21,7 +21,7 @@ This is our implementation of rendering using [pbrt](https://www.pbrt.org/). It 
 Docker: dockers/data_conversion/blender_data  
 Networks: dockers/mvcnn, dockers/mvcnn2, dockers/vgg, dockers/rotnet
 
-With better success we used scripts for blender provided by team around [this paper](https://people.cs.umass.edu/%7Ejcsu/papers/shape_recog/). We just connected these into our framework, the parameters are same as above. There are two options shaded images and depth images. For details consult the original paper. You can set the mode of rendering by setting variable render in run.sh.
+With better success we used scripts for blender provided by team around [this paper](https://people.cs.umass.edu/%7Ejcsu/papers/shape_recog/). We just connected these into our framework, the parameters are same as above. There are two options shaded images, depth images and phong images. For details consult the original paper. You can set the mode of rendering by setting variable render in run.sh.
 
 ## Point clouds
 
@@ -31,11 +31,12 @@ Docker: dockers/data_conversion/pnet_data
 Networks: dockers/pointnet, dockers/pointnet2
 
 For pointnet and its successor pointnet++ we save the sampled point data in several .h5 files which are listed in text files. With all parameters unchanged, all paths will be valid, but make sure that the paths in these text files are correct inside the docker container. You can set up number of sampled points as a parameter. You can also set normal = True to sample the points with surface normals, but the pointnet implementation of this is currently not working.
+We have tried three different sampling methods, which can be set as parameter mode (lloyd, uniform and sobol)
 
 Docker: dockers/data_conversion/sonet_data  
 Networks: dockers/sonet
 
-Sonet data is sampled in the same way as pointnet with surface normals. Then it creates and learns self organizing map to better represent the data. This map is created during the data conversion and therefore this script requires GPU and nvidia runtime. You can set the number of som nodes as parameter num_nodes and this should be a square integer.
+Sonet data is sampled in the same way as pointnet by uniform sampling, but with surface normals. Then it creates and learns self organizing map to better represent the data. This map is created during the data conversion and therefore this script requires GPU and nvidia runtime. You can set the number of som nodes as parameter num_nodes and this should be a square integer.
 
 ## Other
 
