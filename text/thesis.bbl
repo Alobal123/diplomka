@@ -1,4 +1,4 @@
-\begin{thebibliography}{68}
+\begin{thebibliography}{69}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -402,6 +402,17 @@ K.~Simonyan and A.~Zisserman.
 \newblock Very {Deep} {Convolutional} {Networks} for {Large}-{Scale} {Image}
   {Recognition}.
 \newblock \emph{CoRR}, abs/1409.1556, 2014.
+
+\bibitem[Sobol'(1967)]{sobol_distribution_1967}
+I.~M. Sobol'.
+\newblock On the distribution of points in a cube and the approximate
+  evaluation of integrals.
+\newblock \emph{USSR Computational Mathematics and Mathematical Physics},
+  7\penalty0 (4):\penalty0 86 -- 112, 1967.
+\newblock ISSN 0041-5553.
+\newblock \doi{https://doi.org/10.1016/0041-5553(67)90144-9}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/0041555367901449}.
 
 \bibitem[Song et~al.(2017)Song, Yu, Zeng, Chang, Savva, and
   Funkhouser]{song_semantic_2017}

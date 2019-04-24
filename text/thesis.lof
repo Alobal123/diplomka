@@ -25,6 +25,7 @@
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Original point cloud provided by the authors of PointNet (2048 points)}}}{29}{subfigure.5.1}% 
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Uniform sampling (2048 points)}}}{29}{subfigure.5.2}% 
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Lloyd sampling (2048 points)}}}{29}{subfigure.5.3}% 
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Sobol sequence sampling (2048 points)}}}{29}{subfigure.5.4}% 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

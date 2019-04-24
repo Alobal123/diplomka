@@ -71,15 +71,18 @@ Later in our research we found blender scripts from \cite{su_deeper_2018}. They 
 
 \subsection{Mesh to Point Cloud}
 \label{subsec:pointcloud}
-For the use of point cloud based neural networks we have to be able to construct a point cloud from a 3D mesh. This is a much more straightforward problem than the conversions described above. A point cloud is created by uniform random sampling from the polygons forming the mesh. First, we select a polygon with a probability proportional to the area of that polygon. Then we sample a random point within the selected polygon by generating random barycentric coordinates. We provide a python script with support for multiprocessing and this is sufficiently fast for our purposes. When we failed to achieve the reported results of the original papers, we inspected the data provided by \cite{qi_pointnet_2016} and it seemed to be more regular than our uniformly sampled points. Therefore we employed Lloyd's algorithm (\cite{lloyd_least_1982}) which samples the mesh very regularly using the Point Cloud Utils library (\cite{williams_point_2019}). \autoref{img:points} shows a visual comparison of our methods as well as original PointNet point cloud.
+For the use of point cloud based neural networks we have to be able to construct a point cloud from a 3D mesh. This is a much more straightforward problem than the conversions described above. A point cloud is created by uniform random sampling from the polygons forming the mesh. First, a polygon is selected with a probability proportional to the area of that polygon. Then a random point is sampled within the selected polygon by generating random barycentric coordinates. We provide a python script with support for multiprocessing and this is sufficiently fast for our purposes. When we failed to achieve the reported results of the original papers, we inspected the data provided by \cite{qi_pointnet_2016} and it seemed to be more regular than our uniformly sampled points. Authors comment on their sampling method in a following way: "We uniformly sample 1024 points on mesh faces according
+to face area and normalize them into a unit sphere." Therefore we tried two more sampling methods to replicate the original PointNet data. We employed Lloyd's algorithm (\cite{lloyd_least_1982}) which samples the mesh very regularly using the Point Cloud Utils library (\cite{williams_point_2019}). We also tried to use a low-discrepancy sequence sampling which should give more regular, but still random samples. For this we used a Sobol sequence (\cite{sobol_distribution_1967}). \autoref{img:points} shows a visual comparison of our methods as well as original PointNet point cloud, as can be seen we did not manage to replicate the desired look of the point cloud, but as is discussed later, method of sampling did not have a big impact on the accuracy of the classification.
 
 \begin{figure}[!h]
 	\centering
-	\subfloat[Original point cloud provided by the authors of PointNet (2048 points)]{\includegraphics[width=0.48\columnwidth]{./img/pnet_plane_1}}
+	\subfloat[Original point cloud provided by the authors of PointNet (2048 points)]{\includegraphics[width=0.45\columnwidth]{./img/pnet_plane_1}}
 	\qquad
-	\subfloat[Uniform sampling  (2048 points)]{\includegraphics[width=0.48\columnwidth]{./img/myplane_1}}
+	\subfloat[Uniform sampling  (2048 points)]{\includegraphics[width=0.45\columnwidth]{./img/myplane_1}}
 	\qquad
-	\subfloat[Lloyd sampling (2048 points)]{\includegraphics[width=0.48\columnwidth]{./img/lloyd}}
+	\subfloat[Lloyd sampling (2048 points)]{\includegraphics[width=0.45\columnwidth]{./img/lloyd}}
+	\qquad
+	\subfloat[Sobol sequence sampling (2048 points)]{\includegraphics[width=0.45\columnwidth]{./img/sobol}}
 	\caption{Illustration of point cloud representations}
 	\label{img:points}
 \end{figure}
