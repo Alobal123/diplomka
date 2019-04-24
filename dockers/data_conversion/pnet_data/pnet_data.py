@@ -10,8 +10,6 @@ import sys
 from config import get_config
 # ['data'], ['label'] h5py format trainfiles.txt and testfiles.txt
 
-
-
 DATASETS = ['train', 'test', 'val']
 
 def save_for_pnet(config, files, categories, split):

@@ -1,9 +1,9 @@
 ##########################################################################################################
 # Set required variables
 set -e
-name="lloyd"
-dataset_path="/local/krabec/ModelNet40A"
-output_dir="/home/krabec/"
+name="pnettest"
+dataset_path="/local/krabec/Small"
+output_dir="/local/krabec"
 docker_hidden=t
 
 ##########################################################################################################

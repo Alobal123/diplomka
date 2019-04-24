@@ -2,6 +2,7 @@ from __future__ import print_function
 import numpy as np
 from mesh_files import *
 import point_cloud_utils as pcu
+import sobol_seq
 
 def triangle_normal(v1,v2,v3):
     return np.cross(v2-v1, v3-v1)
@@ -22,10 +23,23 @@ def traingle_area(v1, v2, v3):
 def normalize(vector):
     return vector / np.sum(vector)
 
-
+def choose_sobol(triangles, distribution, n):
+    sobol = sobol_seq.i4_sobol_generate(1,n)
+    dist_sum = []
+    suma = 0
+    for t in range(len(distribution)):
+        suma += distribution[t]
+        dist_sum.append(suma)
     
-
-def mesh_to_point_cloud(points, triangles, n, normal=False):
+    chosen = []
+    for k in range(n):
+        index = 0
+        while dist_sum[index] <= sobol[k][0]:
+            index+=1
+        chosen.append(index)
+    return chosen
+    
+def mesh_to_point_cloud(points, triangles, n, mode, normal=False):
     """
     test the distribution of the sampled points between two triangles
     >>> points = np.array([[0,0,0], [1,0,0], [0,2,0], [-18, 0, 0], [0, -1, 0]])
@@ -49,7 +63,11 @@ def mesh_to_point_cloud(points, triangles, n, normal=False):
     
     """
     distribution = find_area_distribution(points, triangles)
-    chosen = np.random.choice(range(len(triangles)),size=n, p=distribution)
+    if mode == 'uniform':
+        chosen = np.random.choice(range(len(triangles)), size=n, p=distribution)
+    else:
+        chosen = choose_sobol(triangles, distribution, n)
+        
     chosen_points = points[triangles[chosen]]
     normals = [triangle_normal(*triangle) for triangle in chosen_points] if normal else None
     u = np.random.rand(n,1)
@@ -92,11 +110,11 @@ def file_to_pointcloud(filename, type, args):
     else:
         print("bad dataset type")
     if args.normal:
-        return mesh_to_point_cloud(points, triangles, args.num_points, normal=True)
-    else:
-        if args.lloyd:
-            return pcu.sample_mesh_lloyd(points, triangles, args.num_points)
-        return mesh_to_point_cloud(points, triangles, args.num_points)
+        return mesh_to_point_cloud(points, triangles, args.num_points, mode, normal=True)
+    if args.mode == 'lloyd':
+        return pcu.sample_mesh_lloyd(points, triangles, args.num_points)
+    return pcu.sample_mesh_random(points, triangles,np.array([]), args.num_points)
+    return mesh_to_point_cloud(points, triangles, args.num_points, args.mode)
 
 
 if __name__ == '__main__':

@@ -14,8 +14,7 @@ RUN apt-get update -yq && apt-get install -yq \
     git
 
 # Install python libraries        
-RUN pip3 install h5py
-
+RUN pip3 install h5py sobol_seq
 RUN pip3 install git+git://github.com/fwilliams/point-cloud-utils
 
 # Copy changed files
