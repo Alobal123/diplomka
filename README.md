@@ -14,7 +14,7 @@ You will need to install:
 *   Docker version 1.12 or higher ([Installation guide here](https://docs.docker.com/install/))
 *   NVIDIA Container Runtime for Docker ([Installation guide here](https://github.com/NVIDIA/nvidia-docker))
 
-And that is all! Each neural network is an independent Docker image and all its dependencies are installed when building the image. All code is written in python.  
+Each neural network is an independent Docker image and all its dependencies are installed when building the image. All code is written in python.  
 
 ## Datasets Setup
 
