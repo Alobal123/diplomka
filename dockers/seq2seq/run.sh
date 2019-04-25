@@ -3,14 +3,15 @@ set -e
 # Set required variables
 
 name='seq2seq'
-dataset_path="/local/krabec/ModelNet40A/shaded"
-out_path="/home/krabec/dockers/seq2seq/out/shaded2"
+#dataset_path="/local/krabec/ShapeNet/shaded"
+dataset_path="/local/krabec/ModelNet40A/depth"
+out_path="/home/krabec/dockers/seq2seq/out/depth"
 GPU=0
-docker_hidden=d
+docker_hidden=t
 
 ##########################################################################################################
 
-mkdir  "$out_path"
+mkdir -p "$out_path"
 docker build -t "$name" .
 docker kill "$name" 2>/dev/null | true
 docker rm "$name" 2>/dev/null | true

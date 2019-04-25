@@ -10,6 +10,7 @@ from config import get_config, add_to_config
 config = get_config()
 
 def train(config):
+    log(config.log_file, 'Loading data')
     data =  model_data.read_data(config.data, config)
     test_data = data.test
     seq_rnn_model = SequenceRNNModel(config.n_input_fc, config.num_views, config.n_hidden, config.decoder_embedding_size, config.num_classes+1, config.n_hidden,
@@ -75,7 +76,7 @@ def train(config):
                     acc = np.mean(accs)
                     LOSS_LOGGER.log( loss, epoch, "train_loss")
                     ACC_LOGGER.log( acc, epoch, "train_accuracy")
-                    log(config.log_file, "epoch %d batch %d: loss=%f acc=%f" %(epoch, batch, loss, acc))
+                    log(config.log_file, 'TRAINING: EPOCH {} ITERATION {} LOSS {} ACCURACY {}'.format(epoch, batch, loss, acc))
                     accs = []
                     losses = []
                 batch += 1
@@ -117,10 +118,10 @@ def eval_during_training(weights, model, epoch):
         sess.run(init)
         model.assign_weights(sess, weights, "eval")
         acc, loss, _, _ = _test(data, model, sess)
-    log(config.log_file, "evaluation, acc=%f" %(acc[0]))
+    log(config.log_file, 'TEST: EPOCH {} LOSS {} ACCURACY {}'.format(epoch, loss, acc))
     LOSS_LOGGER.log( loss, epoch,"eval_loss")
-    ACC_LOGGER.log( acc[0],epoch, "eval_accuracy")
-    
+    ACC_LOGGER.log( acc, epoch, "eval_accuracy")
+        
     
 def eval_alone(config):
     data = model_data.read_data(config.data, config, read_train=False)
@@ -139,7 +140,7 @@ def eval_alone(config):
         saver = tf.train.Saver()
         saver.restore(sess, get_modelpath(config.weights))
         acc, loss, predictions, labels = _test(data, seq_rnn_model, sess)
-    log(config.log_file, "model:%s, acc_instance=%f, acc_class=%f" % ("Model", acc[0], acc[1]))
+    log(config.log_file, "TESTING ACCURACY {}".format(acc))
     
     predictions = [x-1 for x in predictions]  
     labels = [x-1 for x in labels]
@@ -159,29 +160,20 @@ def get_target_labels(seq_labels):
                 break
     return target_labels
 
-def accuracy(predict, target, mode="average_class"):
+def accuracy(predict, target):
     predict, target = np.array(predict), np.array(target)
-    if mode == "average_instance":
-        return np.mean(np.equal(predict, target))
-    elif mode == "average_class":
-        target_classes = np.unique(target)
-        acc_classes = []
-        acc_classes_map = {}
-        for class_id in target_classes:
-            predict_at_class = predict[np.argwhere(target == class_id).reshape([-1])]
-            acc_classes.append(np.mean(np.equal(predict_at_class, class_id)))
-            acc_classes_map[class_id] = acc_classes[-1]
-        with open("class_acc.csv", 'w') as f:
-            w = csv.writer(f)
-            for k in acc_classes_map:
-                w.writerow([k, acc_classes_map[k]])
-        return  [np.mean(np.equal(predict, target)), np.mean(np.array(acc_classes))]
+    return np.mean(np.equal(predict, target))
 
 def get_modelpath(epoch):
     return os.path.join(config.log_dir, config.snapshot_prefix + str(epoch))
 
 def main(argv):
     global config
+    
+    with open(config.log_file, 'w') as f:
+        print('STARTING')
+        print('STARTING', file=f)
+    
     if not config.test:
         train(config)
         if config.weights == -1:
