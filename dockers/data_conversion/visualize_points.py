@@ -7,8 +7,8 @@ if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
    
-    path = "D:\\workspace\\diplomka\\dockers\\data_conversion\\test_0.h5"
-    #path = ".\\train_0.h5"
+    #path = "D:\\workspace\\diplomka\\dockers\\data_conversion\\test_0.h5"
+    path = "D:\\workspace\\diplomka\\dockers\\data_conversion\\ply_data_test0.h5"
     parser.add_argument("-f", default= path, type=str, help="npz file to load")
     args = parser.parse_args()
     
@@ -21,7 +21,7 @@ if __name__ == '__main__':
     fig = plt.figure()
     
     ax = Axes3D(fig)
-    #ax.axis("off")
+    ax.axis("off")
     ax.scatter(points[index,:,0], points[index,:,1],points[index,:,2])
     #ax.scatter(soms[index,:,0], soms[index,:,1],soms[index,:,2])
     plt.show()
