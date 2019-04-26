@@ -1,19 +1,19 @@
 \begin{table}[]
 	\centering
-	\begin{tabular}{lc}
+	\begin{tabular}{lcc}
 		\hline
-		\textbf{Network}      &\textbf{ Accuracy }\\ \hline
-		                      &          \\
-		PointNet (original)   & 86.59 \% \\
-		PointNet (uniform)    & 85.53 \% \\
-		PointNet (lloyd)      & 85.24 \% \\
-		PointNet (sobol)      & TODO \%  \\
-		                      &          \\
-		PointNet++ (original) & 88.99 \% \\
-		PointNet++ (uniform)  & 87.36 \% \\
-		PointNet++ (lloyd)    & 88.36 \% \\
-		PointNet++ (sobol)    & TODO \% \\
-		                      &          \\ \hline
+		\textbf{Network}      & \textbf{ Accuracy } & textbf{Class Accuracy } \\ \hline
+		                      &                     &                         \\
+		PointNet (original)   &      86.60 \%       &        84.00 \%         \\
+		PointNet (uniform)    &      82.65 \%       &        81.00 \%         \\
+		PointNet (lloyd)      &      85.25 \%       &        78.97 \%         \\
+		PointNet (sobol)      &      85.87 \%       &        80.92 \%         \\
+		                      &                     &                         \\
+		PointNet++ (original) &      89.00 \%       &        85.28 \%         \\
+		PointNet++ (uniform)  &      87.57 \%       &        85.30 \%         \\
+		PointNet++ (lloyd)    &      88.53 \%       &        85.13 \%         \\
+		PointNet++ (sobol)    &      88.54 \%       &        84.54 \%         \\
+		                      &                     &                         \\ \hline
 	\end{tabular}
 \caption{Comparison of differently sampled point clouds in PointNet architectures.}
 \label{Table:pn}

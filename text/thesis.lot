@@ -14,7 +14,8 @@
 \contentsline {table}{\numberline {5.6}{\ignorespaces Average accuracies per category of ModelNet40, sorted from worst to best.\relax }}{37}{table.caption.24}% 
 \contentsline {table}{\numberline {5.7}{\ignorespaces List of the most commonly made mistakes made by all the networks on ModelNet40.\relax }}{37}{table.caption.25}% 
 \contentsline {table}{\numberline {5.8}{\ignorespaces List of ShapeNetCore accuracies.\relax }}{38}{table.caption.26}% 
+\contentsline {table}{\numberline {5.9}{\ignorespaces Average accuracies per category of ShapeNetCore, sorted from worst to best.\relax }}{39}{table.caption.27}% 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {A.1}{\ignorespaces Detailed statistics of our experiments.\relax }}{52}{table.caption.31}% 
-\contentsline {table}{\numberline {A.2}{\ignorespaces Detailed statistics of our experiments.\relax }}{53}{table.caption.32}% 
+\contentsline {table}{\numberline {A.1}{\ignorespaces Detailed statistics of ModelNet40 experiments.\relax }}{53}{table.caption.32}% 
+\contentsline {table}{\numberline {A.2}{\ignorespaces Detailed statistics of ShapeNetCore experiments.\relax }}{54}{table.caption.33}% 

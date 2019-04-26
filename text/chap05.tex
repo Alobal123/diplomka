@@ -53,7 +53,7 @@ In this section we go into detail about results of individual networks. In this 
 \end{itemize}
 
 \subsection{Difficult Categories}
-In this section we explore the results in more detail -- we explore and discuss the accuracies on individual categories of ModelNet40. We show which categories are generally hard to recognize and which, on the other hand, did not cause any problems. We also give a brief account about pairs of categories which were mistaken most often and their illustrations. We believe that this information can be useful when designing custom category hierarchies. \par
+In this section we explore the results in more detail -- we discuss the accuracies on individual categories of ModelNet40. We show which categories are generally hard to recognize and which, on the other hand, did not cause any problems. We also give a brief account about pairs of categories which were mistaken most often and their illustrations. We believe that this information can be useful when designing custom category hierarchies. \par
 We compute the accuracies per class and average these across all the trained networks. There are several categories which were almost always correctly classified and none of the networks failed to learn it fairly quickly. These categories are airplane, laptop, guitar and keyboard, which all achieved more than 99.00\% average accuracy, 100\% for most of the networks. Another successfully recognized categories are "car", "bed", "chair", "monitor", "person", "bottle" and "sofa", all achieving more than 95\% average accuracy.  
 On the other hand the most difficult category by far was a “flower pot”, which was recognized only in 14.6 percent of cases. This is probably caused by the small number of examples of this category as well as very similar categories of “flower” and “vase”. Other generally difficult categories include "wardrobe", "cup", "night stand", "bench" and "radio", achieving no more than 75\% accuracy. You can find average accuracies per category in \autoref{Table:cataccuracies} \par
 
@@ -67,9 +67,11 @@ When we take a look at the pairs of categories most often mistaken one for the o
 \section{ShapeNetCore Results}
 We conducted several experiments on ShapeNetCore dataset (more details in \autoref{sec:shapenetcore}). It is about five times bigger than ModelNet40 and has 55 categories. The training of the networks therefore takes five times longer and so we did not train on all variants of inputs as with ModelNet40, but chose only those which were most successful previously. \autoref{Table:saccs} shows the achieved accuracies on ShapeNetCore dataset.
 As can be seen from the table, the differences in measured accuracies across the networks are greater than in the case of ModelNet40, so the comparisons are more clear. The Multi-view networks, achieving around 92\%, are performing much better than the point cloud based networks. Voxel based VRN achieves reasonable accuracy of 89.41\%, but one training epoch takes about 30 hours. The octree based networks are reasonably fast and achieve accuracy comparable to multi-view networks.  \par
-Also the divide between the accuracy and the average class accuracy is much higher. This is probably caused by the fact, that the categories in ShapeNetCore dataset are not populated equally at all.
+Also the divide between the accuracy and the average class accuracy is much higher. This is probably caused by the fact, that the categories in ShapeNetCore dataset are not populated equally at all.\par
 
 \input{./tables/accuraciesshapenet.tex}
 
+The detailed per category accuracies are to be found in \autoref{Table:cataccs}. The category of "telephone" has a low accuracy of 28\% which was caused by bad division of this category and the category "cellular phone" in the original ShapeNet category division.
+\input{./tables/cataccs.tex}
 
 
