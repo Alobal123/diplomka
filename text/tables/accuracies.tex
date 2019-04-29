@@ -1,31 +1,32 @@
 \begin{table}[]
+	\centering
 	\begin{tabular}{lcccc}
 		\hline
-		\textbf{Network}       & \textbf{Reported } & \textbf{Reported avg} & \textbf{ Measured} & \textbf{Measured avg} \\ \hline
-		                       &                    &                       &                    &                       \\
-		\textbf{Voxel }        &                    &                       &                    &                       \\
-		VoxNet                 &      83.00 \%      &          --           &         --         &          --           \\
-		ORION                  &      89.70 \%      &          --           &         --         &          --           \\
-		FusionNet              &      90.80 \%      &          --           &         --         &                       \\
-		VRN                    &      91.33 \%      &          --           &      90.32 \%      &       88.00 \%        \\
-		O-CNN                  &      90.60 \%      &          --           &      88.29 \%      &       83.09 \%        \\
-		AO-CNN                 &      90.50 \%      &          --           &      91.08 \%      &       87.97 \%        \\
-		                       &                    &                       &                    &                       \\
-		\textbf{Multi-view }   &                    &                       &                    &                       \\
-		VGG (shaded)           &         --         &          --           &      90.86 \%      &       88.00 \%        \\
-		MVCNN (shaded)         &      90.10 \%      &          --           &      88.83 \%      &       86.24 \%        \\
-		MVCNN2 (shaded)        &      95.00 \%      &       92.40 \%        &      90.64 \%      &       89.13 \%        \\
-		RotationNet(shaded)    &      97.37 \%      &          --           &      92.12 \%      &       89.86 \%        \\
-		Seq2Seq (shaded)       &      93.31 \%      &          --           &      91.26 \%      &       88.54 \%        \\
-		                       &                    &                       &                    &                       \\
-		\textbf{Point cloud  } &                    &                       &                    &                       \\
-		PointNet (original)    &      89.20 \%      &       86.20 \%        &      86.60 \%      &       84.00 \%        \\
-		PointNet++ (original)  &      91.90 \%      &          --           &      89.00 \%      &       85.28 \%        \\
-		SO-Net                 &      93.40 \%      &       87.30 \%        &      89.00 \%      &       85.50 \%        \\
-		KD-Net                 &      91.80 \%      &       88.50 \%        &      88.57 \%      &       83.84 \%        \\
-		GraphNet               &      91.13 \%      &          --           &         --         &          --           \\
-		                       &                    &                       &                    &                       \\ \hline
+		\textbf{Network}     & \textbf{Reported } & \textbf{R. Class} & \textbf{Measured} & \textbf{M. Class} \\ \hline
+		                     &                    &                         &                   &                         \\
+		\textbf{Voxel }      &                    &                         &                   &                         \\
+		VoxNet               &      83.00 \%      &           --            &        --         &           --            \\
+		ORION                &      89.70 \%      &           --            &        --         &           --            \\
+		FusionNet            &      90.80 \%      &           --            &        --         &                         \\
+		VRN                  &      91.33 \%      &           --            &     90.32 \%      &        88.00 \%         \\
+		O-CNN                &      90.60 \%      &           --            &     88.29 \%      &        83.09 \%         \\
+		AO-CNN               &      90.50 \%      &           --            &     91.08 \%      &        87.97 \%         \\ \hline
+		                     &                    &                         &                   &                         \\
+		\textbf{Multi-view}  &                    &                         &                   &                         \\
+		VGG                  &         --         &           --            &     90.86 \%      &        88.00 \%         \\
+		MVCNN                &      90.10 \%      &           --            &     88.83 \%      &        86.24 \%         \\
+		MVCNN2               &      95.00 \%      &        92.40 \%         &     90.64 \%      &        89.13 \%         \\
+		RotationNet          &      97.37 \%      &           --            &     92.12 \%      &        89.86 \%         \\
+		Seq2Seq              &      93.31 \%      &           --            &     91.26 \%      &        88.54 \%         \\ \hline
+		                     &                    &                         &                   &                         \\
+		\textbf{Point cloud} &                    &                         &                   &                         \\
+		PointNet             &      89.20 \%      &        86.20 \%         &     86.60 \%      &        84.00 \%         \\
+		PointNet++           &      91.90 \%      &           --            &     89.00 \%      &        85.28 \%         \\
+		SO-Net               &      93.40 \%      &        87.30 \%         &     89.00 \%      &        85.50 \%         \\
+		KD-Net               &      91.80 \%      &        88.50 \%         &     88.57 \%      &        83.84 \%         \\
+		GraphNet             &      91.13 \%      &           --            &        --         &           --            \\ \hline
+		                     &                    &                         &                   &
 	\end{tabular}
-\caption{List of ModelNet40 accuracies.}
+\caption{List of ModelNet40 accuracies. The first two columns give reported accuracy and reported average class accuracy, if available. The last two columns present our results.}
 \label{Table:accs}
 \end{table}

@@ -1,21 +1,21 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces List of examined neural networks. There is a citation of an original paper, a framework of the publicly available code and if we included the network in our testing.\relax }}{12}{table.caption.6}% 
+\contentsline {table}{\numberline {3.1}{\ignorespaces List of examined neural networks. There is a citation of an original paper, a framework of the publicly available code and if we included the network in our testing.\relax }}{13}{table.caption.6}% 
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces List of ModelNet40 categories and their counts.\relax }}{22}{table.caption.13}% 
-\contentsline {table}{\numberline {4.2}{\ignorespaces List of ShapeNetCore categories and their counts.\relax }}{24}{table.caption.15}% 
+\contentsline {table}{\numberline {4.1}{\ignorespaces List of ModelNet40 categories and their counts.\relax }}{23}{table.caption.13}% 
+\contentsline {table}{\numberline {4.2}{\ignorespaces List of ShapeNetCore categories and their counts.\relax }}{25}{table.caption.15}% 
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Table of approximate training times on ModelNet40.\relax }}{31}{table.caption.19}% 
-\contentsline {table}{\numberline {5.2}{\ignorespaces Approximate sizes of saved models, which roughly corresponds to number of trainable parameters of the model.\relax }}{32}{table.caption.20}% 
-\contentsline {table}{\numberline {5.3}{\ignorespaces List of ModelNet40 accuracies.\relax }}{33}{table.caption.21}% 
-\contentsline {table}{\numberline {5.4}{\ignorespaces Comparison of multi-view methods.\relax }}{34}{table.caption.22}% 
-\contentsline {table}{\numberline {5.5}{\ignorespaces Comparison of differently sampled point clouds in PointNet architectures.\relax }}{36}{table.caption.23}% 
-\contentsline {table}{\numberline {5.6}{\ignorespaces Average accuracies per category of ModelNet40, sorted from worst to best.\relax }}{37}{table.caption.24}% 
-\contentsline {table}{\numberline {5.7}{\ignorespaces List of the most commonly made mistakes made by all the networks on ModelNet40.\relax }}{37}{table.caption.25}% 
-\contentsline {table}{\numberline {5.8}{\ignorespaces List of ShapeNetCore accuracies.\relax }}{38}{table.caption.26}% 
-\contentsline {table}{\numberline {5.9}{\ignorespaces Average accuracies per category of ShapeNetCore, sorted from worst to best.\relax }}{39}{table.caption.27}% 
+\contentsline {table}{\numberline {5.1}{\ignorespaces List of ModelNet40 accuracies. The first two columns give reported accuracy and reported average class accuracy, if available. The last two columns present our results.\relax }}{32}{table.caption.19}% 
+\contentsline {table}{\numberline {5.2}{\ignorespaces Table of approximate training times on ModelNet40.\relax }}{33}{table.caption.20}% 
+\contentsline {table}{\numberline {5.3}{\ignorespaces Approximate sizes of saved models, which roughly corresponds to number of trainable parameters of the model.\relax }}{34}{table.caption.21}% 
+\contentsline {table}{\numberline {5.4}{\ignorespaces Comparison of multi-view methods.\relax }}{35}{table.caption.22}% 
+\contentsline {table}{\numberline {5.5}{\ignorespaces Comparison of differently sampled point clouds in PointNet architectures.\relax }}{37}{table.caption.23}% 
+\contentsline {table}{\numberline {5.6}{\ignorespaces Average accuracies per category of ModelNet40, sorted from worst to best.\relax }}{38}{table.caption.24}% 
+\contentsline {table}{\numberline {5.7}{\ignorespaces List of the most commonly made mistakes made by all the networks on ModelNet40.\relax }}{38}{table.caption.25}% 
+\contentsline {table}{\numberline {5.8}{\ignorespaces List of ShapeNetCore accuracies.\relax }}{39}{table.caption.26}% 
+\contentsline {table}{\numberline {5.9}{\ignorespaces Average accuracies per category of ShapeNetCore, sorted from worst to best.\relax }}{40}{table.caption.27}% 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {A.1}{\ignorespaces Detailed statistics of ModelNet40 experiments.\relax }}{53}{table.caption.32}% 
-\contentsline {table}{\numberline {A.2}{\ignorespaces Detailed statistics of ShapeNetCore experiments.\relax }}{54}{table.caption.33}% 
+\contentsline {table}{\numberline {A.1}{\ignorespaces Detailed statistics of ModelNet40 experiments.\relax }}{55}{table.caption.32}% 
+\contentsline {table}{\numberline {A.2}{\ignorespaces Detailed statistics of ShapeNetCore experiments.\relax }}{56}{table.caption.33}% 
