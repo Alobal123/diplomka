@@ -38,8 +38,7 @@ class config:
                 if section == 'ITER_PARAMETERS' and data_size:
                     value = epoch_to_iters(Parse(value), self.dictionary['batch_size'], data_size )
                     self.dictionary[key] = value
-        print(self.dictionary)
-    
+        
     def get_named_tuple(self):
         return dict_to_tuple(self.dictionary)
     
