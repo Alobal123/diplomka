@@ -3,12 +3,14 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import time
+from datetime import datetime
 import pandas
 import os
 import glob
 import numpy as np
 from Evaluation_tools import collect_files
 
+'Class to save training info'
 
 class Logger_Entry:
     def __init__(self, times = None, data = None, epochs = None, offset = 0):
@@ -126,6 +128,12 @@ def find_name(dir):
         return open(files[0],'r').readlines()[0].strip()
     else:
         return os.path.basename(dir)
+
+def log(file, msg):
+    msg = datetime.now().strftime('%m-%d %H:%M:%S   ') + msg
+    with open(file, 'a') as f:
+        print(msg)
+        print(msg, file = f)
 
 def find_and_load(directory, regex, name='Plot'):
     import re

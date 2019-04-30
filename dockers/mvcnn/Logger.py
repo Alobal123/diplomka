@@ -3,7 +3,6 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import time
-from datetime import datetime
 import pandas
 import os
 import glob
@@ -130,7 +129,6 @@ def find_name(dir):
         return os.path.basename(dir)
 
 def log(file, msg):
-    msg = datetime.now().strftime('%m-%d %H:%M:%S   ') + msg
     with open(file, 'a') as f:
         print(msg)
         print(msg, file = f)

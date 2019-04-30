@@ -81,7 +81,8 @@ def train(dataset_train, dataset_test, caffemodel=''):
 
             for epoch in xrange(begin, end + 1):
                 acc, eval_loss, predictions, labels = _test(dataset_test, config, sess, placeholders)
-                log (config.log_file, 'epoch %d: step %d, validation loss=%.4f, acc=%f' % (epoch, step, eval_loss, acc*100.))
+
+                log (config.log_file, 'EVALUATION: epoch {}, validation loss={}, acc={}'.format(epoch, eval_loss, acc))
                 
                 LOSS_LOGGER.log( eval_loss, epoch, "eval_loss")
                 ACC_LOGGER.log( acc, epoch, "eval_accuracy")
@@ -113,7 +114,7 @@ def train(dataset_train, dataset_test, caffemodel=''):
                         ACC_LOGGER.log( acc_, epoch, "train_accuracy")
                         loss_ = total_loss / float(total_seen/batch_size) 
                         LOSS_LOGGER.log( loss_, epoch,"train_loss")           
-                        log (config.log_file, 'epoch %d step %d, loss=%.2f, acc=%.2f' %(epoch, step, loss_, acc_))
+                        log (config.log_file, 'TRAINING: epoch {}, step {}, validation loss={}, acc={}'.format(epoch, step, loss_, acc_))
                         total_seen = 0
                         total_correct = 0
                         total_loss = 0
