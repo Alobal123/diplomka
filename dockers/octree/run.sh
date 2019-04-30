@@ -3,9 +3,9 @@ set -e
 # Set required variables
 
 name='octree'
-dataset_path="/home/krabec/octree_12"
-out_path="/home/krabec/dockers/octree/out/"
-GPU=3
+dataset_path="/path/to/dataset"
+out_path="/output/path"
+GPU=0
 docker_hidden=t
 
 ##########################################################################################################

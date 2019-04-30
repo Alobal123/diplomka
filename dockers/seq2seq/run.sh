@@ -3,9 +3,8 @@ set -e
 # Set required variables
 
 name='seq2seq'
-#dataset_path="/local/krabec/ShapeNet/shaded"
-dataset_path="/local/krabec/ModelNet40A/depth"
-out_path="/home/krabec/dockers/seq2seq/out/depth"
+dataset_path="/path/to/dataset"
+out_path="/output/path"
 GPU=0
 docker_hidden=t
 

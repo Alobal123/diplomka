@@ -3,10 +3,10 @@ set -e
 # Set required variables
 
 name='octree_adaptive'
-dataset_path="/home/krabec/octree_adaptive_12"
-out_path="/home/krabec/dockers/octree_adaptive/out/"
-GPU=1
-docker_hidden=d
+dataset_path="/path/to/dataset"
+out_path="/output/path"
+GPU=0
+docker_hidden=t
 
 ##########################################################################################################
 

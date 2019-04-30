@@ -3,10 +3,10 @@ set -e
 # Set required variables
 
 name='pnet2'
-dataset_path="/home/krabec/lloyd"
-out_path="/home/krabec/dockers/pointnet2/lloyd/"
+dataset_path="/path/to/dataset"
+out_path="/output/path"
 GPU=0
-docker_hidden=d
+docker_hidden=t
 
 ##########################################################################################################
 

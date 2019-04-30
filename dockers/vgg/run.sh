@@ -3,10 +3,10 @@ set -e
 # Set required variables
 
 name='vgg'
-dataset_path="/local/krabec/ShapeNet/shaded"
-out_path="/home/krabec/dockers/vgg/shapenet_shaded/"
-GPU=1
-docker_hidden=d
+dataset_path="/path/to/dataset"
+out_path="/output/path"
+GPU=0
+docker_hidden=t
 
 ##########################################################################################################
 

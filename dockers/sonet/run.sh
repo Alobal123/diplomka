@@ -3,14 +3,14 @@ set -e
 # Set required variables
 
 name='sonet'
-dataset_path="/local/krabec/ModelNet40A/sonet5000"
-out_path="/home/krabec/dockers/sonet/out5000/"
-GPU=1
+dataset_path="/path/to/dataset"
+out_path="/output/path"
+GPU=0
 docker_hidden=t
 
 ##########################################################################################################
 
-mkdir "$out_path"
+mkdir -p "$out_path"
 docker build -t "$name" .
 docker kill "$name" 2>/dev/null | true
 docker rm "$name" 2>/dev/null | true

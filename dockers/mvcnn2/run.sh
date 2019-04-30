@@ -3,9 +3,9 @@ set -e
 # Set required variables
 
 name='mvcnn2'
-dataset_path="/local/krabec/ShapeNet/shaded"
-out_path="/home/krabec/dockers/mvcnn2/shapenet"
-GPU=1
+dataset_path="/path/to/dataset"
+out_path="/output/path"
+GPU=0
 docker_hidden=t
 
 ##########################################################################################################

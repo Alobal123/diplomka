@@ -95,11 +95,22 @@ def acc_fun(net, vertices, faces, nFaces, labels, config):
     loss, probs= get_probs(net, vertices, faces, nFaces, labels, config)
     return loss, probs.argmax(axis=1)
 
-if __name__ == "__main__":
+def test(config,test_vertices, test_faces, test_nFaces, test_labels):
+    log(config['log_file'],"Start testing")
+    config['mode'] = 'test'
+    _, predictions = acc_fun(net,test_vertices, test_faces, test_nFaces, test_labels, config) 
+    acc = 100.*(predictions == test_labels).sum()/len(test_labels)
     
+    log(config['log_file'],'Eval accuracy:  {}'.format(acc))
+    import Evaluation_tools as et
+    eval_file = os.path.join(config['log_dir'], '{}.txt'.format(config['name']))
+    print(eval_file)
+    et.write_eval_file(config['data'], eval_file, predictions , test_labels , config['name'])
+    et.make_matrix(config['data'], eval_file, config['log_dir'])
+
+if __name__ == "__main__":
     config = cfg.config('config.ini').dictionary
     config['n_f'] =  [16, 32,  32,  64,  64,  128, 128, 256, 256, 512, 128]
-    log(config['log_file'],'config')
     log(config['log_file'],"Reading data...")
     path2data = os.path.join(config['data'], 'data.h5')
     with h5.File(path2data, 'r') as hf:
@@ -113,7 +124,7 @@ if __name__ == "__main__":
         test_nFaces = np.array(hf.get('test_nFaces'))
         test_labels = np.array(hf.get('test_labels'))
             
-    log(config['log_file'],"Compiling net...")
+    log(config['log_file'], "Compiling net...")
     net = KDNET(config)  
     
     if config['weights']!=-1:
@@ -122,19 +133,10 @@ if __name__ == "__main__":
         log(config['log_file'],"Loaded weights")
     
     if config['test']:
-        log(config['log_file'],"Start testing")
-        config['mode'] = 'test'
-        _, predictions = acc_fun(net,test_vertices, test_faces, test_nFaces, test_labels, config) 
-        acc = 100.*(predictions == test_labels).sum()/len(test_labels)
-        
-        log(config['log_file'],'Eval accuracy:  {}'.format(acc))
-        import Evaluation_tools as et
-        eval_file = os.path.join(config['log_dir'], 'kdnet.txt')
-        et.write_eval_file(config['data'], eval_file, predictions , test_labels , 'KDNET')
-        et.make_matrix(config['data'], eval_file, config['log_dir'])
+        test(config,test_vertices, test_faces, test_nFaces, test_labels)
         
     else:
-        log(config['log_file'],"Start training")
+        log(config['log_file'], "Start training")
         LOSS_LOGGER = Logger("kdnet_loss")
         ACC_LOGGER = Logger("kdnet_acc")
         start_epoch = 0
@@ -142,9 +144,11 @@ if __name__ == "__main__":
             start_epoch = weights
             ACC_LOGGER.load((os.path.join(config['log_dir'],"kdnet_acc_train_accuracy.csv"),os.path.join(config['log_dir'],"kdnet_acc_eval_accuracy.csv")), epoch=weights)
             LOSS_LOGGER.load((os.path.join(config['log_dir'],"kdnet_loss_train_loss.csv"), os.path.join(config['log_dir'],'kdnet_loss_eval_loss.csv')), epoch=weights)
-        num_epochs = config['max_epoch']
+        
         num_save = config['save_period']
-        for epoch in xrange(start_epoch, num_epochs+start_epoch):
+        begin = start_epoch
+        end = config['max_epoch'] + start_epoch
+        for epoch in xrange(begin, end + 1):
             
             config['mode'] = 'test'
             loss, predictions = acc_fun(net,test_vertices, test_faces, test_nFaces, test_labels, config)
@@ -175,7 +179,9 @@ if __name__ == "__main__":
             LOSS_LOGGER.save(config['log_dir'])
             ACC_LOGGER.plot(dest=config['log_dir'])
             LOSS_LOGGER.plot(dest=config['log_dir'])
-            if epoch % num_save == 0:
-                dump_weights(os.path.join(config['log_dir'], 'model-{}.pkl'.format(epoch)), net.KDNet['output'])
+            if epoch % num_save == 0 or epoch==end:
+                dump_weights(os.path.join(config['log_dir'], config['snapshot_prefix']+str(epoch)), net.KDNet['output'])
                 
+        config['mode'] = 'test'      
+        test(config,test_vertices, test_faces, test_nFaces, test_labels)
                 

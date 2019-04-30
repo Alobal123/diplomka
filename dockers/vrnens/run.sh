@@ -3,10 +3,10 @@ set -e
 # Set required variables
 
 name='vrnens'
-dataset_path="/local/krabec/ShapeNet/vrnens"
-out_path="/home/krabec/dockers/vrnens/shapenet/"
-GPU=3
-docker_hidden=d
+dataset_path="/path/to/dataset"
+out_path="/output/path"
+GPU=0
+docker_hidden=t
 
 ##########################################################################################################
 
