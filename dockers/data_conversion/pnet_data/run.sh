@@ -1,11 +1,10 @@
 ##########################################################################################################
 # Set required variables
 set -e
-name="pnettest"
-dataset_path="/local/krabec/Small"
-output_dir="/local/krabec"
+name="pnet"
+dataset_path="/path/to/dataset"
+output_dir="/output/path"
 docker_hidden=t
-
 ##########################################################################################################
 
 image_name="pointcloud"

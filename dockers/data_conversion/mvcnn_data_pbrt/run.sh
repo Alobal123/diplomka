@@ -2,10 +2,9 @@
 # Set required variables
 set -e
 name="pbrt"
-dataset_path="/local/krabec/ModelNet40A"
-output_dir="/local/krabec/"
+dataset_path="/path/to/dataset"
+output_dir="/output/path"
 docker_hidden=t
-
 ##########################################################################################################
 
 image_name="pbrt"

@@ -1,11 +1,10 @@
 ##########################################################################################################
 # Set required variables
 set -e
-name="sonet5000"
-dataset_path="/local/krabec/ModelNet40A/ModelNet40A"
-output_dir="/local/krabec/ModelNet40A/"
-GPU=2
-docker_hidden=d
+dataset_path="/path/to/dataset"
+output_dir="/output/path"
+docker_hidden=t
+GPU=0
 
 ##########################################################################################################
 
