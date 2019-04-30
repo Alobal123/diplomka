@@ -1,19 +1,19 @@
 
 \begin{figure}
-\def\layersep{0.5cm}
+\def\layersep{0.85cm}
 \centering
 \begin{tikzpicture}[shorten >=1pt,->,draw=black, node distance=\layersep]
 
-\tikzstyle{layer}=[rounded rectangle,align=center,minimum width=240,minimum height=30,inner sep=3pt, draw=black];
+\tikzstyle{layer}=[rounded rectangle,align=center,minimum width=240,minimum height=25,inner sep=3pt, draw=black];
 
-\tikzstyle{layersmall}=[rounded rectangle,align=center,minimum width=60,minimum height=30,inner sep=2pt, draw=black];
+\tikzstyle{layersmall}=[rounded rectangle,align=center,minimum width=60,minimum height=25,inner sep=2pt, draw=black];
 
 \node[layer] at (0,0) (3dmod) {3D model};
 \node[layersmall] at (-5.5,-2) (view1) {View 1};
-\node[layersmall] at (5.5,-2) (view12) {View 12};
+\node[layersmall] at (5.5,-2) (view12) {View $N$};
 \node[layersmall, below = 27pt of 3dmod] (views) {...};
 \node[layersmall, right = of view1] (view2) {View 2};
-\node[layersmall, left = of view12] (view11) {View 11};
+\node[layersmall, left = of view12] (view11) {View $N-1$};
 
 \node[layersmall, below = of view1] (a1) {AlexNet};
 \node[layersmall, below = of view12] (a12) {AlexNet};
@@ -22,30 +22,34 @@
 \node[layersmall, below = of views] (a) {AlexNet};
 
 
-\node[layer, below = 5cm of 3dmod] (pool) {View Pooling};
-\node[layer, below = of pool] (dense1) {Operation: Dense with dropout\\ Data size: $4096$};
-\node[layer, below = of dense1] (dense2) {Operation: Dense with dropout\\ Data size: $4096$};
-\node[layer, below = of dense2] (dense3) {Operation: Dense \\Data size: Number of categories};
+\node[layer, below = 7cm of 3dmod] (pool) {View Pooling};
+\node[layer, below = of pool] (dense1) {Dense with dropout (4096)};
+\node[layer, below = of dense1] (dense2) {Dense with dropout (4096)};
+\node[layer, below = of dense2] (dense3) {Dense (Number of categories)};
 
-\path[line width=1.4pt]
+\path[line width=1.4pt, anchor=west, auto=true]
 (3dmod) edge          		node {} (view1) 
 (3dmod) edge          		node {} (view2) 
 (3dmod) edge          		node {} (views) 
 (3dmod) edge          		node {} (view11) 
 (3dmod) edge          		node {} (view12) 
-(view1) edge          		node {} (a1)
-(view2) edge          		node {} (a2)
-(view11) edge          		node {} (a11)
-(view12) edge          		node {} (a12)
-(views) edge          		node {} (a)
-(a1) edge          		node {} (pool)
-(a2) edge          		node {} (pool)
-(a12) edge          		node {} (pool)
-(a11) edge          		node {} (pool)
-(a) edge          		node {} (pool)
-(pool) edge          		node {} (dense1)
-(dense1) edge          		node {} (dense2)
-(dense2) edge          		node {} (dense3)
+(view1) edge          		node {$224\times224$} (a1)
+(view2) edge          		node {$224\times224$} (a2)
+(view11) edge          		node {$224\times224$} (a11)
+(view12) edge          		node {$224\times224$} (a12)
+(views) edge          		node {$224\times224$} (a)
+(pool) edge          		node {$9216$} (dense1)
+(dense1) edge          		node {$4096$} (dense2)
+(dense2) edge          		node {$4096$} (dense3)
+;
+
+
+\path[line width=1.4pt, anchor=north,sloped, auto=false]
+(a1) edge          		node {$9216$} (pool)
+(a2) edge          		node {$9216$} (pool)
+(a12) edge          		node {$9216$} (pool)
+(a11) edge          		node {$9216$} (pool)
+(a) edge          		node {$9216$} (pool)
 ;
 
 \end{tikzpicture}

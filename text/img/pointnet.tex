@@ -1,43 +1,78 @@
 \begin{figure}
-\def\layersep{0.5cm}
+\def\layersep{0.85cm}
 \centering
 \begin{tikzpicture}[shorten >=1pt,->,draw=black, node distance=\layersep]
 
-\tikzstyle{layer}=[rounded rectangle,align=center,minimum width=240,minimum height=30,inner sep=3pt, draw=black];
+\tikzstyle{layer}=[rounded rectangle,align=center,minimum width=200,minimum height=25,inner sep=3pt, draw=black];
 
-\node[layer] at (0,0) (layer1) {Operation: Point Cloud Input \\Data size: $n\times3$};
-\node[layer, below = of layer1] (t1) {Operation: Input Transform\\ Data size: $n\times3$};
-\node[layer, below = of t1] (layer2) {Operation: Dense (for each point) \\ Data size: $n\times64$};
-\node[layer, below = of layer2] (layer3) {Operation: Dense (for each point) \\ Data size: $n\times64$};
-\node[layer, below = of layer3] (t2) {Operation: Feature Transform \\ Data size: $n\times64$};
-\node[layer, below = of t2] (layer4) {Operation: Dense (for each point) \\ Data size: $n\times64$};
-\node[layer, below = of layer4] (layer5) {Operation: Dense (for each point) \\ Data size: $n\times128$};
-\node[layer, below = of layer5] (layer6) {Operation: Dense (for each point) \\ Data size: $n\times1024$};
-\node[layer, below = of layer6] (layer7) {Operation: Max pooling across points \\Data size: $1024$};
-\node[layer, below = of layer7] (layer8) {Operation: Dense\\ Data size: $512$};
-\node[layer, below = of layer8] (layer9) {Operation: Dense\\ Data size: $256$};
-\node[layer, below = of layer9] (layer10) {Operation: Dense \\Data size: Number of categories};
-
-
-\tikzstyle{transform}=[rectangle,align=center,minimum width=160,minimum height=100,inner sep=3pt, draw=black];
-\node[transform, right = of t1] (t11) {Input Transform \\Dense layers 64,128,1024\\(for each point)\\ Max pooling across points\\Dense 9 $\rightarrow3\times3$ matrix \\Matrix applied on points};
-\node[transform, right = of t2] (t22) {Feature Transform\\Dense layers 64,128,1024\\(for each point)\\ Max pooling across points\\Dense 4096 $\rightarrow64\times64$ matrix \\Matrix applied on points};
+\node[layer] at (0,-4) (layer1) {Point Cloud Input };
+\node[layer, below = of layer1] (t1) {Input Transform };
+\node[layer, below = of t1] (layer2) {Dense (64, for each point)};
+\node[layer, below = of layer2] (layer3) {Dense (64, for each point)};
+\node[layer, below = of layer3] (t2) {Feature Transform};
+\node[layer, below = of t2] (layer4) {Dense (64, for each point)};
+\node[layer, below = of layer4] (layer5) {Dense (128, for each point)};
+\node[layer, below = of layer5] (layer6) {Dense (1024, for each point)};
+\node[layer, below = of layer6] (layer7) {Max pooling across points};
+\node[layer, below = of layer7] (layer8) {Dense (512)};
+\node[layer, below = of layer8] (layer9) {Dense (256)};
+\node[layer, below = of layer9] (layer10) {Dense (Number of categories)};
 
 
-\path[line width=1.4pt]
-(layer1) edge          		node {} (t1) 
-	(t1) edge          		node {} (layer2) 
-(layer2) edge          		node {} (layer3)    
-(layer3) edge          		node {} (t2) 
-	(t2) edge          		node {} (layer4) 
-(layer4) edge          		node {} (layer5)    
-(layer5) edge          		node {} (layer6)    
-(layer6) edge          		node {} (layer7)       
-(layer7) edge          		node {} (layer8) 
-(layer8) edge          		node {} (layer9)
-(layer9) edge          		node {} (layer10)
-(t22) edge          		node {} (t2)
-(t11) edge          		node {} (t1);
+\path[line width=1.4pt, anchor=west, auto=true]
+(layer1) edge          		node {$n\times3$} (t1) 
+	(t1) edge          		node {$n\times3$} (layer2) 
+(layer2) edge          		node {$n\times64$} (layer3)    
+(layer3) edge          		node {$n\times64$} (t2) 
+	(t2) edge          		node {$n\times64$} (layer4) 
+(layer4) edge          		node {$n\times64$} (layer5)    
+(layer5) edge          		node {$n\times128$} (layer6)    
+(layer6) edge          		node {$n\times1024$} (layer7)       
+(layer7) edge          		node {$1024$} (layer8) 
+(layer8) edge          		node {$512$} (layer9)
+(layer9) edge          		node {$256$} (layer10);
+
+
+\def\layersep{0.7cm}
+\tikzstyle{layer2}=[rounded rectangle,align=center,minimum width=190,minimum height=25,inner sep=3pt, draw=black];
+\node[layer2] at (7,0) (tt1) {Dense (64, for each point)};
+\node[layer2, below = of tt1] (tt2) {Dense (128, for each point)};
+\node[layer2, below = of tt2] (tt3) {Dense (1024, for each point)};
+\node[layer2, below = of tt3] (tt4) {Max pooling across points};
+\node[layer2, below = of tt4] (tt5) {Dense (9)};
+\node[layer2, below = of tt5] (tt6) {Transform matrix (for each point)};
+
+\node[layer2, below = of tt6] (ft1) {Dense (64, for each point)};
+\node[layer2, below = of ft1] (ft2) {Dense (128, for each point)};
+\node[layer2, below = of ft2] (ft3) {Dense (1024, for each point)};
+\node[layer2, below = of ft3] (ft4) {Max pooling across points};
+\node[layer2, below = of ft4] (ft5) {Dense (4096)};
+\node[layer2, below = of ft5] (ft6) {Transform matrix (for each point)};
+
+
+\path[line width=1.4pt, anchor=west, auto=true]
+(tt1) edge          		node {$n\times64$} (tt2) 
+(tt2) edge          		node {$n\times128$} (tt3) 
+(tt3) edge          		node {$n\times1024$} (tt4) 
+(tt4) edge          		node {$1024$} (tt5) 
+(tt5) edge          		node {$3\times3$} (tt6) 
+;
+
+\path[line width=1.4pt, anchor=west, auto=true]
+(ft1) edge          		node {$n\times64$} (ft2) 
+(ft2) edge          		node {$n\times128$} (ft3) 
+(ft3) edge          		node {$n\times1024$} (ft4) 
+(ft4) edge          		node {$1024$} (ft5) 
+(ft5) edge          		node {$64\times64$} (ft6) 
+;
+
+\node[draw, fit=(tt1) (tt6)] (box1) {} ;
+\node[draw, fit=(ft1) (ft6)] (box2) {} ;
+
+\path[line width=1.4pt, anchor=west, auto=false]
+(box1) edge          		node {} (t1) 
+(box2) edge          		node {} (t2) 
+;
 
 \end{tikzpicture}
 \caption{PointNet architecture. Layers labeled "for each point" are applied for each point separatly with same weights. $n$ is number of input points.}
