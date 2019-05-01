@@ -51,12 +51,12 @@
 \contentsline {chapter}{List of Figures}{50}{chapter*.29}% 
 \contentsline {chapter}{List of Tables}{51}{chapter*.30}% 
 \contentsline {chapter}{List of Abbreviations}{52}{chapter*.31}% 
-\contentsline {chapter}{\numberline {A}Attachments}{53}{appendix.A}% 
-\contentsline {section}{\numberline {A.1}Training parameters}{53}{section.A.1}% 
-\contentsline {section}{\numberline {A.2}Detailed results}{55}{section.A.2}% 
-\contentsline {section}{\numberline {A.3}Manual}{55}{section.A.3}% 
-\contentsline {subsection}{\numberline {A.3.1}Requirements}{55}{subsection.A.3.1}% 
-\contentsline {subsection}{\numberline {A.3.2}Datasets Setup}{55}{subsection.A.3.2}% 
-\contentsline {subsection}{\numberline {A.3.3}General Setup}{57}{subsection.A.3.3}% 
-\contentsline {subsection}{\numberline {A.3.4}Data conversion}{58}{subsection.A.3.4}% 
-\contentsline {subsection}{\numberline {A.3.5}Neural Networks}{58}{subsection.A.3.5}% 
+\contentsline {chapter}{\numberline {A}Training parameters}{53}{appendix.A}% 
+\contentsline {chapter}{\numberline {B}Detailed results}{55}{appendix.B}% 
+\contentsline {chapter}{\numberline {C}Manual}{58}{appendix.C}% 
+\contentsline {section}{\numberline {C.1}Requirements}{58}{section.C.1}% 
+\contentsline {section}{\numberline {C.2}Datasets Setup}{58}{section.C.2}% 
+\contentsline {section}{\numberline {C.3}General Setup}{58}{section.C.3}% 
+\contentsline {section}{\numberline {C.4}Data conversion}{59}{section.C.4}% 
+\contentsline {section}{\numberline {C.5}Neural Networks}{60}{section.C.5}% 
+\contentsline {chapter}{\numberline {D}List of electronic attachments}{61}{appendix.D}% 

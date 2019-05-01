@@ -1,6 +1,6 @@
 \appendix
-\chapter{Attachments}
-\section{Training parameters}
+
+\chapter{Training parameters}
 \label{Attachment:params}
 In this attachment we present some of the most important parameters we used to train the neural networks.
 
@@ -78,17 +78,17 @@ In this attachment we present some of the most important parameters we used to t
 \end{itemize}
 
 
-\section{Detailed results}
+\chapter{Detailed results}
 \label{Attachment:details}
 The tables above (\autoref{Table:details} and \autoref{Table:detailss}) show more detailed results of our experiments.
 \input{./tables/details}
 \input{./tables/detailss}
 
 
-\section{Manual}
+\chapter{Manual}
 \label{Attachment:manual}
 This section contains instructions how to use the code used to conduct our experiments.
-\subsection{Requirements}
+\section{Requirements}
 To run the code you will need a computer with Linux operating system and NVIDIA GPU. \\
 
 You will need to install the following:
@@ -99,7 +99,7 @@ You will need to install the following:
 \end{itemize}
 Each neural network is an independent Docker image and all its dependencies are installed when building the image. All code is written in python.  
 
-\subsection{Datasets Setup}
+\section{Datasets Setup}
 The code is made to work with ModelNet40 and ShapeNetCore datasets. The easiest way to run it with custom dataset is to restructure your data so it copies the structure of one of these datasets.\\
 \textbf{Modelnet40}
 \begin{itemize}
@@ -112,10 +112,10 @@ The code is made to work with ModelNet40 and ShapeNetCore datasets. The easiest 
 	\item{Unpack the downloaded archive.}
 \end{itemize}
 
-\subsection{General Setup}
+\section{General Setup}
 Each network is implemented as a separate Docker image. To learn more about Docker, images and containers visit https://docs.docker.com.
 
-Each neural network is contained in one directory in /dockers. None of the networks accepts mesh files as their input directly, so some data conversion is required. All data conversion is implemented in docker with same structure as neural networks themselves. Code for data conversion is located in \textit{/dockers/data\_conversion}.
+Each neural network is contained in one directory in /dockers. None of the networks accepts mesh files as their input directly, so some data conversion is required. All data conversion is implemented in docker with same structure as neural networks themselves. Code for data conversion is located in \textit{/dockers/data\_conversion}. More details on the structure of the electronic attachments is given in \autoref{Attachment:electronic}.
 
 Each directory contains two important files - \textit{config.ini} and run.sh, which you will need to open and edit. Another important file is Dockerfile which contains the definition of the docker image. Remaining files contain the code which differ from the original network implementation. Original network code is downloaded automatically when building the image and you can find the download link below.
 
@@ -131,7 +131,7 @@ Each directory contains two important files - \textit{config.ini} and run.sh, wh
 
 config.ini contains most of the relevant parameters of the network or data conversion. The file is split to sections where each section is started by [SECTION] statement. Then on each line a parameter in format key = value. Explanation of network parameters in located in later sections.
 
-\subsection{Data conversion}
+\section{Data conversion}
 To convert your dataset you need to set the parameters described above and then simply run script run.sh in your console. This will convert the dataset to various formats directly readable by the neural networks.\\
 Parameters for data conversion in config.ini file:
 \begin{itemize}
@@ -142,7 +142,7 @@ Parameters for data conversion in config.ini file:
 	\item{dataset\_type --  which dataset is converting. Must be one of modelnet or shapenet currently.}
 \end{itemize}
 
-\subsection{Neural Networks}
+\section{Neural Networks}
 Each of the neural networks is implemented in python but in different framework. That is why we used the docker infrastructure. We try to present some unified framework to easily test and train the networks without changing the code. This section will briefly introduce used networks and some of their most important parameters.\\
 
 Parameters common to all neural networks:
@@ -159,3 +159,35 @@ Parameters common to all neural networks:
 	\item{train\_log\_frq -- frequency of logging during training. It is roughly number of examples seen by network.}
 	\item{test -- if you want to only test already trained network, set this to True. weights parameter has to have a valid value bigger than -1\. Should be False for training.}
 \end{itemize}
+
+\chapter{List of electronic attachments}
+\label{Attachment:electronic}
+The following diagram shows a directory structure of the electronic attachments to this thesis: \\
+\dirtree{%
+	.1 materials.
+	.2 papers.	
+	.1 dockers.
+	.2 data\_conversion.
+	.3 kdnet\_data.
+	.3 mvcnn\_data\_blender.
+	.3 mvcnn\_data\_pbrt.
+	.3 octree\_data.
+	.3 pnet\_data.
+	.3 vrnens\_data.
+	.2 kdnet.
+	.2 mvcnn.
+	.2 mvcnn2.
+	.2 octree.
+	.2 octree\_adaptive.
+	.2 pointnet.
+	.2 pointnet2.
+	.2 rotnet.
+	.2 seq2seq.
+	.2 sonet.
+	.2 vgg.
+	.2 vrnens.	
+}
+\vspace{1cm}
+For further research convenience we enclose original papers describing tested neural networks in \textit{materials/papers}.
+
+

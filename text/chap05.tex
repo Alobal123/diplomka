@@ -41,7 +41,7 @@ In this section we go into detail about results of individual networks. In this 
 	
 	\myitem{MVCNN2 (Multi-view Convolutional Neural Network 2)}{Authors report the highest achieved accuracy of 95\% on the shaded variant of the images. We achieved only 90.64\% on the shaded images and 90.52\% on the depth images. The training parameters are not provided in the paper, so we used the default values from the code.}
 	
-	\myitem{RotationNet}{Authors report accuracy of 97.37\% using original phong shaded images by \cite{su_multi-view_2015} but we have been able to achieve only 92.12\%. The  reported value of 97.37\% is however a maximum achieved over more training sessions. Authors report average accuracy of 93.70 using AlexNet as the pretrained image network, which is much closer to our result. They do not give all the training parameters in the paper but most of the important ones are mentioned.}
+	\myitem{RotationNet}{Authors report accuracy of 97.37\% using original phong shaded images by \cite{su_multi-view_2015} but we have been able to achieve only 92.12\%. The  reported value of 97.37\% is however a maximum achieved over more training sessions. Authors report average accuracy of 93.70\% using AlexNet as the pretrained image network, which is much closer to our result. They do not give all the training parameters in the paper but most of the important ones are mentioned.}
 	
 	\myitem{SEQ2SEQ (Sequential Views to Sequential Labels)}{Authors claim that they achieved accuracy of 92.5\% only with VGG and voting across twelve views. We failed to replicate this and and achieved only 90.86\%. Therefore we could not achieve the reported 93.31\% accuracy of the Seq2Seq network but only measured 91.26\%. However this means that the single view VGG with voting performed better than most of the more complex networks and the recurrent Seq2Seq did not bring any significant improvement.}
 	
@@ -49,8 +49,8 @@ In this section we go into detail about results of individual networks. In this 
 	
 	\input{./tables/pointnets.tex}
 	
-	\myitem{SO-NET (Self-Organizing Network for Point Cloud Analysis)}{The authors report the highest achieved accuracy of 93.4 \% on an experiment with 5000 input points. They also provide most of the training parameters in their paper. We were able to achieve only 88.90\%. We used our own sampling of point cloud which can be the source of the problem.}
-	\myitem{KD Network}{The authors report the highest achieved accuracy of 91.8\% and we have achieved only 88.57\%. Authors do not provide all the training parameters so we defaulted to the values used in code. All the code to sample point clouds and construct the trees we used is supplied by the authors so this could not be the source of the disparity between reported and measured accuracy.}
+	\myitem{SO-NET (Self-Organizing Network for Point Cloud Analysis)}{The authors report the highest achieved accuracy of 93.4\% on an experiment with 5000 input points. They also provide most of the training parameters in their paper. We were able to achieve only 88.90\%. We used our own sampling of point cloud which can be the source of the problem.}
+	\myitem{KD Network}{The authors report the highest achieved accuracy of 91.8\% and we have achieved only 88.10\%. Authors do not provide all the training parameters so we defaulted to the values used in code. All the code to sample point clouds and construct the trees we used is supplied by the authors so this could not be the source of the disparity between reported and measured accuracy.}
 \end{itemize}
 
 \subsection{Difficult Categories}

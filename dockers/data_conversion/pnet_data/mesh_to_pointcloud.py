@@ -113,7 +113,7 @@ def file_to_pointcloud(filename, type, args):
         return mesh_to_point_cloud(points, triangles, args.num_points, mode, normal=True)
     if args.mode == 'lloyd':
         return pcu.sample_mesh_lloyd(points, triangles, args.num_points)
-    return pcu.sample_mesh_random(points, triangles,np.array([]), args.num_points)
+    #return pcu.sample_mesh_random(points, triangles,np.array([]), args.num_points)
     return mesh_to_point_cloud(points, triangles, args.num_points, args.mode)
 
 
