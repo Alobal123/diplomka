@@ -68,6 +68,7 @@
 
 \def\sectionname{Section}
 \def\chaptername{Chapter}
+\let\sectionautorefname\sectionname
 \let\subsectionautorefname\sectionname
 \let\subsubsectionautorefname\sectionname
 \let\chapterautorefname\chaptername
@@ -110,7 +111,7 @@ of the thesis. Especially, I would like to thank my supervisor doc. Ing. Jarosla
 
 % Abstract (recommended length around 80-200 words; this is not a copy of your thesis assignment!)
 \def\Abstract{%
-	Classification of 3D objects is of great interest in the field of artificial intelligence. There is a great number of approaches using artificial neural networks to solve this problem. They differ mainly in the representation of 3D model used as input. The goal of this thesis is to explore and test these approaches on publicly available datasets and subject them to fair comparison. We provide a unified framework allowing to convert the data from common 3D formats, train and test ten different networks. We performed training and testing on ModelNet40 and ShapeNetCore datasets. All the networks performed reasonably well in our tests, but we generally failed to achieve the accuracies reported in the original papers. We suspect this is due to extensive hyperparameter tuning on the side of the original papers but confirming this would require further research.
+	Classification of 3D objects is of great interest in the field of artificial intelligence. There are numerous approaches using artificial neural networks to address this problem. They differ mainly in the representation of 3D model used as input and the network architecture. The goal of this thesis is to explore and test these approaches on publicly available datasets and subject them to independent comparison. We provide a unified framework allowing to convert the data from common 3D formats. We train and test ten different network on ModelNet40 and ShapeNetCore datasets. All the networks performed reasonably well in our tests, but were generally unable to achieve the accuracies reported in the original papers. We suspect this could be due to extensive hyperparameter tuning by the authors of the original papers, suggesting this issue would benefit from further research.
 }
 
 % 3 to 5 keywords (recommended), each enclosed in curly braces

@@ -2,7 +2,7 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Single-layered perceptron\relax }}{6}{figure.caption.2}% 
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Multi-layered perceptron\relax }}{6}{figure.caption.3}% 
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Illustration of 2D convolution with one 3x3 filter and valid padding.\relax }}{7}{figure.caption.4}% 
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Illustration of 2D convolution with one $3\times 3$ filter and valid padding.\relax }}{7}{figure.caption.4}% 
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Illustration of $2\times 2$ 2D maximum pooling with valid padding.\relax }}{8}{figure.caption.5}% 
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces VoxNet architecture\relax }}{14}{figure.caption.7}% 
