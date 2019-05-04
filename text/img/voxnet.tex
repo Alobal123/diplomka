@@ -6,9 +6,9 @@
 
 \node[l={300pt}{25pt}] at (0,0) (input) {Voxel Grid Input};
 
-\node[l={300pt}{25pt}, below = of input] (l2) {3D convolution (32 filters, $5\times5\times5$, stride 2)};
+\node[l={300pt}{25pt}, below = of input] (l2) {3D convolution ($5\times5\times5$, 32 filters, stride 2)};
 
-\node[l={300pt}{25pt}, below = of l2] (l3) {3D convolution (32 filters, $3\times3\times3$)};
+\node[l={300pt}{25pt}, below = of l2] (l3) {3D convolution ($3\times3\times3$), 32 filters};
 
 \node[l={300pt}{25pt}, below = of l3] (l35) { MaxPooling ($2\times2\times2$)};
 

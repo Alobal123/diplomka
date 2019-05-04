@@ -1,5 +1,5 @@
 \begin{figure}
-\def\layersep{0.85cm}
+\def\layersep{0.83cm}
 \centering
 \begin{tikzpicture}[shorten >=1pt,->,draw=black, node distance=\layersep]
 
@@ -33,7 +33,7 @@
 (layer9) edge          		node {$256$} (layer10);
 
 
-\def\layersep{0.7cm}
+\def\layersep{0.69cm}
 \tikzstyle{layer2}=[rounded rectangle,align=center,minimum width=190,minimum height=25,inner sep=3pt, draw=black];
 \node[layer2] at (7,0) (tt1) {Dense (64, for each point)};
 \node[layer2, below = of tt1] (tt2) {Dense (128, for each point)};
@@ -75,6 +75,6 @@
 ;
 
 \end{tikzpicture}
-\caption{PointNet architecture. Layers labeled "for each point" are applied for each point separatly with same weights. $n$ is number of input points.}
+\caption{PointNet architecture. Layers labeled ``for each point" are applied for each point separatly with same weights. $n$ is number of input points.}
 \label{pointnet}
 \end{figure}

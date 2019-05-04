@@ -13,15 +13,15 @@
 \contentsline {subsection}{\numberline {2.1.6}Training}{9}{subsection.2.1.6}% 
 \contentsline {section}{\numberline {2.2}Deep Learning Frameworks}{10}{section.2.2}% 
 \contentsline {chapter}{\numberline {3}Survey of 3D Classification Methods}{12}{chapter.3}% 
-\contentsline {section}{\numberline {3.1}Voxel Based Neural Networks}{12}{section.3.1}% 
+\contentsline {section}{\numberline {3.1}Voxel-based Neural Networks}{12}{section.3.1}% 
 \contentsline {subsection}{\numberline {3.1.1}VoxNet}{12}{subsection.3.1.1}% 
 \contentsline {subsection}{\numberline {3.1.2}Voxception Residual Network}{14}{subsection.3.1.2}% 
 \contentsline {subsection}{\numberline {3.1.3}Octree and Adaptive Octree Networks}{15}{subsection.3.1.3}% 
-\contentsline {section}{\numberline {3.2}Multi-view Based Neural Networks}{17}{section.3.2}% 
+\contentsline {section}{\numberline {3.2}Multi-view-based Neural Networks}{17}{section.3.2}% 
 \contentsline {subsection}{\numberline {3.2.1}Multi-view Convolutional Networks}{17}{subsection.3.2.1}% 
-\contentsline {subsection}{\numberline {3.2.2}RotationNet}{17}{subsection.3.2.2}% 
+\contentsline {subsection}{\numberline {3.2.2}RotationNet}{19}{subsection.3.2.2}% 
 \contentsline {subsection}{\numberline {3.2.3}Sequential Views to Sequential Labels}{19}{subsection.3.2.3}% 
-\contentsline {section}{\numberline {3.3}Point Cloud Based Neural Networks}{19}{section.3.3}% 
+\contentsline {section}{\numberline {3.3}Point-cloud-based Neural Networks}{19}{section.3.3}% 
 \contentsline {subsection}{\numberline {3.3.1}PointNet and PointNet++}{19}{subsection.3.3.1}% 
 \contentsline {subsection}{\numberline {3.3.2}Self-Organizing Network}{20}{subsection.3.3.2}% 
 \contentsline {subsection}{\numberline {3.3.3}KD-Network}{20}{subsection.3.3.3}% 
@@ -30,23 +30,23 @@
 \contentsline {section}{\numberline {4.1}Datasets}{23}{section.4.1}% 
 \contentsline {subsection}{\numberline {4.1.1}ModelNet40}{23}{subsection.4.1.1}% 
 \contentsline {subsection}{\numberline {4.1.2}ShapeNetCore}{23}{subsection.4.1.2}% 
-\contentsline {subsection}{\numberline {4.1.3}Other 3D Datasets}{27}{subsection.4.1.3}% 
+\contentsline {subsection}{\numberline {4.1.3}Other 3D Datasets}{28}{subsection.4.1.3}% 
 \contentsline {section}{\numberline {4.2}Data Conversion}{28}{section.4.2}% 
 \contentsline {subsection}{\numberline {4.2.1}Mesh to Voxels}{28}{subsection.4.2.1}% 
 \contentsline {subsection}{\numberline {4.2.2}Mesh to Images}{28}{subsection.4.2.2}% 
 \contentsline {subsection}{\numberline {4.2.3}Mesh to Point Cloud}{29}{subsection.4.2.3}% 
-\contentsline {section}{\numberline {4.3}Technical Setup}{29}{section.4.3}% 
+\contentsline {section}{\numberline {4.3}Technical Setup}{30}{section.4.3}% 
 \contentsline {chapter}{\numberline {5}Experiments and Results}{32}{chapter.5}% 
 \contentsline {section}{\numberline {5.1}Hardware}{32}{section.5.1}% 
 \contentsline {section}{\numberline {5.2}Accuracy}{32}{section.5.2}% 
-\contentsline {section}{\numberline {5.3}Testing on Artificial Dataset}{32}{section.5.3}% 
+\contentsline {section}{\numberline {5.3}Testing on the Artificial Datasets}{32}{section.5.3}% 
 \contentsline {subsection}{\numberline {5.3.1}Time and Memory Requirements}{33}{subsection.5.3.1}% 
 \contentsline {subsection}{\numberline {5.3.2}Results on ModelNet40}{34}{subsection.5.3.2}% 
 \contentsline {subsection}{\numberline {5.3.3}Difficult Categories}{38}{subsection.5.3.3}% 
 \contentsline {section}{\numberline {5.4}ShapeNetCore Results}{40}{section.5.4}% 
 \contentsline {chapter}{\numberline {6}Conclusions}{42}{chapter.6}% 
 \contentsline {section}{\numberline {6.1}Summary}{42}{section.6.1}% 
-\contentsline {section}{\numberline {6.2}Further Work}{42}{section.6.2}% 
+\contentsline {section}{\numberline {6.2}Future Work}{42}{section.6.2}% 
 \contentsline {chapter}{Bibliography}{44}{chapter*.28}% 
 \contentsline {chapter}{List of Figures}{50}{chapter*.29}% 
 \contentsline {chapter}{List of Tables}{51}{chapter*.30}% 
