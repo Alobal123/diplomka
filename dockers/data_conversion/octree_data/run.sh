@@ -1,7 +1,7 @@
 ##########################################################################################################
 # Set required variables
 set -e
-name="octree_adaptive"
+name="octree"
 dataset_path="/path/to/dataset"
 output_dir="/output/path"
 docker_hidden=t

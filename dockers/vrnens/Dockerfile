@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y \
   python-pip \
   python-nose
   
-  
 # Remove OS-installed six
 RUN rm /usr/lib/python2.7/dist-packages/six*
 RUN pip install --upgrade pip
@@ -21,8 +20,6 @@ RUN pip install numpy
 RUN pip install scipy
 RUN pip install matplotlib
 RUN pip install pandas
-
-
 
 # Set CUDA_ROOT
 ENV CUDA_ROOT /usr/local/cuda/bin
